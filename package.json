@@ -1,0 +1,19 @@
+{
+  "name": "gweb-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.7.0",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.3",
+    "cnpj": "^5.0.0",
+    "gerador-validador-cpf": "^6.0.0"
+  }
+}
