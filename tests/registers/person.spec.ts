@@ -5,73 +5,73 @@ import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
 import 'dotenv/config';
 
-  // cria uma pessoa para ser cadastrada
-  let person = {
-    name: "Auto " + faker.person.fullName(),
-    surname: "Auto " + faker.person.firstName(),
-    national_document: generateCpf({ format: true }),
-    state_document: faker.string.numeric({ length: 7}),
-    birth_date: '05032000',
-    crc: '123456789',
-    postal_code: '89700-055',
-    local: 'Rua Marechal Deodoro',
-    district: 'Centro',
-    number: '1280',
-    country: 'Brasil',
-    state: 'SC',
-    city_name: 'Concórdia',
-    phone: '4934414120',
-    cell: '(49) 9200-11913',
-    fax: '1234567',
-    secondary_cell: {
-      description: 'Cel2',
-      cell: '(49) 9123-45678'
-    },
-    email: faker.internet.email(),
-    homepage: faker.internet.domainName(),
-    secondary_email: {
-      description: faker.person.firstName(),
-      email: faker.internet.email()
-    },
-    obs: "Auto " + faker.lorem.sentences(10, '\n')
-  }
+// cria uma pessoa para ser cadastrada
+let person = {
+  name: "Auto " + faker.person.fullName(),
+  surname: "Auto " + faker.person.firstName(),
+  national_document: generateCpf({ format: true }),
+  state_document: faker.string.numeric({ length: 7}),
+  birth_date: '05032000',
+  crc: '123456789',
+  postal_code: '89700-055',
+  local: 'Rua Marechal Deodoro',
+  district: 'Centro',
+  number: '1280',
+  country: 'Brasil',
+  state: 'SC',
+  city_name: 'Concórdia',
+  phone: '4934414120',
+  cell: '(49) 9200-11913',
+  fax: '1234567',
+  secondary_cell: {
+    description: 'Cel2',
+    cell: '(49) 91234-5678'
+  },
+  email: faker.internet.email(),
+  homepage: faker.internet.domainName(),
+  secondary_email: {
+    description: faker.person.firstName(),
+    email: faker.internet.email()
+  },
+  obs: "Auto " + faker.lorem.sentences(10, '\n')
+}
 
-  // cria uma empresa para ser cadastrada
-  let company = {
-    id: "0",
-    name: "Auto " + faker.company.name(),
-    trade_name: "Auto " + faker.company.name(),
-    national_document: formatCnpj(generateCnpj()),
-    state_document: faker.string.numeric({ length: 7}),
-    municipal_document: faker.string.numeric({ length: 7}),
-    suframa_number: faker.string.numeric({ length: 5}),
-    cnae: faker.string.numeric({ length: 7 }),
-    person: {
-      name: faker.person.fullName(),
-      national_document: generateCpf({ format: true })
-    },
-    postal_code: '89700-055',
-    local: 'Rua Marechal Deodoro',
-    district: 'Centro',
-    number: '1280',
-    country: 'Brasil',
-    state: 'SC',
-    city_name: 'Concórdia',
-    phone: '4934414120',
-    cell: '(49) 9200-11913',
-    fax: '1234567',
-    secondary_cell: {
-      description: 'Cel2',
-      cell: '(49) 9123-45678'
-    },
-    email: faker.internet.email(),
-    homepage: faker.internet.domainName(),
-    secondary_email: {
-      description: faker.person.firstName(),
-      email: faker.internet.email()
-    },
-    obs: "Auto " + faker.lorem.sentences(10, '\n')
-  }
+// cria uma empresa para ser cadastrada
+let company = {
+  id: "0",
+  name: "Auto " + faker.company.name(),
+  trade_name: "Auto " + faker.company.name(),
+  national_document: formatCnpj(generateCnpj()),
+  state_document: faker.string.numeric({ length: 7}),
+  municipal_document: faker.string.numeric({ length: 7}),
+  suframa_number: faker.string.numeric({ length: 5}),
+  cnae: faker.string.numeric({ length: 7 }),
+  person: {
+    name: faker.person.fullName(),
+    national_document: generateCpf({ format: true })
+  },
+  postal_code: '89700-055',
+  local: 'Rua Marechal Deodoro',
+  district: 'Centro',
+  number: '1280',
+  country: 'Brasil',
+  state: 'SC',
+  city_name: 'Concórdia',
+  phone: '4934414120',
+  cell: '(49) 9200-11913',
+  fax: '1234567',
+  secondary_cell: {
+    description: 'Cel2',
+    cell: '(49) 91234-5678'
+  },
+  email: faker.internet.email(),
+  homepage: faker.internet.domainName(),
+  secondary_email: {
+    description: faker.person.firstName(),
+    email: faker.internet.email()
+  },
+  obs: "Auto " + faker.lorem.sentences(10, '\n')
+}
 
 test('Create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
@@ -137,11 +137,11 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(person.number);
   // verificações do preenchimento do CEP
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.local);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.district);
-  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(person.country)
-  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city_name);
+  await expect(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.local);
+  await expect(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.district);
+  await expect(page.getByRole('combobox', { name: 'País' })).toHaveValue(person.country)
+  await expect(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.state);
+  await expect(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city_name);
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
@@ -158,7 +158,7 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Telefone' }).fill(person.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
   await expect(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
-  await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue('(49) 91234-5678');
+  await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(person.secondary_cell.cell);
 
   // preencher endereços eletrônicos
   await page.getByRole('textbox', { name: 'E-mail' }).click();
@@ -234,11 +234,11 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(company.number);
   // verificações do preenchimento do CEP
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.local);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.district);
-  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.country)
-  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city_name);
+  await expect(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.local);
+  await expect(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.district);
+  await expect(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.country)
+  await expect(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.state);
+  await expect(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city_name);
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
@@ -255,7 +255,7 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Telefone' }).fill(company.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
   await expect(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
-  await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue('(49) 91234-5678');
+  await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(company.secondary_cell.cell);
 
   // preencher endereços eletrônicos
   await page.getByRole('textbox', { name: 'E-mail' }).click();
