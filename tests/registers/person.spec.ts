@@ -5,32 +5,30 @@ import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
 import 'dotenv/config';
 
-test('Create a new Person with CPF', async ({ page }) => {
-
   // cria uma pessoa para ser cadastrada
   let person = {
     name: "Auto " + faker.person.fullName(),
     surname: "Auto " + faker.person.firstName(),
-    cpf: generateCpf({ format: true }),
-    rg: faker.string.numeric({ length: 7}),
+    national_document: generateCpf({ format: true }),
+    state_document: faker.string.numeric({ length: 7}),
     birth_date: '05032000',
     crc: '123456789',
-    cep: '89700-055',
-    street: 'Rua Marechal Deodoro',
-    neighborhood: 'Centro',
+    postal_code: '89700-055',
+    local: 'Rua Marechal Deodoro',
+    district: 'Centro',
     number: '1280',
     country: 'Brasil',
     state: 'SC',
-    city: 'Concórdia',
-    telephone: '4934414120',
-    cellphone: '(49) 9200-11913',
+    city_name: 'Concórdia',
+    phone: '4934414120',
+    cell: '(49) 9200-11913',
     fax: '1234567',
-    secondary_cellphone: {
+    secondary_cell: {
       description: 'Cel2',
-      cellphone: '(49) 9123-45678'
+      cell: '(49) 9123-45678'
     },
     email: faker.internet.email(),
-    website: faker.internet.domainName(),
+    homepage: faker.internet.domainName(),
     secondary_email: {
       description: faker.person.firstName(),
       email: faker.internet.email()
@@ -38,6 +36,44 @@ test('Create a new Person with CPF', async ({ page }) => {
     obs: "Auto " + faker.lorem.sentences(10, '\n')
   }
 
+  // cria uma empresa para ser cadastrada
+  let company = {
+    id: "0",
+    name: "Auto " + faker.company.name(),
+    trade_name: "Auto " + faker.company.name(),
+    national_document: formatCnpj(generateCnpj()),
+    state_document: faker.string.numeric({ length: 7}),
+    municipal_document: faker.string.numeric({ length: 7}),
+    suframa_number: faker.string.numeric({ length: 5}),
+    cnae: faker.string.numeric({ length: 7 }),
+    person: {
+      name: faker.person.fullName(),
+      national_document: generateCpf({ format: true })
+    },
+    postal_code: '89700-055',
+    local: 'Rua Marechal Deodoro',
+    district: 'Centro',
+    number: '1280',
+    country: 'Brasil',
+    state: 'SC',
+    city_name: 'Concórdia',
+    phone: '4934414120',
+    cell: '(49) 9200-11913',
+    fax: '1234567',
+    secondary_cell: {
+      description: 'Cel2',
+      cell: '(49) 9123-45678'
+    },
+    email: faker.internet.email(),
+    homepage: faker.internet.domainName(),
+    secondary_email: {
+      description: faker.person.firstName(),
+      email: faker.internet.email()
+    },
+    obs: "Auto " + faker.lorem.sentences(10, '\n')
+  }
+
+test('Create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -60,9 +96,9 @@ test('Create a new Person with CPF', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Apelido' }).click();
   await page.getByRole('textbox', { name: 'Apelido' }).fill(person.surname);
   await page.getByRole('textbox', { name: 'CPF' }).click();
-  await page.getByRole('textbox', { name: 'CPF' }).fill(person.cpf);
+  await page.getByRole('textbox', { name: 'CPF' }).fill(person.national_document);
   await page.getByRole('textbox', { name: 'RG' }).click();
-  await page.getByRole('textbox', { name: 'RG' }).fill(person.rg);
+  await page.getByRole('textbox', { name: 'RG' }).fill(person.state_document);
   await page.getByRole('textbox', { name: 'Data de nascimento' }).click();
   await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(person.birth_date);
   await page.getByRole('textbox', { name: 'Data de nascimento' }).press('Tab');
@@ -96,30 +132,30 @@ test('Create a new Person with CPF', async ({ page }) => {
   
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(person.cep);
+  await page.getByRole('textbox', { name: 'CEP' }).fill(person.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(person.number);
   // verificações do preenchimento do CEP
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.street);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.neighborhood);
+  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.local);
+  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.district);
   await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(person.country)
   await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city);
+  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city_name);
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.telephone);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.phone);
   await page.getByRole('textbox', { name: 'Celular' }).click();
-  await page.getByRole('textbox', { name: 'Celular' }).fill(person.cellphone);
+  await page.getByRole('textbox', { name: 'Celular' }).fill(person.cell);
   await page.getByRole('textbox', { name: 'Fax' }).click();
   await page.getByRole('textbox', { name: 'Fax' }).fill(person.fax);
   // inclui telefone secundário
   await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
   await page.getByRole('textbox', { name: 'Descrição' }).click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(person.secondary_cellphone.description);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(person.secondary_cell.description);
   await page.getByRole('textbox', { name: 'Telefone' }).click();
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.secondary_cellphone.cellphone);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
   await expect(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue('(49) 91234-5678');
@@ -128,7 +164,7 @@ test('Create a new Person with CPF', async ({ page }) => {
   await page.getByRole('textbox', { name: 'E-mail' }).click();
   await page.getByRole('textbox', { name: 'E-mail' }).fill(person.email);
   await page.getByRole('textbox', { name: 'Website' }).click();
-  await page.getByRole('textbox', { name: 'Website' }).fill(person.website);
+  await page.getByRole('textbox', { name: 'Website' }).fill(person.homepage);
   // incluir email secundario
   await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
   await page.getByRole('textbox', { name: 'Descrição' }).click();
@@ -147,53 +183,17 @@ test('Create a new Person with CPF', async ({ page }) => {
   // valida os campos na página de visualização pós cadastro
   await expect(page.getByText('Nome'+person.name)).toBeVisible();
   await expect(page.getByText('Apelido'+person.surname)).toBeVisible();
-  await expect(page.getByText('CPF'+person.cpf)).toBeVisible();
-  await expect(page.getByText('Logradouro'+person.street)).toBeVisible();
+  await expect(page.getByText('CPF'+person.national_document)).toBeVisible();
+  await expect(page.getByText('Logradouro'+person.local)).toBeVisible();
   await expect(page.getByText('Número'+person.number)).toBeVisible();
-  await expect(page.getByText('Bairro'+person.neighborhood)).toBeVisible();
-  await expect(page.getByText('CEP'+person.cep)).toBeVisible();
+  await expect(page.getByText('Bairro'+person.district)).toBeVisible();
+  await expect(page.getByText('CEP'+person.postal_code)).toBeVisible();
   await expect(page.getByText('UF'+person.state)).toBeVisible();
-  await expect(page.getByText('Município'+person.city)).toBeVisible();
+  await expect(page.getByText('Município'+person.city_name)).toBeVisible();
   await expect(page.getByText('País'+person.country)).toBeVisible();
 });
 
-test('Create a new Person with CNPJ', async ({ page }) => {
-  // cria uma pessoa para ser cadastrada
-  let company = {
-    name: "Auto " + faker.company.name(),
-    trade_name: "Auto " + faker.company.name(),
-    cnpj: formatCnpj(generateCnpj()),
-    ie: faker.string.numeric({ length: 7}),
-    im: faker.string.numeric({ length: 7}),
-    suframa: faker.string.numeric({ length: 5}),
-    cnae: faker.string.numeric({ length: 7 }),
-    person: {
-      name: faker.person.fullName(),
-      cpf: generateCpf({ format: true })
-    },
-    cep: '89700-055',
-    street: 'Rua Marechal Deodoro',
-    neighborhood: 'Centro',
-    number: '1280',
-    country: 'Brasil',
-    state: 'SC',
-    city: 'Concórdia',
-    telephone: '4934414120',
-    cellphone: '(49) 9200-11913',
-    fax: '1234567',
-    secondary_cellphone: {
-      description: 'Cel2',
-      cellphone: '(49) 9123-45678'
-    },
-    email: faker.internet.email(),
-    website: faker.internet.domainName(),
-    secondary_email: {
-      description: faker.person.firstName(),
-      email: faker.internet.email()
-    },
-    obs: "Auto " + faker.lorem.sentences(10, '\n')
-  }
-
+test('Create a new company', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -213,46 +213,46 @@ test('Create a new Person with CNPJ', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Nome fantasia' }).click();
   await page.getByRole('textbox', { name: 'Nome fantasia' }).fill(company.trade_name);
   await page.getByRole('textbox', { name: 'CNPJ' }).click();
-  await page.getByRole('textbox', { name: 'CNPJ' }).fill(company.cnpj);
+  await page.getByRole('textbox', { name: 'CNPJ' }).fill(company.national_document);
   await page.getByRole('textbox', { name: 'IE' }).click();
-  await page.getByRole('textbox', { name: 'IE' }).fill(company.ie);
+  await page.getByRole('textbox', { name: 'IE' }).fill(company.state_document);
   await page.getByRole('textbox', { name: 'IM' }).click();
-  await page.getByRole('textbox', { name: 'IM' }).fill(company.im);
+  await page.getByRole('textbox', { name: 'IM' }).fill(company.municipal_document);
   await page.getByRole('textbox', { name: 'SUFRAMA' }).click();
-  await page.getByRole('textbox', { name: 'SUFRAMA' }).fill(company.suframa);
+  await page.getByRole('textbox', { name: 'SUFRAMA' }).fill(company.suframa_number);
   await page.getByRole('textbox', { name: 'CNAE' }).click();
   await page.getByRole('textbox', { name: 'CNAE' }).fill(company.cnae);
   await page.getByRole('textbox', { name: 'Nome do responsável' }).click();
   await page.getByRole('textbox', { name: 'Nome do responsável' }).fill(company.person.name);
   await page.getByRole('textbox', { name: 'CPF do responsável' }).click();
-  await page.getByRole('textbox', { name: 'CPF do responsável' }).fill(company.person.cpf);
+  await page.getByRole('textbox', { name: 'CPF do responsável' }).fill(company.person.national_document);
 
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(company.cep);
+  await page.getByRole('textbox', { name: 'CEP' }).fill(company.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(company.number);
   // verificações do preenchimento do CEP
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.street);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.neighborhood);
+  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.local);
+  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.district);
   await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.country)
   await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city);
+  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city_name);
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(company.telephone);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(company.phone);
   await page.getByRole('textbox', { name: 'Celular' }).click();
-  await page.getByRole('textbox', { name: 'Celular' }).fill(company.cellphone);
+  await page.getByRole('textbox', { name: 'Celular' }).fill(company.cell);
   await page.getByRole('textbox', { name: 'Fax' }).click();
   await page.getByRole('textbox', { name: 'Fax' }).fill(company.fax);
   // inclui telefone secundário
   await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
   await page.getByRole('textbox', { name: 'Descrição' }).click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(company.secondary_cellphone.description);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(company.secondary_cell.description);
   await page.getByRole('textbox', { name: 'Telefone' }).click();
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(company.secondary_cellphone.cellphone);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(company.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
   await expect(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue('(49) 91234-5678');
@@ -261,7 +261,7 @@ test('Create a new Person with CNPJ', async ({ page }) => {
   await page.getByRole('textbox', { name: 'E-mail' }).click();
   await page.getByRole('textbox', { name: 'E-mail' }).fill(company.email);
   await page.getByRole('textbox', { name: 'Website' }).click();
-  await page.getByRole('textbox', { name: 'Website' }).fill(company.website);
+  await page.getByRole('textbox', { name: 'Website' }).fill(company.homepage);
   // incluir email secundario
   await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
   await page.getByRole('textbox', { name: 'Descrição' }).click();
@@ -280,17 +280,17 @@ test('Create a new Person with CNPJ', async ({ page }) => {
   // valida os campos na página de visualização pós cadastro
   await expect(page.getByText('Nome'+company.name)).toBeVisible();
   await expect(page.getByText('Nome Comercial'+company.trade_name)).toBeVisible();
-  await expect(page.getByText('CNPJ'+company.cnpj)).toBeVisible();
-  await expect(page.getByText('IE'+company.ie)).toBeVisible();
-  await expect(page.getByText('IM'+company.im)).toBeVisible();
-  await expect(page.getByText('SUFRAMA'+company.suframa)).toBeVisible();
+  await expect(page.getByText('CNPJ'+company.national_document)).toBeVisible();
+  await expect(page.getByText('IE'+company.state_document)).toBeVisible();
+  await expect(page.getByText('IM'+company.municipal_document)).toBeVisible();
+  await expect(page.getByText('SUFRAMA'+company.suframa_number)).toBeVisible();
   await expect(page.getByText('Nome do Responsável'+company.person.name)).toBeVisible();
-  await expect(page.getByText('CPF do Responsável'+company.person.cpf)).toBeVisible();
-  await expect(page.getByText('Logradouro'+company.street)).toBeVisible();
+  await expect(page.getByText('CPF do Responsável'+company.person.national_document)).toBeVisible();
+  await expect(page.getByText('Logradouro'+company.local)).toBeVisible();
   await expect(page.getByText('Número'+company.number)).toBeVisible();
-  await expect(page.getByText('Bairro'+company.neighborhood)).toBeVisible();
-  await expect(page.getByText('CEP'+company.cep)).toBeVisible();
+  await expect(page.getByText('Bairro'+company.district)).toBeVisible();
+  await expect(page.getByText('CEP'+company.postal_code)).toBeVisible();
   await expect(page.getByText('UF'+company.state)).toBeVisible();
-  await expect(page.getByText('Município'+company.city)).toBeVisible();
+  await expect(page.getByText('Município'+company.city_name)).toBeVisible();
   await expect(page.getByText('País'+company.country)).toBeVisible();
 });
