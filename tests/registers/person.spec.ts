@@ -1,20 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
+import { test } from '../helpers/fixtures';
 import { generate as generateCpf } from 'gerador-validador-cpf'
 import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
-import { email as loginEmail, password as loginPassword } from '../helpers/env.json';
-
-
-test.beforeEach(async ({ page }) => {
-  // Runs before each test and signs in each page.
-  await page.goto('https://app.gdoorweb.com.br/login');
-  await page.getByRole('textbox', { name: 'E-mail' }).click();
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(loginEmail);
-  await page.getByRole('button', { name: 'Próximo' }).click();
-  await page.getByRole('textbox', { name: 'Senha' }).fill(loginPassword);
-  await page.getByRole('button', { name: 'Entrar' }).click();
-  await page.getByText('Zucchetti (Bruno Fernando)09.').click();
-});
+import 'dotenv/config';
 
 test('Create a new Person with CPF', async ({ page }) => {
 
@@ -57,9 +46,9 @@ test('Create a new Person with CPF', async ({ page }) => {
   await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
   // clica nos checkboxes do cadastro
+  await page.locator('label').filter({ hasText: 'Vendedor' }).click();
   await page.locator('label').filter({ hasText: 'Cliente' }).click();
   await page.locator('label').filter({ hasText: 'Fornecedor' }).click();
-  //await page.locator('#mat-checkbox-36').getByText('Vendedor').click();
   await page.locator('label').filter({ hasText: 'Transportador' }).click();
   await page.locator('label').filter({ hasText: 'Condutor' }).click();
   await page.locator('label').filter({ hasText: 'Contador' }).click();
@@ -93,8 +82,8 @@ test('Create a new Person with CPF', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CRC' }).click();
   await page.getByRole('textbox', { name: 'CRC' }).fill(person.crc);
 
+  // preenche dados do vendedor - playwright não consegue identificálos
   /*
-  // preenche dados do vendedor
   await page.locator('input[name="seller.cash_payment_commission"]').click();
   await page.locator('input[name="seller.cash_payment_commission"]').fill('5,00');
   await page.locator('input[name="seller.future_payment_commission"]').click();
@@ -104,7 +93,7 @@ test('Create a new Person with CPF', async ({ page }) => {
   await page.locator('input[name="seller.future_service_commission"]').click();
   await page.locator('input[name="seller.future_service_commission"]').fill('4,00');
   */
- 
+  
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(person.cep);
