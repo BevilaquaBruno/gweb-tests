@@ -137,11 +137,11 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(person.number);
   // verificações do preenchimento do CEP
-  await expect(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.local);
-  await expect(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.district);
-  await expect(page.getByRole('combobox', { name: 'País' })).toHaveValue(person.country)
-  await expect(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.state);
-  await expect(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city_name);
+  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.local);
+  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.district);
+  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(person.country);
+  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.state);
+  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city_name);
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
@@ -157,8 +157,8 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Telefone' }).click();
   await page.getByRole('textbox', { name: 'Telefone' }).fill(person.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
-  await expect(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
-  await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(person.secondary_cell.cell);
+  await expect.soft(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
+  await expect.soft(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(person.secondary_cell.cell);
 
   // preencher endereços eletrônicos
   await page.getByRole('textbox', { name: 'E-mail' }).click();
@@ -181,16 +181,16 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('button', { name: 'Salvar' }).click();
 
   // valida os campos na página de visualização pós cadastro
-  await expect(page.getByText('Nome'+person.name)).toBeVisible();
-  await expect(page.getByText('Apelido'+person.surname)).toBeVisible();
-  await expect(page.getByText('CPF'+person.national_document)).toBeVisible();
-  await expect(page.getByText('Logradouro'+person.local)).toBeVisible();
-  await expect(page.getByText('Número'+person.number)).toBeVisible();
-  await expect(page.getByText('Bairro'+person.district)).toBeVisible();
-  await expect(page.getByText('CEP'+person.postal_code)).toBeVisible();
-  await expect(page.getByText('UF'+person.state)).toBeVisible();
-  await expect(page.getByText('Município'+person.city_name)).toBeVisible();
-  await expect(page.getByText('País'+person.country)).toBeVisible();
+  await expect.soft(page.getByText('Nome'+person.name)).toBeVisible();
+  await expect.soft(page.getByText('Apelido'+person.surname)).toBeVisible();
+  await expect.soft(page.getByText('CPF'+person.national_document)).toBeVisible();
+  await expect.soft(page.getByText('Logradouro'+person.local)).toBeVisible();
+  await expect.soft(page.getByText('Número'+person.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro'+person.district)).toBeVisible();
+  await expect.soft(page.getByText('CEP'+person.postal_code)).toBeVisible();
+  await expect.soft(page.getByText('UF'+person.state)).toBeVisible();
+  await expect.soft(page.getByText('Município'+person.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País'+person.country)).toBeVisible();
 });
 
 test('Create a new company', async ({ page }) => {
@@ -234,11 +234,11 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(company.number);
   // verificações do preenchimento do CEP
-  await expect(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.local);
-  await expect(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.district);
-  await expect(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.country)
-  await expect(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.state);
-  await expect(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city_name);
+  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.local);
+  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.district);
+  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.country)
+  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.state);
+  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city_name);
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
@@ -254,8 +254,8 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Telefone' }).click();
   await page.getByRole('textbox', { name: 'Telefone' }).fill(company.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
-  await expect(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
-  await expect(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(company.secondary_cell.cell);
+  await expect.soft(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
+  await expect.soft(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(company.secondary_cell.cell);
 
   // preencher endereços eletrônicos
   await page.getByRole('textbox', { name: 'E-mail' }).click();
@@ -278,19 +278,19 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('button', { name: 'Salvar' }).click();
 
   // valida os campos na página de visualização pós cadastro
-  await expect(page.getByText('Nome'+company.name)).toBeVisible();
-  await expect(page.getByText('Nome Comercial'+company.trade_name)).toBeVisible();
-  await expect(page.getByText('CNPJ'+company.national_document)).toBeVisible();
-  await expect(page.getByText('IE'+company.state_document)).toBeVisible();
-  await expect(page.getByText('IM'+company.municipal_document)).toBeVisible();
-  await expect(page.getByText('SUFRAMA'+company.suframa_number)).toBeVisible();
-  await expect(page.getByText('Nome do Responsável'+company.person.name)).toBeVisible();
-  await expect(page.getByText('CPF do Responsável'+company.person.national_document)).toBeVisible();
-  await expect(page.getByText('Logradouro'+company.local)).toBeVisible();
-  await expect(page.getByText('Número'+company.number)).toBeVisible();
-  await expect(page.getByText('Bairro'+company.district)).toBeVisible();
-  await expect(page.getByText('CEP'+company.postal_code)).toBeVisible();
-  await expect(page.getByText('UF'+company.state)).toBeVisible();
-  await expect(page.getByText('Município'+company.city_name)).toBeVisible();
-  await expect(page.getByText('País'+company.country)).toBeVisible();
+  await expect.soft(page.getByText('Nome'+company.name)).toBeVisible();
+  await expect.soft(page.getByText('Nome Comercial'+company.trade_name)).toBeVisible();
+  await expect.soft(page.getByText('CNPJ'+company.national_document)).toBeVisible();
+  await expect.soft(page.getByText('IE'+company.state_document)).toBeVisible();
+  await expect.soft(page.getByText('IM'+company.municipal_document)).toBeVisible();
+  await expect.soft(page.getByText('SUFRAMA'+company.suframa_number)).toBeVisible();
+  await expect.soft(page.getByText('Nome do Responsável'+company.person.name)).toBeVisible();
+  await expect.soft(page.getByText('CPF do Responsável'+company.person.national_document)).toBeVisible();
+  await expect.soft(page.getByText('Logradouro'+company.local)).toBeVisible();
+  await expect.soft(page.getByText('Número'+company.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro'+company.district)).toBeVisible();
+  await expect.soft(page.getByText('CEP'+company.postal_code)).toBeVisible();
+  await expect.soft(page.getByText('UF'+company.state)).toBeVisible();
+  await expect.soft(page.getByText('Município'+company.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País'+company.country)).toBeVisible();
 });

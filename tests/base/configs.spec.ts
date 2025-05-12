@@ -21,5 +21,5 @@ test('Put .pfx in account', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Senha do certificado (' }).fill(process.env.PLAYWRIGHT_CERT_PASSWORD || '');
   await page.getByRole('button', { name: 'Enviar' }).click();
 
-  await expect(page.locator('gw-general-settings')).toContainText('Emitido para');
+  await expect.soft(page.locator('gw-general-settings')).toContainText('Emitido para');
 });

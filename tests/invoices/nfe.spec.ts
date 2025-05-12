@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../helpers/fixtures';
 
-test('test', async ({ page }) => {
+test('New NF-e', async ({ page }) => {
     // Acessa o menu
     await page.getByRole('button', { name: 'Movimentações' }).click();
     await page.getByRole('link', { name: 'NF-e' }).click();
@@ -13,7 +13,6 @@ test('test', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Série da NF-e' }).fill('99');
     await page.getByRole('textbox', { name: 'Nº da próxima NF-e' }).click();
     await page.getByRole('textbox', { name: 'Nº da próxima NF-e' }).fill('815020');
-    await page.getByRole('textbox', { name: 'Nº da próxima NF-e' }).click();
     await page.getByText('HomologaçãoAmbiente de emissão').click();
     await page.getByRole('option', { name: 'Produção' }).click();
     await page.getByText('ProduçãoAmbiente de emissão').click();
@@ -22,7 +21,6 @@ test('test', async ({ page }) => {
     await page.locator('Button[class="mat-accent"]').filter({ hasText: 'Salvar' }).click();
     */
 
-    // emite uma NF-e
     await page.getByRole('link').filter({ hasText: /^$/ }).click();
     await page.getByRole('textbox', { name: 'Cliente' }).click();
     await page.getByRole('textbox', { name: 'Cliente' }).fill('Bruno');
@@ -41,7 +39,9 @@ test('test', async ({ page }) => {
     await page.getByRole('button', { name: 'Salvar e transmitir' }).click();
 
     // Verifica dados da nota
-    await expect(page.locator('mat-card-content')).toContainText('SituaçãoAutorizado o uso da NF-e');
-    await expect(page.locator('gw-product-items-list')).toContainText('#1 - Boné');
-    await expect(page.locator('gw-document-payments-list')).toContainText('Dinheiro, à vista');
+
+    await page.getByText('Número', { exact: true }).click();
+    await expect.soft(page.locator('mat-card-content')).toContainText('SituaçãoAutorizado o uso da NF-e');
+    await expect.soft(page.locator('gw-product-items-list')).toContainText('#1 - Boné');
+    await expect.soft(page.locator('gw-document-payments-list')).toContainText('Dinheiro, à vista');
 });
