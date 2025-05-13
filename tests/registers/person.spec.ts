@@ -101,7 +101,6 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('textbox', { name: 'RG' }).fill(person.state_document);
   await page.getByRole('textbox', { name: 'Data de nascimento' }).click();
   await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(person.birth_date);
-  await page.getByRole('textbox', { name: 'Data de nascimento' }).press('Tab');
   await page.getByRole('textbox', { name: 'Contato' }).click();
   await page.getByRole('textbox', { name: 'Contato' }).fill(person.surname);
 
