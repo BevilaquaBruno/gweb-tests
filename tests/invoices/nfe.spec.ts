@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../helpers/fixtures';
 
-test('New NF-e', async ({ page }) => {
+test('New sell NF-e', async ({ page }) => {
     // Acessa o menu
     await page.getByRole('button', { name: 'Movimentações' }).click();
     await page.getByRole('link', { name: 'NF-e' }).click();
