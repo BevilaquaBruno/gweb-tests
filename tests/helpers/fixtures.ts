@@ -18,7 +18,7 @@ export const test = base.extend<{ forEachTest: void }>({
       await page.waitForURL(
         "https://app.gdoorweb.com.br/selecionar-conta?origin=login"
       );
-      await page.getByRole("heading", { name: "Empresa de Enzo" }).click();
+      await page.getByRole("heading", { name: process.env.PLAYWRIGHT_GWEB_ACCOUNT }).click();
       await page.waitForURL("https://app.gdoorweb.com.br/");
       // follows next tests
       await use();
