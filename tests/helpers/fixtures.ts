@@ -1,17 +1,28 @@
-import { test as base } from '@playwright/test';
-import 'dotenv/config';
+import { test as base } from "@playwright/test";
+import "dotenv/config";
 
 export const test = base.extend<{ forEachTest: void }>({
-  forEachTest: [async ({ page }, use) => {
-    // This code runs before every test.
-    await page.goto('https://app.gdoorweb.com.br/login');
-    await page.getByRole('textbox', { name: 'E-mail' }).click();
-    await page.getByRole('textbox', { name: 'E-mail' }).fill(process.env.PLAYWRIGHT_GWEB_LOGIN || '');
-    await page.getByRole('button', { name: 'Próximo' }).click();
-    await page.getByRole('textbox', { name: 'Senha' }).fill(process.env.PLAYWRIGHT_GWEB_PASSWORD || '');
-    await page.getByRole('button', { name: 'Entrar' }).click();
-    await page.getByText('Zucchetti (Bruno Fernando)09.').click();
-    // follows next tests
-    await use();
-  }, { auto: true }],  // automatically starts for every test.
+  forEachTest: [
+    async ({ page }, use) => {
+      // This code runs before every test.
+      await page.goto("https://app.gdoorweb.com.br/login");
+      await page.getByRole("textbox", { name: "E-mail" }).click();
+      await page
+        .getByRole("textbox", { name: "E-mail" })
+        .fill(process.env.PLAYWRIGHT_GWEB_LOGIN || "");
+      await page.getByRole("button", { name: "Próximo" }).click();
+      await page
+        .getByRole("textbox", { name: "Senha" })
+        .fill(process.env.PLAYWRIGHT_GWEB_PASSWORD || "");
+      await page.getByRole("button", { name: "Entrar" }).click();
+      await page.waitForURL(
+        "https://app.gdoorweb.com.br/selecionar-conta?origin=login"
+      );
+      await page.getByRole("heading", { name: process.env.PLAYWRIGHT_GWEB_ACCOUNT }).click();
+      await page.waitForURL("https://app.gdoorweb.com.br/");
+      // follows next tests
+      await use();
+    },
+    { auto: true },
+  ], // automatically starts for every test.
 });
