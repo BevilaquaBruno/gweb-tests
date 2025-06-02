@@ -52,6 +52,57 @@ let person = {
   obs: "AutoPerson " + faker.lorem.sentences(10, '\n')
 }
 
+let seller = {
+  name: "AutoPerson " + faker.person.fullName(),
+  surname: "AutoPerson " + faker.person.firstName(),
+  national_document: generateCpf({ format: true }),
+  state_document: faker.string.numeric({ length: 7 }),
+  birth_date: '05032000',
+  postal_code: '89700-055',
+  local: 'Rua Marechal Deodoro',
+  district: 'Centro',
+  number: '1280',
+  country: 'Brasil',
+  state: 'SC',
+  city_name: 'Concórdia',
+  comission: {
+    product_cash_payment_commission: 5,
+    product_future_payment_commission: 3,
+    service_cash_payment_commission: 6,
+    service_future_payment_commission: 4,
+  },
+  additional_adress: [
+    {
+      type: "delivery",
+      description: faker.person.zodiacSign(),
+      postal_code: '89700-055',
+      local: 'Rua Marechal Deodoro',
+      district: 'Centro',
+      number: '1280',
+      country: 'Brasil',
+      state: 'SC',
+      city_name: 'Concórdia',
+      receptor_name: faker.person.fullName(),
+      receptor_cpf: generateCpf({ format: true }),
+      receptor_cellphone: "(49) 9200-11913"
+    },
+  ],
+  phone: '4934414120',
+  cell: '(49) 9200-11913',
+  fax: '1234567',
+  secondary_cell: {
+    description: 'Cel2',
+    cell: '(49) 91234-5678'
+  },
+  email: faker.internet.email(),
+  homepage: faker.internet.domainName(),
+  secondary_email: {
+    description: faker.person.firstName(),
+    email: faker.internet.email()
+  },
+  obs: "AutoPerson " + faker.lorem.sentences(10, '\n')
+}
+
 // cria uma empresa para ser cadastrada
 let company = {
   id: "0",
@@ -221,7 +272,6 @@ test('Create a new Person', async ({ page }) => {
   await page.locator('label').filter({ hasText: 'Condutor' }).click();
   await page.locator('label').filter({ hasText: 'Contador' }).click();
 
-
   //preenche campos de identificação
   await page.getByRole('textbox', { name: 'Nome' }).click();
   await page.getByRole('textbox', { name: 'Nome' }).fill(person.name);
@@ -259,12 +309,13 @@ test('Create a new Person', async ({ page }) => {
   await page.locator('input[name="seller.service_commission"]').fill('6,00');
   await page.locator('input[name="seller.future_service_commission"]').click();
   await page.locator('input[name="seller.future_service_commission"]').fill('4,00');
-  */
+  */ 
 
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(person.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(person.number);
   // verificações do preenchimento do CEP
@@ -282,6 +333,7 @@ test('Create a new Person', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(person.additional_adress[0].postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(person.additional_adress[0].number);
   await page.getByLabel('Endereço adicional').getByText('Pessoa física').click();
@@ -365,6 +417,149 @@ test('Create a new Person', async ({ page }) => {
   await expect.soft(page.getByText('País' + person.country).last()).toBeVisible();
 });
 
+test('Create a new Seller', async ({ page }) => {
+  //navega para o menu de pessoa
+  await page.getByRole('button', { name: 'Cadastros' }).click();
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+
+  // abre o cadastro de uma nova pessoa
+  await page.getByRole('link').filter({ hasText: /^$/ }).click();
+
+  // clica nos checkboxes do cadastro
+  await page.locator('label').filter({ hasText: 'Vendedor' }).click();
+
+  //preenche campos de identificação
+  await page.getByRole('textbox', { name: 'Nome' }).click();
+  await page.getByRole('textbox', { name: 'Nome' }).fill(seller.name);
+  await page.getByRole('textbox', { name: 'Apelido' }).click();
+  await page.getByRole('textbox', { name: 'Apelido' }).fill(seller.surname);
+  await page.getByRole('textbox', { name: 'CPF' }).click();
+  await page.getByRole('textbox', { name: 'CPF' }).fill(seller.national_document);
+  await page.getByRole('textbox', { name: 'RG' }).click();
+  await page.getByRole('textbox', { name: 'RG' }).fill(seller.state_document);
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).click();
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(seller.birth_date);
+  await page.getByRole('textbox', { name: 'Contato' }).click();
+  await page.getByRole('textbox', { name: 'Contato' }).fill(seller.surname);
+
+  // preenche dados do vendedor - playwright não consegue identificálos - GWB-370
+  /*
+  await page.locator('input[name="seller.cash_payment_commission"]').click();
+  await page.locator('input[name="seller.cash_payment_commission"]').fill('5,00');
+  await page.locator('input[name="seller.future_payment_commission"]').click();
+  await page.locator('input[name="seller.future_payment_commission"]').fill('3,00');
+  await page.locator('input[name="seller.service_commission"]').click();
+  await page.locator('input[name="seller.service_commission"]').fill('6,00');
+  await page.locator('input[name="seller.future_service_commission"]').click();
+  await page.locator('input[name="seller.future_service_commission"]').fill('4,00');
+  */ 
+
+  // preenche endereço
+  await page.getByRole('textbox', { name: 'CEP' }).click();
+  await page.getByRole('textbox', { name: 'CEP' }).fill(seller.postal_code);
+  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
+  await page.getByRole('textbox', { name: 'Número' }).click();
+  await page.getByRole('textbox', { name: 'Número' }).fill(seller.number);
+  // verificações do preenchimento do CEP
+  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(seller.local);
+  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(seller.district);
+  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(seller.country);
+  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(seller.state);
+  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(seller.city_name);
+
+  // coloca endereço de entrega adicional
+  await page.locator('mat-card').filter({ hasText: 'Endereço' }).getByRole('button').click();
+  await page.locator('label').filter({ hasText: 'Entrega' }).click();
+  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).click();
+  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).fill(seller.additional_adress[0].description);
+  await page.getByRole('textbox', { name: 'CEP' }).click();
+  await page.getByRole('textbox', { name: 'CEP' }).fill(seller.additional_adress[0].postal_code);
+  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
+  await page.getByRole('textbox', { name: 'Número' }).click();
+  await page.getByRole('textbox', { name: 'Número' }).fill(seller.additional_adress[0].number);
+  await page.getByLabel('Endereço adicional').getByText('Pessoa física').click();
+  await page.getByRole('textbox', { name: 'Nome' }).click();
+  await page.getByRole('textbox', { name: 'Nome' }).fill(seller.additional_adress[0].receptor_name);
+  await page.getByRole('textbox', { name: 'CPF' }).click();
+  await page.getByRole('textbox', { name: 'CPF' }).fill(seller.additional_adress[0].receptor_cpf);
+  await page.getByRole('textbox', { name: 'Telefone' }).click();
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(seller.additional_adress[0].receptor_cellphone);
+
+  // verificações do preenchimento do CEP do endereço adicional
+  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(seller.additional_adress[0].local);
+  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(seller.additional_adress[0].district);
+  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(seller.additional_adress[0].country);
+  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(seller.additional_adress[0].state);
+  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(seller.additional_adress[0].city_name);
+
+  await page.getByRole('button', { name: 'Confirmar' }).click();
+
+  // preenche telefone
+  await page.getByRole('textbox', { name: 'Telefone' }).click();
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(seller.phone);
+  await page.getByRole('textbox', { name: 'Celular' }).click();
+  await page.getByRole('textbox', { name: 'Celular' }).fill(seller.cell);
+  await page.getByRole('textbox', { name: 'Fax' }).click();
+  await page.getByRole('textbox', { name: 'Fax' }).fill(seller.fax);
+  // inclui telefone secundário
+  await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
+  await page.getByRole('textbox', { name: 'Descrição' }).click();
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(seller.secondary_cell.description);
+  await page.getByRole('textbox', { name: 'Telefone' }).click();
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(seller.secondary_cell.cell);
+  await page.getByRole('button', { name: 'Confirmar' }).click();
+  await expect.soft(page.locator('div').filter({ hasText: /^Cel2$/ })).toBeVisible();
+  await expect.soft(page.getByRole('textbox', { name: 'Cel2' })).toHaveValue(seller.secondary_cell.cell);
+
+  // preencher endereços eletrônicos
+  await page.getByRole('textbox', { name: 'E-mail' }).click();
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(seller.email);
+  await page.getByRole('textbox', { name: 'Website' }).click();
+  await page.getByRole('textbox', { name: 'Website' }).fill(seller.homepage);
+  // incluir email secundario
+  await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
+  await page.getByRole('textbox', { name: 'Descrição' }).click();
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(seller.secondary_email.description);
+  await page.getByRole('textbox', { name: 'E-mail' }).click();
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(seller.secondary_email.email);
+  await page.getByRole('button', { name: 'Confirmar' }).click();
+
+  // preenche observacoes
+  await page.getByRole('textbox', { name: 'Observações' }).click();
+  await page.getByRole('textbox', { name: 'Observações' }).fill(seller.obs);
+
+  // salva a pessoa
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await page.getByRole('heading', { name: seller.name }).click();
+
+  // valida os campos na página de visualização pós cadastro
+  await expect.soft(page.getByText('Nome' + seller.name)).toBeVisible();
+  await expect.soft(page.getByText('Apelido' + seller.surname)).toBeVisible();
+  await expect.soft(page.getByText('CPF' + seller.national_document)).toBeVisible();
+
+  // valida endereço principal
+  await expect(page.getByRole('heading', { name: 'Endereço principal' })).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + seller.local).first()).toBeVisible();
+  await expect.soft(page.getByText('Número' + seller.number).first()).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + seller.district).first()).toBeVisible();
+  await expect.soft(page.getByText('CEP' + seller.postal_code).first()).toBeVisible();
+  await expect.soft(page.getByText('UF' + seller.state).first()).toBeVisible();
+  await expect.soft(page.getByText('Município' + seller.city_name).first()).toBeVisible();
+  await expect.soft(page.getByText('País' + seller.country).first()).toBeVisible();
+
+  // valida endereço de entrega
+  await expect(page.getByRole('heading', { name: seller.additional_adress[0].description + ' local_shipping' })).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + seller.local).last()).toBeVisible();
+  await expect.soft(page.getByText('Número' + seller.number).last()).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + seller.district).last()).toBeVisible();
+  await expect.soft(page.getByText('CEP' + seller.postal_code).last()).toBeVisible();
+  await expect.soft(page.getByText('UF' + seller.state).last()).toBeVisible();
+  await expect.soft(page.getByText('Município' + seller.city_name).last()).toBeVisible();
+  await expect.soft(page.getByText('País' + seller.country).last()).toBeVisible();
+});
+
 test('Create a new company', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
@@ -403,6 +598,7 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(company.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(company.number);
   // verificações do preenchimento do CEP
@@ -420,6 +616,7 @@ test('Create a new company', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(company.additional_adress[0].postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(company.additional_adress[0].number);
 
@@ -531,6 +728,7 @@ test('Create a new rural producer', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(rural_producer.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(rural_producer.number);
   // verificações do preenchimento do CEP
@@ -621,6 +819,7 @@ test('Create a new transporter', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(transporter.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(transporter.number);
   // verificações do preenchimento do CEP
@@ -749,6 +948,7 @@ test('Create a new accountant', async ({ page }) => {
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(accountant.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(accountant.number);
   // verificações do preenchimento do CEP
