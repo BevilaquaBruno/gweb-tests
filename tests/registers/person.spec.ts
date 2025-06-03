@@ -256,7 +256,7 @@ let accountant = {
   obs: "AutoAccountant " + faker.lorem.sentences(10, '\n')
 }
 
-test('Create a new Person', async ({ page }) => {
+test('Should create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -417,7 +417,7 @@ test('Create a new Person', async ({ page }) => {
   await expect.soft(page.getByText('País' + person.country).last()).toBeVisible();
 });
 
-test('Create a new Seller', async ({ page }) => {
+test('Should create a new Seller', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -560,7 +560,7 @@ test('Create a new Seller', async ({ page }) => {
   await expect.soft(page.getByText('País' + seller.country).last()).toBeVisible();
 });
 
-test('Create a new company', async ({ page }) => {
+test('Should create a new company', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -699,7 +699,7 @@ test('Create a new company', async ({ page }) => {
   await expect.soft(page.getByText('País' + company.country).last()).toBeVisible();
 });
 
-test('Create a new rural producer', async ({ page }) => {
+test('Should create a new rural producer', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -790,7 +790,7 @@ test('Create a new rural producer', async ({ page }) => {
   await expect.soft(page.getByText('País' + rural_producer.country)).toBeVisible();
 });
 
-test('Create a new transporter', async ({ page }) => {
+test('Should create a new transporter', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -914,7 +914,7 @@ test('Create a new transporter', async ({ page }) => {
 
 });
 
-test('Create a new accountant', async ({ page }) => {
+test('Should create a new accountant', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
