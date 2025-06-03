@@ -20,22 +20,6 @@ let person = {
   country: 'Brasil',
   state: 'SC',
   city_name: 'Concórdia',
-  additional_adress: [
-    {
-      type: "delivery",
-      description: faker.person.zodiacSign(),
-      postal_code: '89701-875',
-      local: 'Rua Sérgio Galvan',
-      district: 'São Paulo',
-      number: '1280',
-      country: 'Brasil',
-      state: 'SC',
-      city_name: 'Concórdia',
-      receptor_name: faker.person.fullName(),
-      receptor_cpf: generateCpf({ format: true }),
-      receptor_cellphone: "(49) 9200-11913"
-    },
-  ],
   phone: '4934414120',
   cell: '(49) 9200-11913',
   fax: '1234567',
@@ -72,22 +56,6 @@ let seller = {
     service_cash_payment_commission: 6,
     service_future_payment_commission: 4,
   },
-  additional_adress: [
-    {
-      type: "delivery",
-      description: faker.person.zodiacSign(),
-      postal_code: '89700-055',
-      local: 'Rua Marechal Deodoro',
-      district: 'Centro',
-      number: '1280',
-      country: 'Brasil',
-      state: 'SC',
-      city_name: 'Concórdia',
-      receptor_name: faker.person.fullName(),
-      receptor_cpf: generateCpf({ format: true }),
-      receptor_cellphone: "(49) 9200-11913"
-    },
-  ],
   phone: '4934414120',
   cell: '(49) 9200-11913',
   fax: '1234567',
@@ -125,19 +93,6 @@ let company = {
   country: 'Brasil',
   state: 'SC',
   city_name: 'Concórdia',
-  additional_adress: [
-    {
-      type: "billing",
-      description: faker.person.zodiacSign(),
-      postal_code: '89700-055',
-      local: 'Rua Marechal Deodoro',
-      district: 'Centro',
-      number: '1280',
-      country: 'Brasil',
-      state: 'SC',
-      city_name: 'Concórdia'
-    }
-  ],
   phone: '4934414120',
   cell: '(49) 9200-11913',
   fax: '1234567',
@@ -340,34 +295,6 @@ test('Should create a new Person', async ({ page }) => {
   await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.state);
   await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.city_name);
 
-  // coloca endereço de entrega adicional
-  await page.locator('mat-card').filter({ hasText: 'Endereço' }).getByRole('button').click();
-  await page.locator('label').filter({ hasText: 'Entrega' }).click();
-  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).click();
-  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).fill(person.additional_adress[0].description);
-  await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(person.additional_adress[0].postal_code);
-  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
-  await page.waitForTimeout(2000);
-  await page.getByRole('textbox', { name: 'Número' }).click();
-  await page.getByRole('textbox', { name: 'Número' }).fill(person.additional_adress[0].number);
-  await page.getByLabel('Endereço adicional').getByText('Pessoa física').click();
-  await page.getByRole('textbox', { name: 'Nome' }).click();
-  await page.getByRole('textbox', { name: 'Nome' }).fill(person.additional_adress[0].receptor_name);
-  await page.getByRole('textbox', { name: 'CPF' }).click();
-  await page.getByRole('textbox', { name: 'CPF' }).fill(person.additional_adress[0].receptor_cpf);
-  await page.getByRole('textbox', { name: 'Telefone' }).click();
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.additional_adress[0].receptor_cellphone);
-
-  // verificações do preenchimento do CEP do endereço adicional
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(person.additional_adress[0].local);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(person.additional_adress[0].district);
-  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(person.additional_adress[0].country);
-  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(person.additional_adress[0].state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(person.additional_adress[0].city_name);
-
-  await page.getByRole('button', { name: 'Confirmar' }).click();
-
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
   await page.getByRole('textbox', { name: 'Telefone' }).fill(person.phone);
@@ -413,23 +340,14 @@ test('Should create a new Person', async ({ page }) => {
 
   // valida endereço principal
   await expect(page.getByRole('heading', { name: 'Endereço principal' })).toBeVisible();
-  await expect.soft(page.getByText('Logradouro' + person.local).first()).toBeVisible();
-  await expect.soft(page.getByText('Número' + person.number).first()).toBeVisible();
-  await expect.soft(page.getByText('Bairro' + person.district).first()).toBeVisible();
-  await expect.soft(page.getByText('CEP' + person.postal_code).first()).toBeVisible();
-  await expect.soft(page.getByText('UF' + person.state).first()).toBeVisible();
-  await expect.soft(page.getByText('Município' + person.city_name).first()).toBeVisible();
-  await expect.soft(page.getByText('País' + person.country).first()).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + person.local)).toBeVisible();
+  await expect.soft(page.getByText('Número' + person.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + person.district)).toBeVisible();
+  await expect.soft(page.getByText('CEP' + person.postal_code)).toBeVisible();
+  await expect.soft(page.getByText('UF' + person.state)).toBeVisible();
+  await expect.soft(page.getByText('Município' + person.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País' + person.country)).toBeVisible();
 
-  // valida endereço de entrega
-  await expect(page.getByRole('heading', { name: person.additional_adress[0].description + ' local_shipping' })).toBeVisible();
-  await expect.soft(page.getByText('Logradouro' + person.local).last()).toBeVisible();
-  await expect.soft(page.getByText('Número' + person.number).last()).toBeVisible();
-  await expect.soft(page.getByText('Bairro' + person.district).last()).toBeVisible();
-  await expect.soft(page.getByText('CEP' + person.postal_code).last()).toBeVisible();
-  await expect.soft(page.getByText('UF' + person.state).last()).toBeVisible();
-  await expect.soft(page.getByText('Município' + person.city_name).last()).toBeVisible();
-  await expect.soft(page.getByText('País' + person.country).last()).toBeVisible();
 });
 
 test('Should create a new Seller', async ({ page }) => {
@@ -483,34 +401,6 @@ test('Should create a new Seller', async ({ page }) => {
   await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(seller.state);
   await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(seller.city_name);
 
-  // coloca endereço de entrega adicional
-  await page.locator('mat-card').filter({ hasText: 'Endereço' }).getByRole('button').click();
-  await page.locator('label').filter({ hasText: 'Entrega' }).click();
-  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).click();
-  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).fill(seller.additional_adress[0].description);
-  await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(seller.additional_adress[0].postal_code);
-  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
-  await page.waitForTimeout(2000);
-  await page.getByRole('textbox', { name: 'Número' }).click();
-  await page.getByRole('textbox', { name: 'Número' }).fill(seller.additional_adress[0].number);
-  await page.getByLabel('Endereço adicional').getByText('Pessoa física').click();
-  await page.getByRole('textbox', { name: 'Nome' }).click();
-  await page.getByRole('textbox', { name: 'Nome' }).fill(seller.additional_adress[0].receptor_name);
-  await page.getByRole('textbox', { name: 'CPF' }).click();
-  await page.getByRole('textbox', { name: 'CPF' }).fill(seller.additional_adress[0].receptor_cpf);
-  await page.getByRole('textbox', { name: 'Telefone' }).click();
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(seller.additional_adress[0].receptor_cellphone);
-
-  // verificações do preenchimento do CEP do endereço adicional
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(seller.additional_adress[0].local);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(seller.additional_adress[0].district);
-  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(seller.additional_adress[0].country);
-  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(seller.additional_adress[0].state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(seller.additional_adress[0].city_name);
-
-  await page.getByRole('button', { name: 'Confirmar' }).click();
-
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
   await page.getByRole('textbox', { name: 'Telefone' }).fill(seller.phone);
@@ -556,23 +446,14 @@ test('Should create a new Seller', async ({ page }) => {
 
   // valida endereço principal
   await expect(page.getByRole('heading', { name: 'Endereço principal' })).toBeVisible();
-  await expect.soft(page.getByText('Logradouro' + seller.local).first()).toBeVisible();
-  await expect.soft(page.getByText('Número' + seller.number).first()).toBeVisible();
-  await expect.soft(page.getByText('Bairro' + seller.district).first()).toBeVisible();
-  await expect.soft(page.getByText('CEP' + seller.postal_code).first()).toBeVisible();
-  await expect.soft(page.getByText('UF' + seller.state).first()).toBeVisible();
-  await expect.soft(page.getByText('Município' + seller.city_name).first()).toBeVisible();
-  await expect.soft(page.getByText('País' + seller.country).first()).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + seller.local)).toBeVisible();
+  await expect.soft(page.getByText('Número' + seller.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + seller.district)).toBeVisible();
+  await expect.soft(page.getByText('CEP' + seller.postal_code)).toBeVisible();
+  await expect.soft(page.getByText('UF' + seller.state)).toBeVisible();
+  await expect.soft(page.getByText('Município' + seller.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País' + seller.country)).toBeVisible();
 
-  // valida endereço de entrega
-  await expect(page.getByRole('heading', { name: seller.additional_adress[0].description + ' local_shipping' })).toBeVisible();
-  await expect.soft(page.getByText('Logradouro' + seller.local).last()).toBeVisible();
-  await expect.soft(page.getByText('Número' + seller.number).last()).toBeVisible();
-  await expect.soft(page.getByText('Bairro' + seller.district).last()).toBeVisible();
-  await expect.soft(page.getByText('CEP' + seller.postal_code).last()).toBeVisible();
-  await expect.soft(page.getByText('UF' + seller.state).last()).toBeVisible();
-  await expect.soft(page.getByText('Município' + seller.city_name).last()).toBeVisible();
-  await expect.soft(page.getByText('País' + seller.country).last()).toBeVisible();
 });
 
 test('Should create a new company', async ({ page }) => {
@@ -622,27 +503,6 @@ test('Should create a new company', async ({ page }) => {
   await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.country)
   await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.state);
   await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.city_name);
-
-  // coloca endereço de entrega adicional
-  await page.locator('mat-card').filter({ hasText: 'Endereço' }).getByRole('button').click();
-  await page.locator('label').filter({ hasText: 'Entrega' }).click();
-  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).click();
-  await page.getByRole('textbox', { name: 'Descrição do endereço (Casa,' }).fill(company.additional_adress[0].description);
-  await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(company.additional_adress[0].postal_code);
-  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
-  await page.waitForTimeout(2000);
-  await page.getByRole('textbox', { name: 'Número' }).click();
-  await page.getByRole('textbox', { name: 'Número' }).fill(company.additional_adress[0].number);
-
-  // verificações do preenchimento do CEP do endereço adicional
-  await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(company.additional_adress[0].local);
-  await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(company.additional_adress[0].district);
-  await expect.soft(page.getByRole('combobox', { name: 'País' })).toHaveValue(company.additional_adress[0].country);
-  await expect.soft(page.getByRole('combobox', { name: 'UF' })).toHaveValue(company.additional_adress[0].state);
-  await expect.soft(page.getByRole('combobox', { name: 'Município' })).toHaveValue(company.additional_adress[0].city_name);
-
-  await page.getByRole('button', { name: 'Confirmar' }).click();
 
   // preenche telefone
   await page.getByRole('textbox', { name: 'Telefone' }).click();
@@ -695,23 +555,13 @@ test('Should create a new company', async ({ page }) => {
 
   // valida endereço principal
   await expect(page.getByRole('heading', { name: 'Endereço principal' })).toBeVisible();
-  await expect.soft(page.getByText('Logradouro' + company.local).first()).toBeVisible();
-  await expect.soft(page.getByText('Número' + company.number).first()).toBeVisible();
-  await expect.soft(page.getByText('Bairro' + company.district).first()).toBeVisible();
-  await expect.soft(page.getByText('CEP' + company.postal_code).first()).toBeVisible();
-  await expect.soft(page.getByText('UF' + company.state).first()).toBeVisible();
-  await expect.soft(page.getByText('Município' + company.city_name).first()).toBeVisible();
-  await expect.soft(page.getByText('País' + company.country).first()).toBeVisible();
-
-  // valida endereço de entrega
-  await expect(page.getByRole('heading', { name: company.additional_adress[0].description + ' local_shipping' })).toBeVisible();
-  await expect.soft(page.getByText('Logradouro' + company.local).last()).toBeVisible();
-  await expect.soft(page.getByText('Número' + company.number).last()).toBeVisible();
-  await expect.soft(page.getByText('Bairro' + company.district).last()).toBeVisible();
-  await expect.soft(page.getByText('CEP' + company.postal_code).last()).toBeVisible();
-  await expect.soft(page.getByText('UF' + company.state).last()).toBeVisible();
-  await expect.soft(page.getByText('Município' + company.city_name).last()).toBeVisible();
-  await expect.soft(page.getByText('País' + company.country).last()).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + company.local)).toBeVisible();
+  await expect.soft(page.getByText('Número' + company.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + company.district)).toBeVisible();
+  await expect.soft(page.getByText('CEP' + company.postal_code)).toBeVisible();
+  await expect.soft(page.getByText('UF' + company.state)).toBeVisible();
+  await expect.soft(page.getByText('Município' + company.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País' + company.country)).toBeVisible();
 });
 
 test('Should create a new rural producer', async ({ page }) => {
