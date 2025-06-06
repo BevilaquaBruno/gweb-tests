@@ -38,8 +38,8 @@ let person = {
 
 //cria um vendedor para ser cadastrado
 let seller = {
-  name: "AutoPerson " + faker.person.fullName(),
-  surname: "AutoPerson " + faker.person.firstName(),
+  name: "AutoSeller " + faker.person.fullName(),
+  surname: "AutoSeller " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
   birth_date: '05032000',
@@ -69,7 +69,7 @@ let seller = {
     description: faker.person.firstName(),
     email: faker.internet.email()
   },
-  obs: "AutoPerson " + faker.lorem.sentences(10, '\n')
+  obs: "AutoSeller " + faker.lorem.sentences(10, '\n')
 }
 
 // cria uma empresa para ser cadastrada
