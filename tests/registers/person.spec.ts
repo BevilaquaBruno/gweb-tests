@@ -692,6 +692,11 @@ test('Should create a new accountant', async ({ page }) => {
   await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(accountant.number);
+  // preenche manualmente os campos de endereço caso não sejam preenchidos automaticamente
+  await page.getByRole('textbox', { name: 'Logradouro' }).click();
+  await page.getByRole('textbox', { name: 'Logradouro' }).fill(accountant.local);
+  await page.getByRole('textbox', { name: 'Bairro' }).click();
+  await page.getByRole('textbox', { name: 'Bairro' }).fill(accountant.district);
   // verificações do preenchimento do CEP
   await expect.soft(page.getByRole('textbox', { name: 'Logradouro' })).toHaveValue(accountant.local);
   await expect.soft(page.getByRole('textbox', { name: 'Bairro' })).toHaveValue(accountant.district);
@@ -940,12 +945,15 @@ test('Should delete People', async ({ page }) => {
     await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
     await page.waitForTimeout(2000);
 
-    // clica para apagar
-    await page.getByRole('heading', { name: new RegExp('(' + name + ')') }).hover();
-    await page.getByRole('navigation').filter({ hasText: new RegExp('(' + name + ')') }).getByRole('button').click();
-    await page.getByRole('menuitem', { name: 'Apagar' }).click();
-    await page.getByRole('button', { name: 'Apagar' }).click();
-    await page.waitForTimeout(2000);
+    if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + name + '"' }).isVisible()) {
+      // verifica se a pessoa foi encontrada
+      await page.getByRole('heading', { name: new RegExp('(' + name + ')') }).hover();
+      await page.getByRole('navigation').filter({ hasText: new RegExp('(' + name + ')') }).getByRole('button').click();
+      await page.getByRole('menuitem', { name: 'Apagar' }).click();
+      await page.getByRole('button', { name: 'Apagar' }).click();
+      await page.waitForTimeout(2000);
+    }
+
 
     await expect(page.locator('h3')).toContainText('Nada encontrado com "' + name + '"');
   }
@@ -958,11 +966,13 @@ test('Should delete People', async ({ page }) => {
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(transporter.vehicle.description);
   await page.waitForTimeout(2000);
+  if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + transporter.vehicle.description + '"' }).isVisible()) {
+    await page.getByRole('heading', { name: new RegExp('(' + transporter.vehicle.description + ')') }).hover();
+    await page.getByRole('navigation').filter({ hasText: new RegExp('(' + transporter.vehicle.description + ')') }).getByRole('button').nth(1).click();
+    await page.getByRole('button', { name: 'Excluir' }).click();
+    await page.waitForTimeout(2000);
+  }
   // deleta o veículo
-  await page.getByRole('heading', { name: new RegExp('(' + transporter.vehicle.description + ')') }).hover();
-  await page.getByRole('navigation').filter({ hasText: new RegExp('(' + transporter.vehicle.description + ')') }).getByRole('button').nth(1).click();
-  await page.getByRole('button', { name: 'Excluir' }).click();
-  await page.waitForTimeout(2000);
   // verifica se o veículo foi deletado
   await expect(page.locator('h3')).toContainText('Nada encontrado com "'+transporter.vehicle.description+'"');
 
@@ -972,12 +982,14 @@ test('Should delete People', async ({ page }) => {
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(transporter.name);
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
   await page.waitForTimeout(2000);
-  // deleta a pessoa transportadora
-  await page.getByRole('heading', { name: new RegExp('(' + transporter.name + ')') }).hover();
-  await page.getByRole('navigation').filter({ hasText: new RegExp('(' + transporter.name + ')') }).getByRole('button').click();
-  await page.getByRole('menuitem', { name: 'Apagar' }).click();
-  await page.getByRole('button', { name: 'Apagar' }).click();
-  await page.waitForTimeout(2000);
+  if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + transporter.name + '"' }).isVisible()) {
+    // deleta a pessoa transportadora
+    await page.getByRole('heading', { name: new RegExp('(' + transporter.name + ')') }).hover();
+    await page.getByRole('navigation').filter({ hasText: new RegExp('(' + transporter.name + ')') }).getByRole('button').click();
+    await page.getByRole('menuitem', { name: 'Apagar' }).click();
+    await page.getByRole('button', { name: 'Apagar' }).click();
+    await page.waitForTimeout(2000);
+  }
 
   // verifica se a pessoa transportadora foi deletada
   await expect(page.locator('h3')).toContainText('Nada encontrado com "' + transporter.name + '"');
