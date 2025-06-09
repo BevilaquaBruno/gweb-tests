@@ -5,7 +5,7 @@ export const test = base.extend<{ forEachTest: void }>({
   forEachTest: [
     async ({ page }, use) => {
       // This code runs before every test.
-      await page.goto("https://app.gdoorweb.com.br/login");
+      await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/login");
       await page.getByRole("textbox", { name: "E-mail" }).click();
       await page
         .getByRole("textbox", { name: "E-mail" })
@@ -19,7 +19,7 @@ export const test = base.extend<{ forEachTest: void }>({
         "https://app.gdoorweb.com.br/selecionar-conta?origin=login"
       );
       await page.getByRole("heading", { name: process.env.PLAYWRIGHT_GWEB_ACCOUNT }).click();
-      await page.waitForURL("https://app.gdoorweb.com.br/");
+      await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL || "");
       // follows next tests
       await use();
     },
