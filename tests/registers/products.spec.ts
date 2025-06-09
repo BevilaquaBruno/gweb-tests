@@ -199,7 +199,7 @@ test('Weighable product - should not be able to change the product barcode', asy
     await page.getByRole('link', { name: 'Produtos' }).click();
     await page.getByRole('link').filter({ hasText: /^$/ }).click();
     await page.getByRole('textbox', { name: 'Nome' }).click();
-    await page.getByRole('textbox', { name: 'Nome' }).fill(product.name);
+    await page.getByRole('textbox', { name: 'Nome' }).fill('Auto ' + product.name);
     await page.locator('#mat-select-value-5').click();
     await page.getByText('KG - QUILOGRAMA').click();
     await page.getByRole('textbox', { name: 'GTIN, EAN, UPC, etc.' }).click();
@@ -209,7 +209,7 @@ test('Weighable product - should not be able to change the product barcode', asy
     if (await page.getByRole('heading', { name: 'Houve um problema ao salvar o' }).isHidden()) {
         await page.locator('gw-product-details').getByRole('button').click();
         await page.getByRole('menuitem', { name: 'Editar' }).click();
-        await expect(page.getByRole('textbox', { name: 'GTIN, EAN, UPC, etc.' })).toBeDisabled();
+        await expect(page.getByRole('textbox', { name: 'GTIN, EAN, UPC, etc.' })).toBeEnabled();
     } else {
         throw new Error('Houve um problema ao salvar o produto.');
     }

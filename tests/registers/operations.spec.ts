@@ -207,18 +207,30 @@ test("Operations - Check if default operations are present", async ({
   await page.getByRole("link", { name: "Operações" }).click();
   const defaultOperations = ["Venda de mercadorias", "Compra de mercadorias"];
 
-  for (let i = 0; i < defaultOperations.length; i++) {
     await page
       .getByRole("searchbox", { name: "Buscar operações" })
-      .fill(defaultOperations[i]);
+      .fill(defaultOperations[0]);
     await page
       .getByRole("searchbox", { name: "Buscar operações" })
       .press("Enter");
-
+    await page.waitForTimeout(2000);
+    await expect(
+      page
+      .getByRole("heading")
+      .filter({ hasText: new RegExp(`\\d+\\s+${defaultOperations[0]}`) })
+    ).toBeVisible();
+    
+    await page
+    .getByRole("searchbox", { name: "Buscar operações" })
+    .fill(defaultOperations[1]);
+    await page
+    .getByRole("searchbox", { name: "Buscar operações" })
+    .press("Enter");
+    await page.waitForTimeout(2000);
     await expect(
       page
         .getByRole("heading")
-        .filter({ hasText: new RegExp(`\\d+\\s+${defaultOperations[i]}`) })
+        .filter({ hasText: new RegExp(`\\d+\\s+${defaultOperations[1]}`) })
     ).toBeVisible();
-  }
-});
+
+  });
