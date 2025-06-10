@@ -1,0 +1,2694 @@
+[
+ {
+  "CODIGO": "01113",
+  "DESCRICAO": "Cultivo de cereais"
+ },
+ {
+  "CODIGO": "01121",
+  "DESCRICAO": "Cultivo de algodão herbáceo e de outras fibras de lavoura temporária"
+ },
+ {
+  "CODIGO": "01130",
+  "DESCRICAO": "Cultivo de canadeaçúcar"
+ },
+ {
+  "CODIGO": "01148",
+  "DESCRICAO": "Cultivo de fumo"
+ },
+ {
+  "CODIGO": "01156",
+  "DESCRICAO": "Cultivo de soja"
+ },
+ {
+  "CODIGO": "01164",
+  "DESCRICAO": "Cultivo de oleaginosas de lavoura temporária, exceto soja"
+ },
+ {
+  "CODIGO": "01199",
+  "DESCRICAO": "Cultivo de plantas de lavoura temporária não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "01211",
+  "DESCRICAO": "Horticultura"
+ },
+ {
+  "CODIGO": "01229",
+  "DESCRICAO": "Cultivo de flores e plantas ornamentais"
+ },
+ {
+  "CODIGO": "01318",
+  "DESCRICAO": "Cultivo de laranja"
+ },
+ {
+  "CODIGO": "01326",
+  "DESCRICAO": "Cultivo de uva"
+ },
+ {
+  "CODIGO": "01334",
+  "DESCRICAO": "Cultivo de frutas de lavoura permanente, exceto laranja e uva"
+ },
+ {
+  "CODIGO": "01342",
+  "DESCRICAO": "Cultivo de café"
+ },
+ {
+  "CODIGO": "01351",
+  "DESCRICAO": "Cultivo de cacau"
+ },
+ {
+  "CODIGO": "01393",
+  "DESCRICAO": "Cultivo de plantas de lavoura permanente não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "01415",
+  "DESCRICAO": "Produção de sementes certificadas"
+ },
+ {
+  "CODIGO": "01423",
+  "DESCRICAO": "Produção de mudas e outras formas de propagação vegetal, certificadas"
+ },
+ {
+  "CODIGO": "01512",
+  "DESCRICAO": "Criação de bovinos"
+ },
+ {
+  "CODIGO": "01521",
+  "DESCRICAO": "Criação de outros animais de grande porte"
+ },
+ {
+  "CODIGO": "01539",
+  "DESCRICAO": "Criação de caprinos e ovinos"
+ },
+ {
+  "CODIGO": "01547",
+  "DESCRICAO": "Criação de suínos"
+ },
+ {
+  "CODIGO": "01555",
+  "DESCRICAO": "Criação de aves"
+ },
+ {
+  "CODIGO": "01598",
+  "DESCRICAO": "Criação de animais não especificados anteriormente"
+ },
+ {
+  "CODIGO": "01610",
+  "DESCRICAO": "Atividades de apoio à agricultura"
+ },
+ {
+  "CODIGO": "01628",
+  "DESCRICAO": "Atividades de apoio à pecuária"
+ },
+ {
+  "CODIGO": "01636",
+  "DESCRICAO": "Atividades de póscolheita"
+ },
+ {
+  "CODIGO": "01709",
+  "DESCRICAO": "Caça e serviços relacionados"
+ },
+ {
+  "CODIGO": "02101",
+  "DESCRICAO": "Produção florestal  florestas plantadas"
+ },
+ {
+  "CODIGO": "02209",
+  "DESCRICAO": "Produção florestal  florestas nativas"
+ },
+ {
+  "CODIGO": "02306",
+  "DESCRICAO": "Atividades de apoio à produção florestal"
+ },
+ {
+  "CODIGO": "03116",
+  "DESCRICAO": "Pesca em água salgada"
+ },
+ {
+  "CODIGO": "03124",
+  "DESCRICAO": "Pesca em água doce"
+ },
+ {
+  "CODIGO": "03213",
+  "DESCRICAO": "Aqüicultura em água salgada e salobra"
+ },
+ {
+  "CODIGO": "03221",
+  "DESCRICAO": "Aqüicultura em água doce"
+ },
+ {
+  "CODIGO": "05003",
+  "DESCRICAO": "Extração de carvão mineral"
+ },
+ {
+  "CODIGO": "06000",
+  "DESCRICAO": "Extração de petróleo e gás natural"
+ },
+ {
+  "CODIGO": "07103",
+  "DESCRICAO": "Extração de minério de ferro"
+ },
+ {
+  "CODIGO": "07219",
+  "DESCRICAO": "Extração de minério de alumínio"
+ },
+ {
+  "CODIGO": "07227",
+  "DESCRICAO": "Extração de minério de estanho"
+ },
+ {
+  "CODIGO": "07235",
+  "DESCRICAO": "Extração de minério de manganês"
+ },
+ {
+  "CODIGO": "07243",
+  "DESCRICAO": "Extração de minério de metais preciosos"
+ },
+ {
+  "CODIGO": "07251",
+  "DESCRICAO": "Extração de minerais radioativos"
+ },
+ {
+  "CODIGO": "07294",
+  "DESCRICAO": "Extração de minerais metálicos nãoferrosos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "08100",
+  "DESCRICAO": "Extração de pedra, areia e argila"
+ },
+ {
+  "CODIGO": "08916",
+  "DESCRICAO": "Extração de minerais para fabricação de adubos, fertilizantes e outros produtos químicos"
+ },
+ {
+  "CODIGO": "08924",
+  "DESCRICAO": "Extração e refino de sal marinho e salgema"
+ },
+ {
+  "CODIGO": "08932",
+  "DESCRICAO": "Extração de gemas (pedras preciosas e semipreciosas)"
+ },
+ {
+  "CODIGO": "08991",
+  "DESCRICAO": "Extração de minerais nãometálicos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "09106",
+  "DESCRICAO": "Atividades de apoio à extração de petróleo e gás natural"
+ },
+ {
+  "CODIGO": "09904",
+  "DESCRICAO": "Atividades de apoio à extração de minerais, exceto petróleo e gás natural"
+ },
+ {
+  "CODIGO": "10112",
+  "DESCRICAO": "Abate de reses, exceto suínos"
+ },
+ {
+  "CODIGO": "10121",
+  "DESCRICAO": "Abate de suínos, aves e outros pequenos animais"
+ },
+ {
+  "CODIGO": "10139",
+  "DESCRICAO": "Fabricação de produtos de carne"
+ },
+ {
+  "CODIGO": "10201",
+  "DESCRICAO": "Preservação do pescado e fabricação de produtos do pescado"
+ },
+ {
+  "CODIGO": "10317",
+  "DESCRICAO": "Fabricação de conservas de frutas"
+ },
+ {
+  "CODIGO": "10325",
+  "DESCRICAO": "Fabricação de conservas de legumes e outros vegetais"
+ },
+ {
+  "CODIGO": "10333",
+  "DESCRICAO": "Fabricação de sucos de frutas, hortaliças e legumes"
+ },
+ {
+  "CODIGO": "10414",
+  "DESCRICAO": "Fabricação de óleos vegetais em bruto, exceto óleo de milho"
+ },
+ {
+  "CODIGO": "10422",
+  "DESCRICAO": "Fabricação de óleos vegetais refinados, exceto óleo de milho"
+ },
+ {
+  "CODIGO": "10431",
+  "DESCRICAO": "Fabricação de margarina e outras gorduras vegetais e de óleos nãocomestíveis de animais"
+ },
+ {
+  "CODIGO": "10511",
+  "DESCRICAO": "Preparação do leite"
+ },
+ {
+  "CODIGO": "10520",
+  "DESCRICAO": "Fabricação de laticínios"
+ },
+ {
+  "CODIGO": "10538",
+  "DESCRICAO": "Fabricação de sorvetes e outros gelados comestíveis"
+ },
+ {
+  "CODIGO": "10619",
+  "DESCRICAO": "Beneficiamento de arroz e fabricação de produtos do arroz"
+ },
+ {
+  "CODIGO": "10627",
+  "DESCRICAO": "Moagem de trigo e fabricação de derivados"
+ },
+ {
+  "CODIGO": "10635",
+  "DESCRICAO": "Fabricação de farinha de mandioca e derivados"
+ },
+ {
+  "CODIGO": "10643",
+  "DESCRICAO": "Fabricação de farinha de milho e derivados, exceto óleos de milho"
+ },
+ {
+  "CODIGO": "10651",
+  "DESCRICAO": "Fabricação de amidos e féculas de vegetais e de óleos de milho"
+ },
+ {
+  "CODIGO": "10660",
+  "DESCRICAO": "Fabricação de alimentos para animais"
+ },
+ {
+  "CODIGO": "10694",
+  "DESCRICAO": "Moagem e fabricação de produtos de origem vegetal não especificados anteriormente"
+ },
+ {
+  "CODIGO": "10716",
+  "DESCRICAO": "Fabricação de açúcar em bruto"
+ },
+ {
+  "CODIGO": "10724",
+  "DESCRICAO": "Fabricação de açúcar refinado"
+ },
+ {
+  "CODIGO": "10813",
+  "DESCRICAO": "Torrefação e moagem de café"
+ },
+ {
+  "CODIGO": "10821",
+  "DESCRICAO": "Fabricação de produtos à base de café"
+ },
+ {
+  "CODIGO": "10911",
+  "DESCRICAO": "Fabricação de produtos de panificação"
+ },
+ {
+  "CODIGO": "10929",
+  "DESCRICAO": "Fabricação de biscoitos e bolachas"
+ },
+ {
+  "CODIGO": "10937",
+  "DESCRICAO": "Fabricação de produtos derivados do cacau, de chocolates e confeitos"
+ },
+ {
+  "CODIGO": "10945",
+  "DESCRICAO": "Fabricação de massas alimentícias"
+ },
+ {
+  "CODIGO": "10953",
+  "DESCRICAO": "Fabricação de especiarias, molhos, temperos e condimentos"
+ },
+ {
+  "CODIGO": "10961",
+  "DESCRICAO": "Fabricação de alimentos e pratos prontos"
+ },
+ {
+  "CODIGO": "10996",
+  "DESCRICAO": "Fabricação de produtos alimentícios não especificados anteriormente"
+ },
+ {
+  "CODIGO": "11119",
+  "DESCRICAO": "Fabricação de aguardentes e outras bebidas destiladas"
+ },
+ {
+  "CODIGO": "11127",
+  "DESCRICAO": "Fabricação de vinho"
+ },
+ {
+  "CODIGO": "11135",
+  "DESCRICAO": "Fabricação de malte, cervejas e chopes"
+ },
+ {
+  "CODIGO": "11216",
+  "DESCRICAO": "Fabricação de águas envasadas"
+ },
+ {
+  "CODIGO": "11224",
+  "DESCRICAO": "Fabricação de refrigerantes e de outras bebidas nãoalcoólicas"
+ },
+ {
+  "CODIGO": "12107",
+  "DESCRICAO": "Processamento industrial do fumo"
+ },
+ {
+  "CODIGO": "12204",
+  "DESCRICAO": "Fabricação de produtos do fumo"
+ },
+ {
+  "CODIGO": "13111",
+  "DESCRICAO": "Preparação e fiação de fibras de algodão"
+ },
+ {
+  "CODIGO": "13120",
+  "DESCRICAO": "Preparação e fiação de fibras têxteis naturais, exceto algodão"
+ },
+ {
+  "CODIGO": "13138",
+  "DESCRICAO": "Fiação de fibras artificiais e sintéticas"
+ },
+ {
+  "CODIGO": "13146",
+  "DESCRICAO": "Fabricação de linhas para costurar e bordar"
+ },
+ {
+  "CODIGO": "13219",
+  "DESCRICAO": "Tecelagem de fios de algodão"
+ },
+ {
+  "CODIGO": "13227",
+  "DESCRICAO": "Tecelagem de fios de fibras têxteis naturais, exceto algodão"
+ },
+ {
+  "CODIGO": "13235",
+  "DESCRICAO": "Tecelagem de fios de fibras artificiais e sintéticas"
+ },
+ {
+  "CODIGO": "13308",
+  "DESCRICAO": "Fabricação de tecidos de malha"
+ },
+ {
+  "CODIGO": "13405",
+  "DESCRICAO": "Acabamentos em fios, tecidos e artefatos têxteis"
+ },
+ {
+  "CODIGO": "13511",
+  "DESCRICAO": "Fabricação de artefatos têxteis para uso doméstico"
+ },
+ {
+  "CODIGO": "13529",
+  "DESCRICAO": "Fabricação de artefatos de tapeçaria"
+ },
+ {
+  "CODIGO": "13537",
+  "DESCRICAO": "Fabricação de artefatos de cordoaria"
+ },
+ {
+  "CODIGO": "13545",
+  "DESCRICAO": "Fabricação de tecidos especiais, inclusive artefatos"
+ },
+ {
+  "CODIGO": "13596",
+  "DESCRICAO": "Fabricação de outros produtos têxteis não especificados anteriormente"
+ },
+ {
+  "CODIGO": "14118",
+  "DESCRICAO": "Confecção de roupas íntimas"
+ },
+ {
+  "CODIGO": "14126",
+  "DESCRICAO": "Confecção de peças do vestuário, exceto roupas íntimas"
+ },
+ {
+  "CODIGO": "14134",
+  "DESCRICAO": "Confecção de roupas profissionais"
+ },
+ {
+  "CODIGO": "14142",
+  "DESCRICAO": "Fabricação de acessórios do vestuário, exceto para segurança e proteção"
+ },
+ {
+  "CODIGO": "14215",
+  "DESCRICAO": "Fabricação de meias"
+ },
+ {
+  "CODIGO": "14223",
+  "DESCRICAO": "Fabricação de artigos do vestuário, produzidos em malharias e tricotagens, exceto meias"
+ },
+ {
+  "CODIGO": "15106",
+  "DESCRICAO": "Curtimento e outras preparações de couro"
+ },
+ {
+  "CODIGO": "15211",
+  "DESCRICAO": "Fabricação de artigos para viagem, bolsas e semelhantes de qualquer material"
+ },
+ {
+  "CODIGO": "15297",
+  "DESCRICAO": "Fabricação de artefatos de couro não especificados anteriormente"
+ },
+ {
+  "CODIGO": "15319",
+  "DESCRICAO": "Fabricação de calçados de couro"
+ },
+ {
+  "CODIGO": "15327",
+  "DESCRICAO": "Fabricação de tênis de qualquer material"
+ },
+ {
+  "CODIGO": "15335",
+  "DESCRICAO": "Fabricação de calçados de material sintético"
+ },
+ {
+  "CODIGO": "15394",
+  "DESCRICAO": "Fabricação de calçados de materiais não especificados anteriormente"
+ },
+ {
+  "CODIGO": "15408",
+  "DESCRICAO": "Fabricação de partes para calçados, de qualquer material"
+ },
+ {
+  "CODIGO": "16102",
+  "DESCRICAO": "Desdobramento de madeira"
+ },
+ {
+  "CODIGO": "16218",
+  "DESCRICAO": "Fabricação de madeira laminada e de chapas de madeira compensada, prensada e aglomerada"
+ },
+ {
+  "CODIGO": "16226",
+  "DESCRICAO": "Fabricação de estruturas de madeira e de artigos de carpintaria para \nconstrução"
+ },
+ {
+  "CODIGO": "16234",
+  "DESCRICAO": "Fabricação de artefatos de tanoaria e de embalagens de madeira"
+ },
+ {
+  "CODIGO": "16293",
+  "DESCRICAO": "Fabricação de artefatos de madeira, palha, cortiça, vime e material trançado não especificados anteriormente, exceto móveis"
+ },
+ {
+  "CODIGO": "17109",
+  "DESCRICAO": "Fabricação de celulose e outras pastas para a fabricação de papel"
+ },
+ {
+  "CODIGO": "17214",
+  "DESCRICAO": "Fabricação de papel"
+ },
+ {
+  "CODIGO": "17222",
+  "DESCRICAO": "Fabricação de cartolina e papelcartão"
+ },
+ {
+  "CODIGO": "17311",
+  "DESCRICAO": "Fabricação de embalagens de papel"
+ },
+ {
+  "CODIGO": "17320",
+  "DESCRICAO": "Fabricação de embalagens de cartolina e papelcartão"
+ },
+ {
+  "CODIGO": "17338",
+  "DESCRICAO": "Fabricação de chapas e de embalagens de papelão ondulado"
+ },
+ {
+  "CODIGO": "17419",
+  "DESCRICAO": "Fabricação de produtos de papel, cartolina, papelcartão e papelão ondulado para uso comercial e de escritório"
+ },
+ {
+  "CODIGO": "17427",
+  "DESCRICAO": "Fabricação de produtos de papel para usos doméstico e higiênicosanitário"
+ },
+ {
+  "CODIGO": "17494",
+  "DESCRICAO": "Fabricação de produtos de pastas celulósicas, papel, cartolina, papelcartão e papelão ondulado não especificados anteriormente"
+ },
+ {
+  "CODIGO": "18113",
+  "DESCRICAO": "Impressão de jornais, livros, revistas e outras publicações periódicas"
+ },
+ {
+  "CODIGO": "18121",
+  "DESCRICAO": "Impressão de material de segurança"
+ },
+ {
+  "CODIGO": "18130",
+  "DESCRICAO": "Impressão de materiais para outros usos"
+ },
+ {
+  "CODIGO": "18211",
+  "DESCRICAO": "Serviços de préimpressão"
+ },
+ {
+  "CODIGO": "18229",
+  "DESCRICAO": "Serviços de acabamentos gráficos"
+ },
+ {
+  "CODIGO": "18300",
+  "DESCRICAO": "Reprodução de materiais gravados em qualquer suporte"
+ },
+ {
+  "CODIGO": "19101",
+  "DESCRICAO": "Coquerias"
+ },
+ {
+  "CODIGO": "19217",
+  "DESCRICAO": "Fabricação de produtos do refino de petróleo"
+ },
+ {
+  "CODIGO": "19225",
+  "DESCRICAO": "Fabricação de produtos derivados do petróleo, exceto produtos do refino"
+ },
+ {
+  "CODIGO": "19314",
+  "DESCRICAO": "Fabricação de álcool"
+ },
+ {
+  "CODIGO": "19322",
+  "DESCRICAO": "Fabricação de biocombustíveis, exceto álcool"
+ },
+ {
+  "CODIGO": "20118",
+  "DESCRICAO": "Fabricação de cloro e álcalis"
+ },
+ {
+  "CODIGO": "20126",
+  "DESCRICAO": "Fabricação de intermediários para fertilizantes"
+ },
+ {
+  "CODIGO": "20134",
+  "DESCRICAO": "Fabricação de adubos e fertilizantes"
+ },
+ {
+  "CODIGO": "20142",
+  "DESCRICAO": "Fabricação de gases industriais"
+ },
+ {
+  "CODIGO": "20193",
+  "DESCRICAO": "Fabricação de produtos químicos inorgânicos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "20215",
+  "DESCRICAO": "Fabricação de produtos petroquímicos básicos"
+ },
+ {
+  "CODIGO": "20223",
+  "DESCRICAO": "Fabricação de intermediários para plastificantes, resinas e fibras"
+ },
+ {
+  "CODIGO": "20291",
+  "DESCRICAO": "Fabricação de produtos químicos orgânicos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "20312",
+  "DESCRICAO": "Fabricação de resinas termoplásticas"
+ },
+ {
+  "CODIGO": "20321",
+  "DESCRICAO": "Fabricação de resinas termofixas"
+ },
+ {
+  "CODIGO": "20339",
+  "DESCRICAO": "Fabricação de elastômeros"
+ },
+ {
+  "CODIGO": "20401",
+  "DESCRICAO": "Fabricação de fibras artificiais e sintéticas"
+ },
+ {
+  "CODIGO": "20517",
+  "DESCRICAO": "Fabricação de defensivos agrícolas"
+ },
+ {
+  "CODIGO": "20525",
+  "DESCRICAO": "Fabricação de desinfestantes domissanitários"
+ },
+ {
+  "CODIGO": "20614",
+  "DESCRICAO": "Fabricação de sabões e detergentes sintéticos"
+ },
+ {
+  "CODIGO": "20622",
+  "DESCRICAO": "Fabricação de produtos de limpeza e polimento"
+ },
+ {
+  "CODIGO": "20631",
+  "DESCRICAO": "Fabricação de cosméticos, produtos de perfumaria e de higiene pessoal"
+ },
+ {
+  "CODIGO": "20711",
+  "DESCRICAO": "Fabricação de tintas, vernizes, esmaltes e lacas"
+ },
+ {
+  "CODIGO": "20720",
+  "DESCRICAO": "Fabricação de tintas de impressão"
+ },
+ {
+  "CODIGO": "20738",
+  "DESCRICAO": "Fabricação de impermeabilizantes, solventes e produtos afins"
+ },
+ {
+  "CODIGO": "20916",
+  "DESCRICAO": "Fabricação de adesivos e selantes"
+ },
+ {
+  "CODIGO": "20924",
+  "DESCRICAO": "Fabricação de explosivos"
+ },
+ {
+  "CODIGO": "20932",
+  "DESCRICAO": "Fabricação de aditivos de uso industrial"
+ },
+ {
+  "CODIGO": "20941",
+  "DESCRICAO": "Fabricação de catalisadores"
+ },
+ {
+  "CODIGO": "20991",
+  "DESCRICAO": "Fabricação de produtos químicos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "21106",
+  "DESCRICAO": "Fabricação de produtos farmoquímicos"
+ },
+ {
+  "CODIGO": "21211",
+  "DESCRICAO": "Fabricação de medicamentos para uso humano"
+ },
+ {
+  "CODIGO": "21220",
+  "DESCRICAO": "Fabricação de medicamentos para uso veterinário"
+ },
+ {
+  "CODIGO": "21238",
+  "DESCRICAO": "Fabricação de preparações farmacêuticas"
+ },
+ {
+  "CODIGO": "22111",
+  "DESCRICAO": "Fabricação de pneumáticos e de câmarasdear"
+ },
+ {
+  "CODIGO": "22129",
+  "DESCRICAO": "Reforma de pneumáticos usados"
+ },
+ {
+  "CODIGO": "22196",
+  "DESCRICAO": "Fabricação de artefatos de borracha não especificados anteriormente"
+ },
+ {
+  "CODIGO": "22218",
+  "DESCRICAO": "Fabricação de laminados planos e tubulares de material plástico"
+ },
+ {
+  "CODIGO": "22226",
+  "DESCRICAO": "Fabricação de embalagens de material plástico"
+ },
+ {
+  "CODIGO": "22234",
+  "DESCRICAO": "Fabricação de tubos e acessórios de material plástico para uso na construção"
+ },
+ {
+  "CODIGO": "22293",
+  "DESCRICAO": "Fabricação de artefatos de material plástico não especificados anteriormente"
+ },
+ {
+  "CODIGO": "23117",
+  "DESCRICAO": "Fabricação de vidro plano e de segurança"
+ },
+ {
+  "CODIGO": "23125",
+  "DESCRICAO": "Fabricação de embalagens de vidro"
+ },
+ {
+  "CODIGO": "23192",
+  "DESCRICAO": "Fabricação de artigos de vidro"
+ },
+ {
+  "CODIGO": "23206",
+  "DESCRICAO": "Fabricação de cimento"
+ },
+ {
+  "CODIGO": "23303",
+  "DESCRICAO": "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes"
+ },
+ {
+  "CODIGO": "23419",
+  "DESCRICAO": "Fabricação de produtos cerâmicos refratários"
+ },
+ {
+  "CODIGO": "23427",
+  "DESCRICAO": "Fabricação de produtos cerâmicos nãorefratários para uso estrutural na construção"
+ },
+ {
+  "CODIGO": "23494",
+  "DESCRICAO": "Fabricação de produtos cerâmicos nãorefratários não especificados anteriormente"
+ },
+ {
+  "CODIGO": "23915",
+  "DESCRICAO": "Aparelhamento e outros trabalhos em pedras"
+ },
+ {
+  "CODIGO": "23923",
+  "DESCRICAO": "Fabricação de cal e gesso"
+ },
+ {
+  "CODIGO": "23991",
+  "DESCRICAO": "Fabricação de produtos de minerais nãometálicos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "24113",
+  "DESCRICAO": "Produção de ferrogusa"
+ },
+ {
+  "CODIGO": "24121",
+  "DESCRICAO": "Produção de ferroligas"
+ },
+ {
+  "CODIGO": "24211",
+  "DESCRICAO": "Produção de semiacabados de aço"
+ },
+ {
+  "CODIGO": "24229",
+  "DESCRICAO": "Produção de laminados planos de aço"
+ },
+ {
+  "CODIGO": "24237",
+  "DESCRICAO": "Produção de laminados longos de aço"
+ },
+ {
+  "CODIGO": "24245",
+  "DESCRICAO": "Produção de relaminados, trefilados e perfilados de aço"
+ },
+ {
+  "CODIGO": "24318",
+  "DESCRICAO": "Produção de tubos de aço com costura"
+ },
+ {
+  "CODIGO": "24393",
+  "DESCRICAO": "Produção de outros tubos de ferro e aço"
+ },
+ {
+  "CODIGO": "24415",
+  "DESCRICAO": "Metalurgia do alumínio e suas ligas"
+ },
+ {
+  "CODIGO": "24423",
+  "DESCRICAO": "Metalurgia dos metais preciosos"
+ },
+ {
+  "CODIGO": "24431",
+  "DESCRICAO": "Metalurgia do cobre"
+ },
+ {
+  "CODIGO": "24491",
+  "DESCRICAO": "Metalurgia dos metais nãoferrosos e suas ligas não especificados anteriormente"
+ },
+ {
+  "CODIGO": "24512",
+  "DESCRICAO": "Fundição de ferro e aço"
+ },
+ {
+  "CODIGO": "24521",
+  "DESCRICAO": "Fundição de metais nãoferrosos e suas ligas"
+ },
+ {
+  "CODIGO": "25110",
+  "DESCRICAO": "Fabricação de estruturas metálicas"
+ },
+ {
+  "CODIGO": "25128",
+  "DESCRICAO": "Fabricação de esquadrias de metal"
+ },
+ {
+  "CODIGO": "25136",
+  "DESCRICAO": "Fabricação de obras de caldeiraria pesada"
+ },
+ {
+  "CODIGO": "25217",
+  "DESCRICAO": "Fabricação de tanques, reservatórios metálicos e caldeiras para aquecimento central"
+ },
+ {
+  "CODIGO": "25225",
+  "DESCRICAO": "Fabricação de caldeiras geradoras de vapor, exceto para aquecimento central e para veículos"
+ },
+ {
+  "CODIGO": "25314",
+  "DESCRICAO": "Produção de forjados de aço e de metais nãoferrosos e suas ligas"
+ },
+ {
+  "CODIGO": "25322",
+  "DESCRICAO": "Produção de artefatos estampados de metal; metalurgia do pó"
+ },
+ {
+  "CODIGO": "25390",
+  "DESCRICAO": "Serviços de usinagem, solda, tratamento e revestimento em metais"
+ },
+ {
+  "CODIGO": "25411",
+  "DESCRICAO": "Fabricação de artigos de cutelaria"
+ },
+ {
+  "CODIGO": "25420",
+  "DESCRICAO": "Fabricação de artigos de serralheria, exceto esquadrias"
+ },
+ {
+  "CODIGO": "25438",
+  "DESCRICAO": "Fabricação de ferramentas"
+ },
+ {
+  "CODIGO": "25501",
+  "DESCRICAO": "Fabricação de equipamento bélico pesado, armas de fogo e munições"
+ },
+ {
+  "CODIGO": "25918",
+  "DESCRICAO": "Fabricação de embalagens metálicas"
+ },
+ {
+  "CODIGO": "25926",
+  "DESCRICAO": "Fabricação de produtos de trefilados de metal"
+ },
+ {
+  "CODIGO": "25934",
+  "DESCRICAO": "Fabricação de artigos de metal para uso doméstico e pessoal"
+ },
+ {
+  "CODIGO": "25993",
+  "DESCRICAO": "Fabricação de produtos de metal não especificados anteriormente"
+ },
+ {
+  "CODIGO": "26108",
+  "DESCRICAO": "Fabricação de componentes eletrônicos"
+ },
+ {
+  "CODIGO": "26213",
+  "DESCRICAO": "Fabricação de equipamentos de informática"
+ },
+ {
+  "CODIGO": "26221",
+  "DESCRICAO": "Fabricação de periféricos para equipamentos de informática"
+ },
+ {
+  "CODIGO": "26311",
+  "DESCRICAO": "Fabricação de equipamentos transmissores de comunicação"
+ },
+ {
+  "CODIGO": "26329",
+  "DESCRICAO": "Fabricação de aparelhos telefônicos e de outros equipamentos de comunicação"
+ },
+ {
+  "CODIGO": "26400",
+  "DESCRICAO": "Fabricação de aparelhos de recepção, reprodução, gravação e amplificação de áudio e vídeo"
+ },
+ {
+  "CODIGO": "26515",
+  "DESCRICAO": "Fabricação de aparelhos e equipamentos de medida, teste e controle"
+ },
+ {
+  "CODIGO": "26523",
+  "DESCRICAO": "Fabricação de cronômetros e relógios"
+ },
+ {
+  "CODIGO": "26604",
+  "DESCRICAO": "Fabricação de aparelhos eletromédicos e eletroterapêuticos e equipamentos de irradiação"
+ },
+ {
+  "CODIGO": "26701",
+  "DESCRICAO": "Fabricação de equipamentos e instrumentos ópticos, fotográficos e cinematográficos"
+ },
+ {
+  "CODIGO": "26809",
+  "DESCRICAO": "Fabricação de mídias virgens, magnéticas e ópticas"
+ },
+ {
+  "CODIGO": "27104",
+  "DESCRICAO": "Fabricação de geradores, transformadores e motores elétricos"
+ },
+ {
+  "CODIGO": "27210",
+  "DESCRICAO": "Fabricação de pilhas, baterias e acumuladores elétricos, exceto para veículos automotores"
+ },
+ {
+  "CODIGO": "27228",
+  "DESCRICAO": "Fabricação de baterias e acumuladores para veículos automotores"
+ },
+ {
+  "CODIGO": "27317",
+  "DESCRICAO": "Fabricação de aparelhos e equipamentos para distribuição e controle de energia elétrica"
+ },
+ {
+  "CODIGO": "27325",
+  "DESCRICAO": "Fabricação de material elétrico para instalações em circuito de consumo"
+ },
+ {
+  "CODIGO": "27333",
+  "DESCRICAO": "Fabricação de fios, cabos e condutores elétricos isolados"
+ },
+ {
+  "CODIGO": "27406",
+  "DESCRICAO": "Fabricação de lâmpadas e outros equipamentos de iluminação"
+ },
+ {
+  "CODIGO": "27511",
+  "DESCRICAO": "Fabricação de fogões, refrigeradores e máquinas de lavar e secar para uso doméstico"
+ },
+ {
+  "CODIGO": "27597",
+  "DESCRICAO": "Fabricação de aparelhos eletrodomésticos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "27902",
+  "DESCRICAO": "Fabricação de equipamentos e aparelhos elétricos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "28119",
+  "DESCRICAO": "Fabricação de motores e turbinas, exceto para aviões e veículos rodoviários"
+ },
+ {
+  "CODIGO": "28127",
+  "DESCRICAO": "Fabricação de equipamentos hidráulicos e pneumáticos, exceto válvulas"
+ },
+ {
+  "CODIGO": "28135",
+  "DESCRICAO": "Fabricação de válvulas, registros e dispositivos semelhantes"
+ },
+ {
+  "CODIGO": "28143",
+  "DESCRICAO": "Fabricação de compressores"
+ },
+ {
+  "CODIGO": "28151",
+  "DESCRICAO": "Fabricação de equipamentos de transmissão para fins industriais"
+ },
+ {
+  "CODIGO": "28216",
+  "DESCRICAO": "Fabricação de aparelhos e equipamentos para instalações térmicas"
+ },
+ {
+  "CODIGO": "28224",
+  "DESCRICAO": "Fabricação de máquinas, equipamentos e aparelhos para transporte e elevação de cargas e pessoas"
+ },
+ {
+  "CODIGO": "28232",
+  "DESCRICAO": "Fabricação de máquinas e aparelhos de refrigeração e ventilação para uso industrial e comercial"
+ },
+ {
+  "CODIGO": "28241",
+  "DESCRICAO": "Fabricação de aparelhos e equipamentos de ar condicionado"
+ },
+ {
+  "CODIGO": "28259",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para saneamento básico e ambiental"
+ },
+ {
+  "CODIGO": "28291",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos de uso geral não especificados anteriormente"
+ },
+ {
+  "CODIGO": "28313",
+  "DESCRICAO": "Fabricação de tratores agrícolas"
+ },
+ {
+  "CODIGO": "28321",
+  "DESCRICAO": "Fabricação de equipamentos para irrigação agrícola"
+ },
+ {
+  "CODIGO": "28330",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para a agricultura e pecuária, exceto para irrigação"
+ },
+ {
+  "CODIGO": "28402",
+  "DESCRICAO": "Fabricação de máquinasferramenta"
+ },
+ {
+  "CODIGO": "28518",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para a prospecção e extração de petróleo"
+ },
+ {
+  "CODIGO": "28526",
+  "DESCRICAO": "Fabricação de outras máquinas e equipamentos para uso na extração mineral, exceto na extração de petróleo"
+ },
+ {
+  "CODIGO": "28534",
+  "DESCRICAO": "Fabricação de tratores, exceto agrícolas"
+ },
+ {
+  "CODIGO": "28542",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para terraplenagem, pavimentação e construção, exceto tratores"
+ },
+ {
+  "CODIGO": "28615",
+  "DESCRICAO": "Fabricação de máquinas para a indústria metalúrgica, exceto máquinasferramenta"
+ },
+ {
+  "CODIGO": "28623",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para as indústrias de alimentos, bebidas e fumo"
+ },
+ {
+  "CODIGO": "28631",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para a indústria têxtil"
+ },
+ {
+  "CODIGO": "28640",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para as indústrias do vestuário, do couro e de calçados"
+ },
+ {
+  "CODIGO": "28658",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para as indústrias de celulose, papel e papelão e artefatos"
+ },
+ {
+  "CODIGO": "28666",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para a indústria do plástico"
+ },
+ {
+  "CODIGO": "28691",
+  "DESCRICAO": "Fabricação de máquinas e equipamentos para uso industrial específico não especificados anteriormente"
+ },
+ {
+  "CODIGO": "29107",
+  "DESCRICAO": "Fabricação de automóveis, camionetas e utilitários"
+ },
+ {
+  "CODIGO": "29204",
+  "DESCRICAO": "Fabricação de caminhões e ônibus"
+ },
+ {
+  "CODIGO": "29301",
+  "DESCRICAO": "Fabricação de cabines, carrocerias e reboques para veículos automotores"
+ },
+ {
+  "CODIGO": "29417",
+  "DESCRICAO": "Fabricação de peças e acessórios para o sistema motor de veículos automotores"
+ },
+ {
+  "CODIGO": "29425",
+  "DESCRICAO": "Fabricação de peças e acessórios para os sistemas de marcha e transmissão de veículos automotores"
+ },
+ {
+  "CODIGO": "29433",
+  "DESCRICAO": "Fabricação de peças e acessórios para o sistema de freios de veículos automotores"
+ },
+ {
+  "CODIGO": "29441",
+  "DESCRICAO": "Fabricação de peças e acessórios para o sistema de direção e suspensão de veículos automotores"
+ },
+ {
+  "CODIGO": "29450",
+  "DESCRICAO": "Fabricação de material elétrico e eletrônico para veículos automotores, exceto baterias"
+ },
+ {
+  "CODIGO": "29492",
+  "DESCRICAO": "Fabricação de peças e acessórios para veículos automotores não especificados anteriormente"
+ },
+ {
+  "CODIGO": "29506",
+  "DESCRICAO": "Recondicionamento e recuperação de motores para veículos automotores"
+ },
+ {
+  "CODIGO": "30113",
+  "DESCRICAO": "Construção de embarcações e estruturas flutuantes"
+ },
+ {
+  "CODIGO": "30121",
+  "DESCRICAO": "Construção de embarcações para esporte e lazer"
+ },
+ {
+  "CODIGO": "30318",
+  "DESCRICAO": "Fabricação de locomotivas, vagões e outros materiais rodantes"
+ },
+ {
+  "CODIGO": "30326",
+  "DESCRICAO": "Fabricação de peças e acessórios para veículos ferroviários"
+ },
+ {
+  "CODIGO": "30415",
+  "DESCRICAO": "Fabricação de aeronaves"
+ },
+ {
+  "CODIGO": "30423",
+  "DESCRICAO": "Fabricação de turbinas, motores e outros componentes e peças para aeronaves"
+ },
+ {
+  "CODIGO": "30504",
+  "DESCRICAO": "Fabricação de veículos militares de combate"
+ },
+ {
+  "CODIGO": "30911",
+  "DESCRICAO": "Fabricação de motocicletas"
+ },
+ {
+  "CODIGO": "30920",
+  "DESCRICAO": "Fabricação de bicicletas e triciclos nãomotorizados"
+ },
+ {
+  "CODIGO": "30997",
+  "DESCRICAO": "Fabricação de equipamentos de transporte não especificados anteriormente"
+ },
+ {
+  "CODIGO": "31012",
+  "DESCRICAO": "Fabricação de móveis com predominância de madeira"
+ },
+ {
+  "CODIGO": "31021",
+  "DESCRICAO": "Fabricação de móveis com predominância de metal"
+ },
+ {
+  "CODIGO": "31039",
+  "DESCRICAO": "Fabricação de móveis de outros materiais, exceto madeira e metal"
+ },
+ {
+  "CODIGO": "31047",
+  "DESCRICAO": "Fabricação de colchões"
+ },
+ {
+  "CODIGO": "32116",
+  "DESCRICAO": "Lapidação de gemas e fabricação de artefatos de ourivesaria e joalheria"
+ },
+ {
+  "CODIGO": "32124",
+  "DESCRICAO": "Fabricação de bijuterias e artefatos semelhantes"
+ },
+ {
+  "CODIGO": "32205",
+  "DESCRICAO": "Fabricação de instrumentos musicais"
+ },
+ {
+  "CODIGO": "32302",
+  "DESCRICAO": "Fabricação de artefatos para pesca e esporte"
+ },
+ {
+  "CODIGO": "32400",
+  "DESCRICAO": "Fabricação de brinquedos e jogos recreativos"
+ },
+ {
+  "CODIGO": "32507",
+  "DESCRICAO": "Fabricação de instrumentos e materiais para uso médico e odontológico e de artigos ópticos"
+ },
+ {
+  "CODIGO": "32914",
+  "DESCRICAO": "Fabricação de escovas, pincéis e vassouras"
+ },
+ {
+  "CODIGO": "32922",
+  "DESCRICAO": "Fabricação de equipamentos e acessórios para segurança e proteção pessoal e profissional"
+ },
+ {
+  "CODIGO": "32990",
+  "DESCRICAO": "Fabricação de produtos diversos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "33112",
+  "DESCRICAO": "Manutenção e reparação de tanques, reservatórios metálicos e caldeiras, exceto para veículos"
+ },
+ {
+  "CODIGO": "33121",
+  "DESCRICAO": "Manutenção e reparação de equipamentos eletrônicos e ópticos"
+ },
+ {
+  "CODIGO": "33139",
+  "DESCRICAO": "Manutenção e reparação de máquinas e equipamentos elétricos"
+ },
+ {
+  "CODIGO": "33147",
+  "DESCRICAO": "Manutenção e reparação de máquinas e equipamentos da indústria mecânica"
+ },
+ {
+  "CODIGO": "33155",
+  "DESCRICAO": "Manutenção e reparação de veículos ferroviários"
+ },
+ {
+  "CODIGO": "33163",
+  "DESCRICAO": "Manutenção e reparação de aeronaves"
+ },
+ {
+  "CODIGO": "33171",
+  "DESCRICAO": "Manutenção e reparação de embarcações"
+ },
+ {
+  "CODIGO": "33198",
+  "DESCRICAO": "Manutenção e reparação de equipamentos e produtos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "33210",
+  "DESCRICAO": "Instalação de máquinas e equipamentos industriais"
+ },
+ {
+  "CODIGO": "33295",
+  "DESCRICAO": "Instalação de equipamentos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "35115",
+  "DESCRICAO": "Geração de energia elétrica"
+ },
+ {
+  "CODIGO": "35123",
+  "DESCRICAO": "Transmissão de energia elétrica"
+ },
+ {
+  "CODIGO": "35131",
+  "DESCRICAO": "Comércio atacadista de energia elétrica"
+ },
+ {
+  "CODIGO": "35140",
+  "DESCRICAO": "Distribuição de energia elétrica"
+ },
+ {
+  "CODIGO": "35204",
+  "DESCRICAO": "Produção de gás; processamento de gás natural; distribuição de combustíveis gasosos por redes urbanas"
+ },
+ {
+  "CODIGO": "35301",
+  "DESCRICAO": "Produção e distribuição de vapor, água quente e ar condicionado"
+ },
+ {
+  "CODIGO": "36006",
+  "DESCRICAO": "Captação, tratamento e distribuição de água"
+ },
+ {
+  "CODIGO": "37011",
+  "DESCRICAO": "Gestão de redes de esgoto"
+ },
+ {
+  "CODIGO": "37029",
+  "DESCRICAO": "Atividades relacionadas a esgoto, exceto a gestão de redes"
+ },
+ {
+  "CODIGO": "38114",
+  "DESCRICAO": "Coleta de resíduos nãoperigosos"
+ },
+ {
+  "CODIGO": "38122",
+  "DESCRICAO": "Coleta de resíduos perigosos"
+ },
+ {
+  "CODIGO": "38211",
+  "DESCRICAO": "Tratamento e disposição de resíduos nãoperigosos"
+ },
+ {
+  "CODIGO": "38220",
+  "DESCRICAO": "Tratamento e disposição de resíduos perigosos"
+ },
+ {
+  "CODIGO": "38319",
+  "DESCRICAO": "Recuperação de materiais metálicos"
+ },
+ {
+  "CODIGO": "38327",
+  "DESCRICAO": "Recuperação de materiais plásticos"
+ },
+ {
+  "CODIGO": "38394",
+  "DESCRICAO": "Recuperação de materiais não especificados anteriormente"
+ },
+ {
+  "CODIGO": "39005",
+  "DESCRICAO": "Descontaminação e outros serviços de gestão de resíduos"
+ },
+ {
+  "CODIGO": "41107",
+  "DESCRICAO": "Incorporação de empreendimentos imobiliários"
+ },
+ {
+  "CODIGO": "41204",
+  "DESCRICAO": "Construção de edifícios"
+ },
+ {
+  "CODIGO": "42111",
+  "DESCRICAO": "Construção de rodovias e ferrovias"
+ },
+ {
+  "CODIGO": "42120",
+  "DESCRICAO": "Construção de obrasdearte especiais"
+ },
+ {
+  "CODIGO": "42138",
+  "DESCRICAO": "Obras de urbanização  ruas, praças e calçadas"
+ },
+ {
+  "CODIGO": "42219",
+  "DESCRICAO": "Obras para geração e distribuição de energia elétrica e para telecomunicações"
+ },
+ {
+  "CODIGO": "42227",
+  "DESCRICAO": "Construção de redes de abastecimento de água, coleta de esgoto e construções correlatas"
+ },
+ {
+  "CODIGO": "42235",
+  "DESCRICAO": "Construção de redes de transportes por dutos, exceto para água e esgoto"
+ },
+ {
+  "CODIGO": "42910",
+  "DESCRICAO": "Obras portuárias, marítimas e fluviais"
+ },
+ {
+  "CODIGO": "42928",
+  "DESCRICAO": "Montagem de instalações industriais e de estruturas metálicas"
+ },
+ {
+  "CODIGO": "42995",
+  "DESCRICAO": "Obras de engenharia civil não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "43118",
+  "DESCRICAO": "Demolição e preparação de canteiros de obras"
+ },
+ {
+  "CODIGO": "43126",
+  "DESCRICAO": "Perfurações e sondagens"
+ },
+ {
+  "CODIGO": "43134",
+  "DESCRICAO": "Obras de terraplenagem"
+ },
+ {
+  "CODIGO": "43193",
+  "DESCRICAO": "Serviços de preparação do terreno não especificados anteriormente"
+ },
+ {
+  "CODIGO": "43215",
+  "DESCRICAO": "Instalações elétricas"
+ },
+ {
+  "CODIGO": "43223",
+  "DESCRICAO": "Instalações hidráulicas, de sistemas de ventilação e refrigeração"
+ },
+ {
+  "CODIGO": "43291",
+  "DESCRICAO": "Obras de instalações em construções não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "43304",
+  "DESCRICAO": "Obras de acabamento"
+ },
+ {
+  "CODIGO": "43916",
+  "DESCRICAO": "Obras de fundações"
+ },
+ {
+  "CODIGO": "43991",
+  "DESCRICAO": "Serviços especializados para construção não especificados anteriormente"
+ },
+ {
+  "CODIGO": "45111",
+  "DESCRICAO": "Comércio a varejo e por atacado de veículos automotores"
+ },
+ {
+  "CODIGO": "45129",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de veículos automotores"
+ },
+ {
+  "CODIGO": "45200",
+  "DESCRICAO": "Manutenção e reparação de veículos automotores"
+ },
+ {
+  "CODIGO": "45307",
+  "DESCRICAO": "Comércio de peças e acessórios para veículos automotores"
+ },
+ {
+  "CODIGO": "45412",
+  "DESCRICAO": "Comércio por atacado e a varejo de motocicletas, peças e acessórios"
+ },
+ {
+  "CODIGO": "45421",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de motocicletas, peças e acessórios"
+ },
+ {
+  "CODIGO": "45439",
+  "DESCRICAO": "Manutenção e reparação de motocicletas"
+ },
+ {
+  "CODIGO": "46117",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de matériasprimas agrícolas e animais vivos"
+ },
+ {
+  "CODIGO": "46125",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de combustíveis, minerais, produtos siderúrgicos e químicos"
+ },
+ {
+  "CODIGO": "46133",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de madeira, material de construção e ferragens"
+ },
+ {
+  "CODIGO": "46141",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de máquinas, equipamentos, embarcações e aeronaves"
+ },
+ {
+  "CODIGO": "46150",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de eletrodomésticos, móveis e artigos de uso doméstico"
+ },
+ {
+  "CODIGO": "46168",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de têxteis, vestuário, calçados e artigos de viagem"
+ },
+ {
+  "CODIGO": "46176",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de produtos alimentícios, bebidas e fumo"
+ },
+ {
+  "CODIGO": "46184",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio especializado em produtos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "46192",
+  "DESCRICAO": "Representantes comerciais e agentes do comércio de mercadorias em geral não especializado"
+ },
+ {
+  "CODIGO": "46214",
+  "DESCRICAO": "Comércio atacadista de café em grão"
+ },
+ {
+  "CODIGO": "46222",
+  "DESCRICAO": "Comércio atacadista de soja"
+ },
+ {
+  "CODIGO": "46231",
+  "DESCRICAO": "Comércio atacadista de animais vivos, alimentos para animais e matériasprimas agrícolas, exceto café e soja"
+ },
+ {
+  "CODIGO": "46311",
+  "DESCRICAO": "Comércio atacadista de leite e laticínios"
+ },
+ {
+  "CODIGO": "46320",
+  "DESCRICAO": "Comércio atacadista de cereais e leguminosas beneficiados, farinhas, amidos e féculas"
+ },
+ {
+  "CODIGO": "46338",
+  "DESCRICAO": "Comércio atacadista de hortifrutigranjeiros"
+ },
+ {
+  "CODIGO": "46346",
+  "DESCRICAO": "Comércio atacadista de carnes, produtos da carne e pescado"
+ },
+ {
+  "CODIGO": "46354",
+  "DESCRICAO": "Comércio atacadista de bebidas"
+ },
+ {
+  "CODIGO": "46362",
+  "DESCRICAO": "Comércio atacadista de produtos do fumo"
+ },
+ {
+  "CODIGO": "46371",
+  "DESCRICAO": "Comércio atacadista especializado em produtos alimentícios não especificados anteriormente"
+ },
+ {
+  "CODIGO": "46397",
+  "DESCRICAO": "Comércio atacadista de produtos alimentícios em geral"
+ },
+ {
+  "CODIGO": "46419",
+  "DESCRICAO": "Comércio atacadista de tecidos, artefatos de tecidos e de armarinho"
+ },
+ {
+  "CODIGO": "46427",
+  "DESCRICAO": "Comércio atacadista de artigos do vestuário e acessórios"
+ },
+ {
+  "CODIGO": "46435",
+  "DESCRICAO": "Comércio atacadista de calçados e artigos de viagem"
+ },
+ {
+  "CODIGO": "46443",
+  "DESCRICAO": "Comércio atacadista de produtos farmacêuticos para uso humano e veterinário"
+ },
+ {
+  "CODIGO": "46451",
+  "DESCRICAO": "Comércio atacadista de instrumentos e materiais para uso médico, cirúrgico, ortopédico e odontológico"
+ },
+ {
+  "CODIGO": "46460",
+  "DESCRICAO": "Comércio atacadista de cosméticos, produtos de perfumaria e de higiene pessoal"
+ },
+ {
+  "CODIGO": "46478",
+  "DESCRICAO": "Comércio atacadista de artigos de escritório e de papelaria; livros, jornais e outras publicações"
+ },
+ {
+  "CODIGO": "46494",
+  "DESCRICAO": "Comércio atacadista de equipamentos e artigos de uso pessoal e doméstico não especificados anteriormente"
+ },
+ {
+  "CODIGO": "46516",
+  "DESCRICAO": "Comércio atacadista de computadores, periféricos e suprimentos de informática"
+ },
+ {
+  "CODIGO": "46524",
+  "DESCRICAO": "Comércio atacadista de componentes eletrônicos e equipamentos de telefonia e comunicação"
+ },
+ {
+  "CODIGO": "46613",
+  "DESCRICAO": "Comércio atacadista de máquinas, aparelhos e equipamentos para uso agropecuário; partes e peças"
+ },
+ {
+  "CODIGO": "46621",
+  "DESCRICAO": "Comércio atacadista de máquinas, equipamentos para terraplenagem, mineração e construção; partes e peças"
+ },
+ {
+  "CODIGO": "46630",
+  "DESCRICAO": "Comércio atacadista de máquinas e equipamentos para uso industrial; partes e peças"
+ },
+ {
+  "CODIGO": "46648",
+  "DESCRICAO": "Comércio atacadista de máquinas, aparelhos e equipamentos para uso odontomédicohospitalar; partes e peças"
+ },
+ {
+  "CODIGO": "46656",
+  "DESCRICAO": "Comércio atacadista de máquinas e equipamentos para uso comercial; partes e peças"
+ },
+ {
+  "CODIGO": "46699",
+  "DESCRICAO": "Comércio atacadista de máquinas, aparelhos e equipamentos não especificados anteriormente; partes e peças"
+ },
+ {
+  "CODIGO": "46711",
+  "DESCRICAO": "Comércio atacadista de madeira e produtos derivados"
+ },
+ {
+  "CODIGO": "46729",
+  "DESCRICAO": "Comércio atacadista de ferragens e ferramentas"
+ },
+ {
+  "CODIGO": "46737",
+  "DESCRICAO": "Comércio atacadista de material elétrico"
+ },
+ {
+  "CODIGO": "46745",
+  "DESCRICAO": "Comércio atacadista de cimento"
+ },
+ {
+  "CODIGO": "46796",
+  "DESCRICAO": "Comércio atacadista especializado de materiais de construção não especificados anteriormente e de materiais de construção em geral"
+ },
+ {
+  "CODIGO": "46818",
+  "DESCRICAO": "Comércio atacadista de combustíveis sólidos, líquidos e gasosos, exceto gás natural e GLP"
+ },
+ {
+  "CODIGO": "46826",
+  "DESCRICAO": "Comércio atacadista de gás liqüefeito de petróleo (GLP)"
+ },
+ {
+  "CODIGO": "46834",
+  "DESCRICAO": "Comércio atacadista de defensivos agrícolas, adubos, fertilizantes e corretivos do solo"
+ },
+ {
+  "CODIGO": "46842",
+  "DESCRICAO": "Comércio atacadista de produtos químicos e petroquímicos, exceto agroquímicos"
+ },
+ {
+  "CODIGO": "46851",
+  "DESCRICAO": "Comércio atacadista de produtos siderúrgicos e metalúrgicos, exceto para construção"
+ },
+ {
+  "CODIGO": "46869",
+  "DESCRICAO": "Comércio atacadista de papel e papelão em bruto e de embalagens"
+ },
+ {
+  "CODIGO": "46877",
+  "DESCRICAO": "Comércio atacadista de resíduos e sucatas"
+ },
+ {
+  "CODIGO": "46893",
+  "DESCRICAO": "Comércio atacadista especializado de outros produtos intermediários não especificados anteriormente"
+ },
+ {
+  "CODIGO": "46915",
+  "DESCRICAO": "Comércio atacadista de mercadorias em geral, com predominância de produtos alimentícios"
+ },
+ {
+  "CODIGO": "46923",
+  "DESCRICAO": "Comércio atacadista de mercadorias em geral, com predominância de insumos agropecuários"
+ },
+ {
+  "CODIGO": "46931",
+  "DESCRICAO": "Comércio atacadista de mercadorias em geral, sem predominância de alimentos ou de insumos agropecuários"
+ },
+ {
+  "CODIGO": "47113",
+  "DESCRICAO": "Comércio varejista de mercadorias em geral, com predominância de produtos alimentícios  hipermercados e supermercados"
+ },
+ {
+  "CODIGO": "47121",
+  "DESCRICAO": "Comércio varejista de mercadorias em geral, com predominância de produtos alimentícios  minimercados, mercearias e armazéns"
+ },
+ {
+  "CODIGO": "47130",
+  "DESCRICAO": "Comércio varejista de mercadorias em geral, sem predominância de produtos alimentícios"
+ },
+ {
+  "CODIGO": "47211",
+  "DESCRICAO": "Comércio varejista de produtos de padaria, laticínio, doces, balas e semelhantes"
+ },
+ {
+  "CODIGO": "47229",
+  "DESCRICAO": "Comércio varejista de carnes e pescados  açougues e peixarias"
+ },
+ {
+  "CODIGO": "47237",
+  "DESCRICAO": "Comércio varejista de bebidas"
+ },
+ {
+  "CODIGO": "47245",
+  "DESCRICAO": "Comércio varejista de hortifrutigranjeiros"
+ },
+ {
+  "CODIGO": "47296",
+  "DESCRICAO": "Comércio varejista de produtos alimentícios em geral ou especializado em produtos alimentícios não especificados anteriormente; produtos do fumo"
+ },
+ {
+  "CODIGO": "47318",
+  "DESCRICAO": "Comércio varejista de combustíveis para veículos automotores"
+ },
+ {
+  "CODIGO": "47326",
+  "DESCRICAO": "Comércio varejista de lubrificantes"
+ },
+ {
+  "CODIGO": "47415",
+  "DESCRICAO": "Comércio varejista de tintas e materiais para pintura"
+ },
+ {
+  "CODIGO": "47423",
+  "DESCRICAO": "Comércio varejista de material elétrico"
+ },
+ {
+  "CODIGO": "47431",
+  "DESCRICAO": "Comércio varejista de vidros"
+ },
+ {
+  "CODIGO": "47440",
+  "DESCRICAO": "Comércio varejista de ferragens, madeira e materiais de construção"
+ },
+ {
+  "CODIGO": "47512",
+  "DESCRICAO": "Comércio varejista especializado de equipamentos e suprimentos de informática"
+ },
+ {
+  "CODIGO": "47521",
+  "DESCRICAO": "Comércio varejista especializado de equipamentos de telefonia e comunicação"
+ },
+ {
+  "CODIGO": "47539",
+  "DESCRICAO": "Comércio varejista especializado de eletrodomésticos e equipamentos de áudio e vídeo"
+ },
+ {
+  "CODIGO": "47547",
+  "DESCRICAO": "Comércio varejista especializado de móveis, colchoaria e artigos de iluminação"
+ },
+ {
+  "CODIGO": "47555",
+  "DESCRICAO": "Comércio varejista especializado de tecidos e artigos de cama, mesa e banho"
+ },
+ {
+  "CODIGO": "47563",
+  "DESCRICAO": "Comércio varejista especializado de instrumentos musicais e acessórios"
+ },
+ {
+  "CODIGO": "47571",
+  "DESCRICAO": "Comércio varejista especializado de peças e acessórios para aparelhos eletroeletrônicos para uso doméstico, exceto informática e comunicação"
+ },
+ {
+  "CODIGO": "47598",
+  "DESCRICAO": "Comércio varejista de artigos de uso doméstico não especificados anteriormente"
+ },
+ {
+  "CODIGO": "47610",
+  "DESCRICAO": "Comércio varejista de livros, jornais, revistas e papelaria"
+ },
+ {
+  "CODIGO": "47628",
+  "DESCRICAO": "Comércio varejista de discos, CDs, DVDs e fitas"
+ },
+ {
+  "CODIGO": "47636",
+  "DESCRICAO": "Comércio varejista de artigos recreativos e esportivos"
+ },
+ {
+  "CODIGO": "47717",
+  "DESCRICAO": "Comércio varejista de produtos farmacêuticos para uso humano e veterinário"
+ },
+ {
+  "CODIGO": "47725",
+  "DESCRICAO": "Comércio varejista de cosméticos, produtos de perfumaria e de higiene pessoal"
+ },
+ {
+  "CODIGO": "47733",
+  "DESCRICAO": "Comércio varejista de artigos médicos e ortopédicos"
+ },
+ {
+  "CODIGO": "47741",
+  "DESCRICAO": "Comércio varejista de artigos de óptica"
+ },
+ {
+  "CODIGO": "47814",
+  "DESCRICAO": "Comércio varejista de artigos do vestuário e acessórios"
+ },
+ {
+  "CODIGO": "47822",
+  "DESCRICAO": "Comércio varejista de calçados e artigos de viagem"
+ },
+ {
+  "CODIGO": "47831",
+  "DESCRICAO": "Comércio varejista de jóias e relógios"
+ },
+ {
+  "CODIGO": "47849",
+  "DESCRICAO": "Comércio varejista de gás liqüefeito de petróleo (GLP)"
+ },
+ {
+  "CODIGO": "47857",
+  "DESCRICAO": "Comércio varejista de artigos usados"
+ },
+ {
+  "CODIGO": "47890",
+  "DESCRICAO": "Comércio varejista de outros produtos novos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "47903",
+  "DESCRICAO": "Comércio ambulante e outros tipos de comércio varejista"
+ },
+ {
+  "CODIGO": "49116",
+  "DESCRICAO": "Transporte ferroviário de carga"
+ },
+ {
+  "CODIGO": "49124",
+  "DESCRICAO": "Transporte metroferroviário de passageiros"
+ },
+ {
+  "CODIGO": "49213",
+  "DESCRICAO": "Transporte rodoviário coletivo de passageiros, com itinerário fixo, municipal e em região metropolitana"
+ },
+ {
+  "CODIGO": "49221",
+  "DESCRICAO": "Transporte rodoviário coletivo de passageiros, com itinerário fixo, intermunicipal, interestadual e internacional"
+ },
+ {
+  "CODIGO": "49230",
+  "DESCRICAO": "Transporte rodoviário de táxi"
+ },
+ {
+  "CODIGO": "49248",
+  "DESCRICAO": "Transporte escolar"
+ },
+ {
+  "CODIGO": "49299",
+  "DESCRICAO": "Transporte rodoviário coletivo de passageiros, sob regime de fretamento, e outros transportes rodoviários não especificados anteriormente"
+ },
+ {
+  "CODIGO": "49302",
+  "DESCRICAO": "Transporte rodoviário de carga"
+ },
+ {
+  "CODIGO": "49400",
+  "DESCRICAO": "Transporte dutoviário"
+ },
+ {
+  "CODIGO": "49507",
+  "DESCRICAO": "Trens turísticos, teleféricos e similares"
+ },
+ {
+  "CODIGO": "50114",
+  "DESCRICAO": "Transporte marítimo de cabotagem"
+ },
+ {
+  "CODIGO": "50122",
+  "DESCRICAO": "Transporte marítimo de longo curso"
+ },
+ {
+  "CODIGO": "50211",
+  "DESCRICAO": "Transporte por navegação interior de carga"
+ },
+ {
+  "CODIGO": "50220",
+  "DESCRICAO": "Transporte por navegação interior de passageiros em linhas regulares"
+ },
+ {
+  "CODIGO": "50301",
+  "DESCRICAO": "Navegação de apoio"
+ },
+ {
+  "CODIGO": "50912",
+  "DESCRICAO": "Transporte por navegação de travessia"
+ },
+ {
+  "CODIGO": "50998",
+  "DESCRICAO": "Transportes aquaviários não especificados anteriormente"
+ },
+ {
+  "CODIGO": "51111",
+  "DESCRICAO": "Transporte aéreo de passageiros regular"
+ },
+ {
+  "CODIGO": "51129",
+  "DESCRICAO": "Transporte aéreo de passageiros nãoregular"
+ },
+ {
+  "CODIGO": "51200",
+  "DESCRICAO": "Transporte aéreo de carga"
+ },
+ {
+  "CODIGO": "51307",
+  "DESCRICAO": "Transporte espacial"
+ },
+ {
+  "CODIGO": "52117",
+  "DESCRICAO": "Armazenamento"
+ },
+ {
+  "CODIGO": "52125",
+  "DESCRICAO": "Carga e descarga"
+ },
+ {
+  "CODIGO": "52214",
+  "DESCRICAO": "Concessionárias de rodovias, pontes, túneis e serviços relacionados"
+ },
+ {
+  "CODIGO": "52222",
+  "DESCRICAO": "Terminais rodoviários e ferroviários"
+ },
+ {
+  "CODIGO": "52231",
+  "DESCRICAO": "Estacionamento de veículos"
+ },
+ {
+  "CODIGO": "52290",
+  "DESCRICAO": "Atividades auxiliares dos transportes terrestres não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "52311",
+  "DESCRICAO": "Gestão de portos e terminais"
+ },
+ {
+  "CODIGO": "52320",
+  "DESCRICAO": "Atividades de agenciamento marítimo"
+ },
+ {
+  "CODIGO": "52397",
+  "DESCRICAO": "Atividades auxiliares dos transportes aquaviários não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "52401",
+  "DESCRICAO": "Atividades auxiliares dos transportes aéreos"
+ },
+ {
+  "CODIGO": "52508",
+  "DESCRICAO": "Atividades relacionadas à organização do transporte de carga"
+ },
+ {
+  "CODIGO": "53105",
+  "DESCRICAO": "Atividades de Correio"
+ },
+ {
+  "CODIGO": "53202",
+  "DESCRICAO": "Atividades de malote e de entrega"
+ },
+ {
+  "CODIGO": "55108",
+  "DESCRICAO": "Hotéis e similares"
+ },
+ {
+  "CODIGO": "55906",
+  "DESCRICAO": "Outros tipos de alojamento não especificados anteriormente"
+ },
+ {
+  "CODIGO": "56112",
+  "DESCRICAO": "Restaurantes e outros estabelecimentos de serviços de alimentação e bebidas"
+ },
+ {
+  "CODIGO": "56121",
+  "DESCRICAO": "Serviços ambulantes de alimentação"
+ },
+ {
+  "CODIGO": "56201",
+  "DESCRICAO": "Serviços de catering, bufê e outros serviços de comida preparada"
+ },
+ {
+  "CODIGO": "58115",
+  "DESCRICAO": "Edição de livros"
+ },
+ {
+  "CODIGO": "58123",
+  "DESCRICAO": "Edição de jornais"
+ },
+ {
+  "CODIGO": "58131",
+  "DESCRICAO": "Edição de revistas"
+ },
+ {
+  "CODIGO": "58191",
+  "DESCRICAO": "Edição de cadastros, listas e outros produtos gráficos"
+ },
+ {
+  "CODIGO": "58212",
+  "DESCRICAO": "Edição integrada à impressão de livros"
+ },
+ {
+  "CODIGO": "58221",
+  "DESCRICAO": "Edição integrada à impressão de jornais"
+ },
+ {
+  "CODIGO": "58239",
+  "DESCRICAO": "Edição integrada à impressão de revistas"
+ },
+ {
+  "CODIGO": "58298",
+  "DESCRICAO": "Edição integrada à impressão de cadastros, listas e outros produtos gráficos"
+ },
+ {
+  "CODIGO": "59111",
+  "DESCRICAO": "Atividades de produção cinematográfica, de vídeos e de programas de televisão"
+ },
+ {
+  "CODIGO": "59120",
+  "DESCRICAO": "Atividades de pósprodução cinematográfica, de vídeos e de programas de televisão"
+ },
+ {
+  "CODIGO": "59138",
+  "DESCRICAO": "Distribuição cinematográfica, de vídeo e de programas de televisão"
+ },
+ {
+  "CODIGO": "59146",
+  "DESCRICAO": "Atividades de exibição cinematográfica"
+ },
+ {
+  "CODIGO": "59201",
+  "DESCRICAO": "Atividades de gravação de som e de edição de música"
+ },
+ {
+  "CODIGO": "60101",
+  "DESCRICAO": "Atividades de rádio"
+ },
+ {
+  "CODIGO": "60217",
+  "DESCRICAO": "Atividades de televisão aberta"
+ },
+ {
+  "CODIGO": "60225",
+  "DESCRICAO": "Programadoras e atividades relacionadas à televisão por assinatura"
+ },
+ {
+  "CODIGO": "61108",
+  "DESCRICAO": "Telecomunicações por fio"
+ },
+ {
+  "CODIGO": "61205",
+  "DESCRICAO": "Telecomunicações sem fio"
+ },
+ {
+  "CODIGO": "61302",
+  "DESCRICAO": "Telecomunicações por satélite"
+ },
+ {
+  "CODIGO": "61418",
+  "DESCRICAO": "Operadoras de televisão por assinatura por cabo"
+ },
+ {
+  "CODIGO": "61426",
+  "DESCRICAO": "Operadoras de televisão por assinatura por microondas"
+ },
+ {
+  "CODIGO": "61434",
+  "DESCRICAO": "Operadoras de televisão por assinatura por satélite"
+ },
+ {
+  "CODIGO": "61906",
+  "DESCRICAO": "Outras atividades de telecomunicações"
+ },
+ {
+  "CODIGO": "62015",
+  "DESCRICAO": "Desenvolvimento de programas de computador sob encomenda"
+ },
+ {
+  "CODIGO": "62023",
+  "DESCRICAO": "Desenvolvimento e licenciamento de programas de computador customizáveis"
+ },
+ {
+  "CODIGO": "62031",
+  "DESCRICAO": "Desenvolvimento e licenciamento de programas de computador nãocustomizáveis"
+ },
+ {
+  "CODIGO": "62040",
+  "DESCRICAO": "Consultoria em tecnologia da informação"
+ },
+ {
+  "CODIGO": "62091",
+  "DESCRICAO": "Suporte técnico, manutenção e outros serviços em tecnologia da informação"
+ },
+ {
+  "CODIGO": "63119",
+  "DESCRICAO": "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
+ },
+ {
+  "CODIGO": "63194",
+  "DESCRICAO": "Portais, provedores de conteúdo e outros serviços de informação na internet"
+ },
+ {
+  "CODIGO": "63917",
+  "DESCRICAO": "Agências de notícias"
+ },
+ {
+  "CODIGO": "63992",
+  "DESCRICAO": "Outras atividades de prestação de serviços de informação não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "64107",
+  "DESCRICAO": "Banco Central"
+ },
+ {
+  "CODIGO": "64212",
+  "DESCRICAO": "Bancos comerciais"
+ },
+ {
+  "CODIGO": "64221",
+  "DESCRICAO": "Bancos múltiplos, com carteira comercial"
+ },
+ {
+  "CODIGO": "64239",
+  "DESCRICAO": "Caixas econômicas"
+ },
+ {
+  "CODIGO": "64247",
+  "DESCRICAO": "Crédito cooperativo"
+ },
+ {
+  "CODIGO": "64310",
+  "DESCRICAO": "Bancos múltiplos, sem carteira comercial"
+ },
+ {
+  "CODIGO": "64328",
+  "DESCRICAO": "Bancos de investimento"
+ },
+ {
+  "CODIGO": "64336",
+  "DESCRICAO": "Bancos de desenvolvimento"
+ },
+ {
+  "CODIGO": "64344",
+  "DESCRICAO": "Agências de fomento"
+ },
+ {
+  "CODIGO": "64352",
+  "DESCRICAO": "Crédito imobiliário"
+ },
+ {
+  "CODIGO": "64361",
+  "DESCRICAO": "Sociedades de crédito, financiamento e investimento  financeiras"
+ },
+ {
+  "CODIGO": "64379",
+  "DESCRICAO": "Sociedades de crédito ao microempreendedor"
+ },
+ {
+  "CODIGO": "64387",
+  "DESCRICAO": "Bancos de câmbio e outras instituições de intermediação nãomonetária"
+ },
+ {
+  "CODIGO": "64409",
+  "DESCRICAO": "Arrendamento mercantil"
+ },
+ {
+  "CODIGO": "64506",
+  "DESCRICAO": "Sociedades de capitalização"
+ },
+ {
+  "CODIGO": "64611",
+  "DESCRICAO": "Holdings de instituições financeiras"
+ },
+ {
+  "CODIGO": "64620",
+  "DESCRICAO": "Holdings de instituições nãofinanceiras"
+ },
+ {
+  "CODIGO": "64638",
+  "DESCRICAO": "Outras sociedades de participação, exceto holdings"
+ },
+ {
+  "CODIGO": "64701",
+  "DESCRICAO": "Fundos de investimento"
+ },
+ {
+  "CODIGO": "64913",
+  "DESCRICAO": "Sociedades de fomento mercantil  factoring"
+ },
+ {
+  "CODIGO": "64921",
+  "DESCRICAO": "Securitização de créditos"
+ },
+ {
+  "CODIGO": "64930",
+  "DESCRICAO": "Administração de consórcios para aquisição de bens e direitos"
+ },
+ {
+  "CODIGO": "64999",
+  "DESCRICAO": "Outras atividades de serviços financeiros não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "65111",
+  "DESCRICAO": "Seguros de vida"
+ },
+ {
+  "CODIGO": "65120",
+  "DESCRICAO": "Seguros nãovida"
+ },
+ {
+  "CODIGO": "65201",
+  "DESCRICAO": "Segurossaúde"
+ },
+ {
+  "CODIGO": "65308",
+  "DESCRICAO": "Resseguros"
+ },
+ {
+  "CODIGO": "65413",
+  "DESCRICAO": "Previdência complementar fechada"
+ },
+ {
+  "CODIGO": "65421",
+  "DESCRICAO": "Previdência complementar aberta"
+ },
+ {
+  "CODIGO": "65502",
+  "DESCRICAO": "Planos de saúde"
+ },
+ {
+  "CODIGO": "66118",
+  "DESCRICAO": "Administração de bolsas e mercados de balcão organizados"
+ },
+ {
+  "CODIGO": "66126",
+  "DESCRICAO": "Atividades de intermediários em transações de títulos, valores mobiliários e mercadorias"
+ },
+ {
+  "CODIGO": "66134",
+  "DESCRICAO": "Administração de cartões de crédito"
+ },
+ {
+  "CODIGO": "66193",
+  "DESCRICAO": "Atividades auxiliares dos serviços financeiros não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "66215",
+  "DESCRICAO": "Avaliação de riscos e perdas"
+ },
+ {
+  "CODIGO": "66223",
+  "DESCRICAO": "Corretores e agentes de seguros, de planos de previdência complementar e de saúde"
+ },
+ {
+  "CODIGO": "66291",
+  "DESCRICAO": "Atividades auxiliares dos seguros, da previdência complementar e dos planos de saúde não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "66304",
+  "DESCRICAO": "Atividades de administração de fundos por contrato ou comissão"
+ },
+ {
+  "CODIGO": "68102",
+  "DESCRICAO": "Atividades imobiliárias de imóveis próprios"
+ },
+ {
+  "CODIGO": "68218",
+  "DESCRICAO": "Intermediação na compra, venda e aluguel de imóveis"
+ },
+ {
+  "CODIGO": "68226",
+  "DESCRICAO": "Gestão e administração da propriedade imobiliária"
+ },
+ {
+  "CODIGO": "69117",
+  "DESCRICAO": "Atividades jurídicas, exceto cartórios"
+ },
+ {
+  "CODIGO": "69125",
+  "DESCRICAO": "Cartórios"
+ },
+ {
+  "CODIGO": "69206",
+  "DESCRICAO": "Atividades de contabilidade, consultoria e auditoria contábil e tributária"
+ },
+ {
+  "CODIGO": "70107",
+  "DESCRICAO": "Sedes de empresas e unidades administrativas locais"
+ },
+ {
+  "CODIGO": "70204",
+  "DESCRICAO": "Atividades de consultoria em gestão empresarial"
+ },
+ {
+  "CODIGO": "71111",
+  "DESCRICAO": "Serviços de arquitetura"
+ },
+ {
+  "CODIGO": "71120",
+  "DESCRICAO": "Serviços de engenharia"
+ },
+ {
+  "CODIGO": "71197",
+  "DESCRICAO": "Atividades técnicas relacionadas à arquitetura e engenharia"
+ },
+ {
+  "CODIGO": "71201",
+  "DESCRICAO": "Testes e análises técnicas"
+ },
+ {
+  "CODIGO": "72100",
+  "DESCRICAO": "Pesquisa e desenvolvimento experimental em ciências físicas e naturais"
+ },
+ {
+  "CODIGO": "72207",
+  "DESCRICAO": "Pesquisa e desenvolvimento experimental em ciências sociais e humanas"
+ },
+ {
+  "CODIGO": "73114",
+  "DESCRICAO": "Agências de publicidade"
+ },
+ {
+  "CODIGO": "73122",
+  "DESCRICAO": "Agenciamento de espaços para publicidade, exceto em veículos de comunicação"
+ },
+ {
+  "CODIGO": "73190",
+  "DESCRICAO": "Atividades de publicidade não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "73203",
+  "DESCRICAO": "Pesquisas de mercado e de opinião pública"
+ },
+ {
+  "CODIGO": "74102",
+  "DESCRICAO": "Design e decoração de interiores"
+ },
+ {
+  "CODIGO": "74200",
+  "DESCRICAO": "Atividades fotográficas e similares"
+ },
+ {
+  "CODIGO": "74901",
+  "DESCRICAO": "Atividades profissionais, científicas e técnicas não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "75001",
+  "DESCRICAO": "Atividades veterinárias"
+ },
+ {
+  "CODIGO": "77110",
+  "DESCRICAO": "Locação de automóveis sem condutor"
+ },
+ {
+  "CODIGO": "77195",
+  "DESCRICAO": "Locação de meios de transporte, exceto automóveis, sem condutor"
+ },
+ {
+  "CODIGO": "77217",
+  "DESCRICAO": "Aluguel de equipamentos recreativos e esportivos"
+ },
+ {
+  "CODIGO": "77225",
+  "DESCRICAO": "Aluguel de fitas de vídeo, DVDs e similares"
+ },
+ {
+  "CODIGO": "77233",
+  "DESCRICAO": "Aluguel de objetos do vestuário, jóias e acessórios"
+ },
+ {
+  "CODIGO": "77292",
+  "DESCRICAO": "Aluguel de objetos pessoais e domésticos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "77314",
+  "DESCRICAO": "Aluguel de máquinas e equipamentos agrícolas sem operador"
+ },
+ {
+  "CODIGO": "77322",
+  "DESCRICAO": "Aluguel de máquinas e equipamentos para construção sem operador"
+ },
+ {
+  "CODIGO": "77331",
+  "DESCRICAO": "Aluguel de máquinas e equipamentos para escritório"
+ },
+ {
+  "CODIGO": "77390",
+  "DESCRICAO": "Aluguel de máquinas e equipamentos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "77403",
+  "DESCRICAO": "Gestão de ativos intangíveis nãofinanceiros"
+ },
+ {
+  "CODIGO": "78108",
+  "DESCRICAO": "Seleção e agenciamento de mãodeobra"
+ },
+ {
+  "CODIGO": "78205",
+  "DESCRICAO": "Locação de mãodeobra temporária"
+ },
+ {
+  "CODIGO": "78302",
+  "DESCRICAO": "Fornecimento e gestão de recursos humanos para terceiros"
+ },
+ {
+  "CODIGO": "79112",
+  "DESCRICAO": "Agências de viagens"
+ },
+ {
+  "CODIGO": "79121",
+  "DESCRICAO": "Operadores turísticos"
+ },
+ {
+  "CODIGO": "79902",
+  "DESCRICAO": "Serviços de reservas e outros serviços de turismo não especificados anteriormente"
+ },
+ {
+  "CODIGO": "80111",
+  "DESCRICAO": "Atividades de vigilância e segurança privada"
+ },
+ {
+  "CODIGO": "80129",
+  "DESCRICAO": "Atividades de transporte de valores"
+ },
+ {
+  "CODIGO": "80200",
+  "DESCRICAO": "Atividades de monitoramento de sistemas de segurança"
+ },
+ {
+  "CODIGO": "80307",
+  "DESCRICAO": "Atividades de investigação particular"
+ },
+ {
+  "CODIGO": "81117",
+  "DESCRICAO": "Serviços combinados para apoio a edifícios, exceto condomínios prediais"
+ },
+ {
+  "CODIGO": "81125",
+  "DESCRICAO": "Condomínios prediais"
+ },
+ {
+  "CODIGO": "81214",
+  "DESCRICAO": "Limpeza em prédios e em domicílios"
+ },
+ {
+  "CODIGO": "81222",
+  "DESCRICAO": "Imunização e controle de pragas urbanas"
+ },
+ {
+  "CODIGO": "81290",
+  "DESCRICAO": "Atividades de limpeza não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "81303",
+  "DESCRICAO": "Atividades paisagísticas"
+ },
+ {
+  "CODIGO": "82113",
+  "DESCRICAO": "Serviços combinados de escritório e apoio administrativo"
+ },
+ {
+  "CODIGO": "82199",
+  "DESCRICAO": "Fotocópias, preparação de documentos e outros serviços especializados de apoio administrativo"
+ },
+ {
+  "CODIGO": "82202",
+  "DESCRICAO": "Atividades de teleatendimento"
+ },
+ {
+  "CODIGO": "82300",
+  "DESCRICAO": "Atividades de organização de eventos, exceto culturais e esportivos"
+ },
+ {
+  "CODIGO": "82911",
+  "DESCRICAO": "Atividades de cobrança e informações cadastrais"
+ },
+ {
+  "CODIGO": "82920",
+  "DESCRICAO": "Envasamento e empacotamento sob contrato"
+ },
+ {
+  "CODIGO": "82997",
+  "DESCRICAO": "Atividades de serviços prestados principalmente às empresas não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "84116",
+  "DESCRICAO": "Administração pública em geral"
+ },
+ {
+  "CODIGO": "84124",
+  "DESCRICAO": "Regulação das atividades de saúde, educação, serviços culturais e outros serviços sociais"
+ },
+ {
+  "CODIGO": "84132",
+  "DESCRICAO": "Regulação das atividades econômicas"
+ },
+ {
+  "CODIGO": "84213",
+  "DESCRICAO": "Relações exteriores"
+ },
+ {
+  "CODIGO": "84221",
+  "DESCRICAO": "Defesa"
+ },
+ {
+  "CODIGO": "84230",
+  "DESCRICAO": "Justiça"
+ },
+ {
+  "CODIGO": "84248",
+  "DESCRICAO": "Segurança e ordem pública"
+ },
+ {
+  "CODIGO": "84256",
+  "DESCRICAO": "Defesa Civil"
+ },
+ {
+  "CODIGO": "84302",
+  "DESCRICAO": "Seguridade social obrigatória"
+ },
+ {
+  "CODIGO": "85112",
+  "DESCRICAO": "Educação infantil  creche"
+ },
+ {
+  "CODIGO": "85121",
+  "DESCRICAO": "Educação infantil  préescola"
+ },
+ {
+  "CODIGO": "85139",
+  "DESCRICAO": "Ensino fundamental"
+ },
+ {
+  "CODIGO": "85201",
+  "DESCRICAO": "Ensino médio"
+ },
+ {
+  "CODIGO": "85317",
+  "DESCRICAO": "Educação superior  graduação"
+ },
+ {
+  "CODIGO": "85325",
+  "DESCRICAO": "Educação superior  graduação e pósgraduação"
+ },
+ {
+  "CODIGO": "85333",
+  "DESCRICAO": "Educação superior  pósgraduação e extensão"
+ },
+ {
+  "CODIGO": "85414",
+  "DESCRICAO": "Educação profissional de nível técnico"
+ },
+ {
+  "CODIGO": "85422",
+  "DESCRICAO": "Educação profissional de nível tecnológico"
+ },
+ {
+  "CODIGO": "85503",
+  "DESCRICAO": "Atividades de apoio à educação"
+ },
+ {
+  "CODIGO": "85911",
+  "DESCRICAO": "Ensino de esportes"
+ },
+ {
+  "CODIGO": "85929",
+  "DESCRICAO": "Ensino de arte e cultura"
+ },
+ {
+  "CODIGO": "85937",
+  "DESCRICAO": "Ensino de idiomas"
+ },
+ {
+  "CODIGO": "85996",
+  "DESCRICAO": "Atividades de ensino não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "86101",
+  "DESCRICAO": "Atividades de atendimento hospitalar"
+ },
+ {
+  "CODIGO": "86216",
+  "DESCRICAO": "Serviços móveis de atendimento a urgências"
+ },
+ {
+  "CODIGO": "86224",
+  "DESCRICAO": "Serviços de remoção de pacientes, exceto os serviços móveis de atendimento a urgências"
+ },
+ {
+  "CODIGO": "86305",
+  "DESCRICAO": "Atividades de atenção ambulatorial executadas por médicos e odontólogos"
+ },
+ {
+  "CODIGO": "86402",
+  "DESCRICAO": "Atividades de serviços de complementação diagnóstica e terapêutica"
+ },
+ {
+  "CODIGO": "86500",
+  "DESCRICAO": "Atividades de profissionais da área de saúde, exceto médicos e odontólogos"
+ },
+ {
+  "CODIGO": "86607",
+  "DESCRICAO": "Atividades de apoio à gestão de saúde"
+ },
+ {
+  "CODIGO": "86909",
+  "DESCRICAO": "Atividades de atenção à saúde humana não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "87115",
+  "DESCRICAO": "Atividades de assistência a idosos, deficientes físicos, imunodeprimidos e convalescentes prestadas em residências coletivas e particulares"
+ },
+ {
+  "CODIGO": "87123",
+  "DESCRICAO": "Atividades de fornecimento de infraestrutura de apoio e assistência a paciente no domicílio"
+ },
+ {
+  "CODIGO": "87204",
+  "DESCRICAO": "Atividades de assistência psicossocial e à saúde a portadores de distúrbios psíquicos, deficiência mental e dependência química"
+ },
+ {
+  "CODIGO": "87301",
+  "DESCRICAO": "Atividades de assistência social prestadas em residências coletivas e particulares"
+ },
+ {
+  "CODIGO": "88006",
+  "DESCRICAO": "Serviços de assistência social sem alojamento"
+ },
+ {
+  "CODIGO": "90019",
+  "DESCRICAO": "Artes cênicas, espetáculos e atividades complementares"
+ },
+ {
+  "CODIGO": "90027",
+  "DESCRICAO": "Criação artística"
+ },
+ {
+  "CODIGO": "90035",
+  "DESCRICAO": "Gestão de espaços para artes cênicas, espetáculos e outras atividades artísticas"
+ },
+ {
+  "CODIGO": "91015",
+  "DESCRICAO": "Atividades de bibliotecas e arquivos"
+ },
+ {
+  "CODIGO": "91023",
+  "DESCRICAO": "Atividades de museus e de exploração, restauração artística e conservação de lugares e prédios históricos e atrações similares"
+ },
+ {
+  "CODIGO": "91031",
+  "DESCRICAO": "Atividades de jardins botânicos, zoológicos, parques nacionais, reservas ecológicas e áreas de proteção ambiental"
+ },
+ {
+  "CODIGO": "92003",
+  "DESCRICAO": "Atividades de exploração de jogos de azar e apostas"
+ },
+ {
+  "CODIGO": "93115",
+  "DESCRICAO": "Gestão de instalações de esportes"
+ },
+ {
+  "CODIGO": "93123",
+  "DESCRICAO": "Clubes sociais, esportivos e similares"
+ },
+ {
+  "CODIGO": "93131",
+  "DESCRICAO": "Atividades de condicionamento físico"
+ },
+ {
+  "CODIGO": "93191",
+  "DESCRICAO": "Atividades esportivas não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "93212",
+  "DESCRICAO": "Parques de diversão e parques temáticos"
+ },
+ {
+  "CODIGO": "93298",
+  "DESCRICAO": "Atividades de recreação e lazer não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "94111",
+  "DESCRICAO": "Atividades de organizações associativas patronais e empresariais"
+ },
+ {
+  "CODIGO": "94120",
+  "DESCRICAO": "Atividades de organizações associativas profissionais"
+ },
+ {
+  "CODIGO": "94201",
+  "DESCRICAO": "Atividades de organizações sindicais"
+ },
+ {
+  "CODIGO": "94308",
+  "DESCRICAO": "Atividades de associações de defesa de direitos sociais"
+ },
+ {
+  "CODIGO": "94910",
+  "DESCRICAO": "Atividades de organizações religiosas"
+ },
+ {
+  "CODIGO": "94928",
+  "DESCRICAO": "Atividades de organizações políticas"
+ },
+ {
+  "CODIGO": "94936",
+  "DESCRICAO": "Atividades de organizações associativas ligadas à cultura e à arte"
+ },
+ {
+  "CODIGO": "94995",
+  "DESCRICAO": "Atividades associativas não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "95118",
+  "DESCRICAO": "Reparação e manutenção de computadores e de equipamentos periféricos"
+ },
+ {
+  "CODIGO": "95126",
+  "DESCRICAO": "Reparação e manutenção de equipamentos de comunicação"
+ },
+ {
+  "CODIGO": "95215",
+  "DESCRICAO": "Reparação e manutenção de equipamentos eletroeletrônicos de uso pessoal e doméstico"
+ },
+ {
+  "CODIGO": "95291",
+  "DESCRICAO": "Reparação e manutenção de objetos e equipamentos pessoais e domésticos não especificados anteriormente"
+ },
+ {
+  "CODIGO": "96017",
+  "DESCRICAO": "Lavanderias, tinturarias e toalheiros"
+ },
+ {
+  "CODIGO": "96025",
+  "DESCRICAO": "Cabeleireiros e outras atividades de tratamento de beleza"
+ },
+ {
+  "CODIGO": "96033",
+  "DESCRICAO": "Atividades funerárias e serviços relacionados"
+ },
+ {
+  "CODIGO": "96092",
+  "DESCRICAO": "Atividades de serviços pessoais não especificadas anteriormente"
+ },
+ {
+  "CODIGO": "97005",
+  "DESCRICAO": "Serviços domésticos"
+ },
+ {
+  "CODIGO": "99008",
+  "DESCRICAO": "Organismos internacionais e outras instituições extraterritoriais"
+ }
+]
