@@ -118,14 +118,12 @@ test("Should create a new tax rule for services", async ({ page }) => {
 });
 
 test("Should create a new service", async ({ page }) => {
-  const randomIndex = randomInt(0, serviceGroup.length);
-  const randomServiceIndex = randomInt(
-    0,
-    serviceGroup[randomIndex].services.length - 1
-  );
+  const randomIndex = serviceGroup.length == 1 ? 0 : randomInt(0, serviceGroup.length - 1);
+  const randomServiceIndex = serviceGroup[randomIndex].services.length == 1 ? 0 : randomInt(0, serviceGroup[randomIndex].services.length - 1);
+
   const serviceCode =
     serviceGroup[randomIndex].services[randomServiceIndex].code;
-
+    
   await page.getByRole("button", { name: "Cadastros" }).click();
   await page.getByRole("link", { name: "Serviços" }).click();
   await page.getByRole("link").filter({ hasText: /^$/ }).click();
@@ -165,11 +163,9 @@ test("Should create a new service", async ({ page }) => {
 });
 
 test("Should edit a service", async ({ page }) => {
-  const randomIndex = randomInt(0, serviceGroup.length);
-  const randomServiceIndex = randomInt(
-    0,
-    serviceGroup[randomIndex].services.length - 1
-  );
+  const randomIndex = serviceGroup.length == 1 ? 0 : randomInt(0, serviceGroup.length - 1);
+  const randomServiceIndex = serviceGroup[randomIndex].services.length == 1 ? 0 : randomInt(0, serviceGroup[randomIndex].services.length - 1);
+
   const serviceCode =
     serviceGroup[randomIndex].services[randomServiceIndex].code;
   await page.getByRole("button", { name: "Cadastros" }).click();
