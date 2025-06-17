@@ -175,7 +175,7 @@ let accountant = {
 let transporter = {
   name: "AutoTransporter " + faker.person.fullName(),
   surname: "AutoTransporter " + faker.person.firstName(),
-  national_document: generateCpf({ format: true }),
+  national_document: formatCnpj(generateCnpj()),
   state_document: faker.string.numeric({ length: 7 }),
   birth_date: '05032000',
   crc: '123456789',
