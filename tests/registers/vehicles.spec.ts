@@ -20,21 +20,21 @@ type Vehicle = {
 }
 
 type Owner = {
-    name: string;
-    surname?: string;
-    national_document?: string;
-    state_document?: string;
-    postal_code?: string;
-    local?: string;
-    district?: string;
-    number?: string;
-    country?: string;
-    state?: string;
-    city_name?: string;
-    phone?: string;
-    cell?: string;
-    email?: string;
-  }
+  name: string;
+  surname?: string;
+  national_document?: string;
+  state_document?: string;
+  postal_code?: string;
+  local?: string;
+  district?: string;
+  number?: string;
+  country?: string;
+  state?: string;
+  city_name?: string;
+  phone?: string;
+  cell?: string;
+  email?: string;
+}
 
 const owner: Owner = {
   name: "Zucchetti (Bruno Fernando)",
@@ -54,8 +54,8 @@ const owner: Owner = {
 }
 
 const vehicle1: Vehicle = {
-  description: "Auto " + faker.vehicle.vehicle(),
-  plate: faker.word.sample({ length: 3}) + "-" + faker.string.numeric({ length: 4 }),
+  description: "AutoVehicle " + faker.vehicle.vehicle().slice(0, 17),
+  plate: faker.word.sample({ length: 3 }) + "-" + faker.string.numeric({ length: 4 }),
   uf: "SC",
   rntrc: faker.string.numeric({ length: 8 }),
   renavam: faker.string.numeric({ length: 9 }),
@@ -69,7 +69,7 @@ const vehicle1: Vehicle = {
 };
 
 const vehicle2: Vehicle = {
-  description: "Auto " + faker.vehicle.vehicle(),
+  description: "AutoVehicle " + faker.vehicle.vehicle().slice(0, 17),
   plate: faker.word.sample({ length: 3}) + "-" + faker.string.numeric({ length: 4 }),
   uf: "SC",
   rntrc: faker.string.numeric({ length: 8 }),
@@ -81,7 +81,7 @@ const vehicle2: Vehicle = {
   car_body_type: "Aberta",
   axes_quantity: faker.string.numeric({length: 1, allowLeadingZeros: false}),
   owner: {
-    name: "AutoTransporter " + faker.person.fullName(),
+    name: "AutoTransporter " + faker.person.firstName(),
     surname: "AutoTransporter " + faker.person.firstName(),
     national_document: formatCnpj(generateCnpj()),
     state_document: faker.string.numeric({ length: 7 }),
@@ -123,14 +123,15 @@ test('Create a first new Vehicle', async ({ page }) => {
 
   // proprietário
   await page.getByRole('textbox', { name: 'Proprietário' }).click();
-  await page.getByRole('textbox', { name: 'Proprietário' }).fill('Bruno Fernando');
+  await page.getByRole('textbox', { name: 'Proprietário' }).fill(vehicle1.owner.name);
   await page.getByRole('button').filter({ hasText: 'search' }).click();
   await page.waitForTimeout(2000);
   // verifica se o proprietário já existe
-  if(!(await page.getByText('Zucchetti (Bruno Fernando)').isVisible())) {
+  let isOwnerRegistered = await page.getByRole('option', { name: vehicle1.owner.name }).isVisible();
+  if (!isOwnerRegistered) {
     await AddOwner(page);
   } else {
-    await page.getByText('Zucchetti (Bruno Fernando)').click();
+    await page.getByRole('option', { name: vehicle1.owner.name }).click();
   }
 
   // informações do veículo
@@ -250,11 +251,11 @@ test('Edit Vehicle1', async ({ page }) => {
   //pesquisa o veículo e clica em editar
   await page.locator('div').filter({ hasText: /^Digite para buscar\.\.\.$/ }).click();
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(vehicles[0].description);
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(2500);
   await page.getByRole('heading', { name: new RegExp('(' + vehicles[0].description + ')') }).click();
   await page.getByRole('button', { name: 'Editar' }).click();
 
-  vehicles[0].description = "Auto " + faker.vehicle.vehicle();
+  vehicles[0].description = "AutoVehicle " + faker.vehicle.vehicle().slice(0, 17);
   vehicles[0].tara = faker.string.numeric({ length: 4, allowLeadingZeros: false });
   vehicles[0].cap_m3 = faker.string.numeric({ length: 4, allowLeadingZeros: false });
 
@@ -285,49 +286,67 @@ test('Delete Vehicles', async ({ page }) => {
   if (vehicles.length === 0) {
     throw new Error("No vehicles to delete. Please create vehicles first.");
   }
-  
+
   for (let i = 0; i < vehicles.length; i++) {
     const vehicle = vehicles[i];
-      // pesquisa o veículo
-      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
-      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(vehicle.description);
-      await page.waitForTimeout(2000);
-      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + vehicle.description + '"' }).isVisible()) {
-        await page.getByRole('heading', { name: new RegExp('(' + vehicle.description + ')') }).hover();
-        await page.getByRole('navigation').filter({ hasText: new RegExp('(' + vehicle.description + ')') }).getByRole('button').nth(1).click();
-        await page.getByRole('button', { name: 'Excluir' }).click();
-        await page.waitForTimeout(2000);
-      }
-      // deleta o veículo
-      // verifica se o veículo foi deletado
-      await expect(page.locator('h3')).toContainText('Nada encontrado com "'+vehicle.description+'"');
+    // pesquisa o veículo
+    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(vehicle.description);
+    await page.waitForTimeout(2000);
+    if (!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + vehicle.description + '"' }).isVisible()) {
+      await page.getByRole('heading', { name: new RegExp(vehicle.description) }).hover();
+      await page.getByRole('navigation').filter({ hasText: new RegExp(vehicle.description) }).getByRole('button').nth(1).click();
+      await page.getByRole('button', { name: 'Excluir' }).click();
+      await page.waitForTimeout(2500);
+    }
+    // deleta o veículo
+    // verifica se o veículo foi deletado
+    await expect(page.locator('h3')).toContainText('Nada encontrado com "' + vehicle.description + '"');
   }
+
+  // deleta a pessoa transportadora
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+  // pesquisa a pessoa transportadora
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(vehicle2.owner.name);
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
+  await page.waitForTimeout(2000);
+  if (!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + vehicle2.owner.name + '"' }).isVisible()) {
+    // deleta a pessoa transportadora
+    await page.getByRole('heading', { name: new RegExp('(' + vehicle2.owner.name + ')') }).hover();
+    await page.getByRole('navigation').filter({ hasText: new RegExp('(' + vehicle2.owner.name + ')') }).getByRole('button').click();
+    await page.getByRole('menuitem', { name: 'Apagar' }).click();
+    await page.getByRole('button', { name: 'Apagar' }).click();
+    await page.waitForTimeout(2000);
+  }
+
+  // verifica se a pessoa transportadora foi deletada
+  await expect(page.locator('h3')).toContainText('Nada encontrado com "' + vehicle2.owner.name + '"');
 });
 
 async function AddOwner(page: Page) {
   await page.getByRole('button', { name: 'Cadastrar pessoa' }).click();
-    await page.getByRole('textbox', { name: 'Nome' }).click();
-    await page.getByRole('textbox', { name: 'Nome' }).fill(owner.name);
-    await page.getByRole('textbox', { name: 'Apelido' }).click();
-    await page.getByRole('textbox', { name: 'Apelido' }).fill(owner.surname!);
-    await page.getByRole('textbox', { name: 'CPF' }).click();
-    await page.getByRole('textbox', { name: 'CPF' }).fill(owner.national_document!);
-    await page.getByRole('textbox', { name: 'RG' }).click();
-    await page.getByRole('textbox', { name: 'RG' }).fill(owner.state_document!);
-    await page.getByRole('textbox', { name: 'CEP' }).click();
-    await page.getByRole('textbox', { name: 'CEP' }).fill(owner.postal_code!);
-    await page.getByRole('textbox', { name: 'Logradouro' }).click();
-    await page.getByRole('textbox', { name: 'Logradouro' }).fill(owner.local!);
-    await page.getByRole('textbox', { name: 'Número' }).click();
-    await page.getByRole('textbox', { name: 'Número' }).fill(owner.number!);
-    await page.getByRole('textbox', { name: 'Complemento' }).click();
-    await page.getByRole('textbox', { name: 'Complemento' }).fill('Casa 1');
-    await page.getByRole('textbox', { name: 'Telefone' }).click();
-    await page.getByRole('textbox', { name: 'Telefone' }).fill(owner.phone!);
-    await page.getByRole('textbox', { name: 'Celular' }).click();
-    await page.getByRole('textbox', { name: 'Celular' }).fill(owner.cell!);
-    await page.getByRole('textbox', { name: 'E-mail' }).click();
-    await page.getByRole('textbox', { name: 'E-mail' }).fill(owner.email!);
-    await page.getByLabel('Cadastrar pessoa').getByRole('button', { name: 'Confirmar' }).click();
-    await expect(page.getByText('Pessoa cadastrada com sucesso').isVisible()).toBeTruthy();
+  await page.getByRole('textbox', { name: 'Nome' }).click();
+  await page.getByRole('textbox', { name: 'Nome' }).fill(owner.name);
+  await page.getByRole('textbox', { name: 'Apelido' }).click();
+  await page.getByRole('textbox', { name: 'Apelido' }).fill(owner.surname!);
+  await page.getByRole('textbox', { name: 'CPF' }).click();
+  await page.getByRole('textbox', { name: 'CPF' }).fill(owner.national_document!);
+  await page.getByRole('textbox', { name: 'RG' }).click();
+  await page.getByRole('textbox', { name: 'RG' }).fill(owner.state_document!);
+  await page.getByRole('textbox', { name: 'CEP' }).click();
+  await page.getByRole('textbox', { name: 'CEP' }).fill(owner.postal_code!);
+  await page.getByRole('textbox', { name: 'Logradouro' }).click();
+  await page.getByRole('textbox', { name: 'Logradouro' }).fill(owner.local!);
+  await page.getByRole('textbox', { name: 'Número' }).click();
+  await page.getByRole('textbox', { name: 'Número' }).fill(owner.number!);
+  await page.getByRole('textbox', { name: 'Complemento' }).click();
+  await page.getByRole('textbox', { name: 'Complemento' }).fill('Casa 1');
+  await page.getByRole('textbox', { name: 'Telefone' }).click();
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(owner.phone!);
+  await page.getByRole('textbox', { name: 'Celular' }).click();
+  await page.getByRole('textbox', { name: 'Celular' }).fill(owner.cell!);
+  await page.getByRole('textbox', { name: 'E-mail' }).click();
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(owner.email!);
+  await page.getByLabel('Cadastrar pessoa').getByRole('button', { name: 'Confirmar' }).click();
+  await expect(page.getByText('Pessoa cadastrada com sucesso').isVisible()).toBeTruthy();
 }

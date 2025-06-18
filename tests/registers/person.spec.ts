@@ -201,7 +201,7 @@ let transporter = {
   },
   rntrc: faker.string.numeric({ length: 8 }),
   vehicle: {
-    description: 'AutoVehicle ' + faker.vehicle.vehicle(),
+    description: 'AutoVehicle ' + faker.vehicle.vehicle().slice(0, 17),
     plate: 'ABC-1234',
     rntrc: faker.string.numeric({ length: 8 }),
     renavam: faker.string.numeric({ length: 9 }),
