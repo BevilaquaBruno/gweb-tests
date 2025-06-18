@@ -6,7 +6,7 @@ import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
 import 'dotenv/config';
 
 // cria uma pessoa para ser cadastrada
-let person = {
+let person: Person = {
   name: "AutoPerson " + faker.person.fullName(),
   surname: "AutoPerson " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
@@ -37,7 +37,8 @@ let person = {
 }
 
 //cria um vendedor para ser cadastrado
-let seller = {
+let seller: Person = {
+  type: 'Vendedor',
   name: "AutoSeller " + faker.person.fullName(),
   surname: "AutoSeller " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
@@ -73,7 +74,7 @@ let seller = {
 }
 
 // cria uma empresa para ser cadastrada
-let company = {
+let company: Company = {
   id: "0",
   name: "AutoCompany " + faker.company.name(),
   trade_name: "AutoCompany " + faker.company.name(),
@@ -110,7 +111,8 @@ let company = {
 }
 
 // cria um produtor rural
-let rural_producer = {
+let rural_producer: Person = {
+  type: 'Produtor Rural',
   name: "AutoRural " + faker.person.fullName(),
   surname: "AutoRural " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
@@ -141,7 +143,8 @@ let rural_producer = {
 }
 
 // cria um contador
-let accountant = {
+let accountant: Person = {
+  type: 'Contador',
   name: "AutoAccountant " + faker.person.fullName(),
   surname: "AutoAccountant " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
@@ -172,10 +175,11 @@ let accountant = {
 }
 
 // cria uma transportadora
-let transporter = {
+let transporter: Person = {
+  type: 'Transportador',
   name: "AutoTransporter " + faker.person.fullName(),
   surname: "AutoTransporter " + faker.person.firstName(),
-  national_document: formatCnpj(generateCnpj()),
+  national_document: generateCpf({ format: true }),  // formatCnpj(generateCnpj()),
   state_document: faker.string.numeric({ length: 7 }),
   birth_date: '05032000',
   crc: '123456789',
@@ -226,6 +230,91 @@ let adm = {
   city_name: 'Concórdia',
 }
 
+type Person = {
+  type?: string;
+  name: string;
+  surname: string;
+  national_document: string;
+  state_document: string;
+  birth_date: string;
+  crc?: string;
+  postal_code: string;
+  local: string;
+  district: string;
+  number: string;
+  country: string;
+  state: string;
+  city_name: string;
+  phone: string;
+  cell: string;
+  fax: string;
+  secondary_cell: {
+    description: string;
+    cell: string;
+  };
+  email: string;
+  homepage: string;
+  secondary_email: {
+    description: string;
+    email: string;
+  };
+  comission?: {
+    product_cash_payment_commission: number;
+    product_future_payment_commission: number;
+    service_cash_payment_commission: number;
+    service_future_payment_commission: number;
+  },
+  rntrc?: string;
+  vehicle?: {
+    description: string;
+    plate: string;
+    rntrc: string;
+    renavam: string;
+    tara: string;
+    cap_m3: string;
+    cap_kg: string;
+  };
+  obs: string;
+};
+
+type Company = {
+  id: string;
+  name: string;
+  trade_name: string;
+  national_document: string;
+  state_document: string;
+  municipal_document: string;
+  suframa_number: string;
+  cnae: string;
+  person: {
+    name: string;
+    national_document: string;
+  };
+  postal_code: string;
+  local: string;
+  district: string;
+  number: string;
+  country: string;
+  state: string;
+  city_name: string;
+  phone: string;
+  cell: string;
+  fax: string;
+  secondary_cell: {
+    description: string;
+    cell: string;
+  };
+  email: string;
+  homepage: string;
+  secondary_email: {
+    description: string;
+    email: string;
+  };
+  obs: string;
+};
+
+var addedData: { people: (Person | Company)[] } = { people: [] };
+
 test('Should create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
@@ -267,7 +356,7 @@ test('Should create a new Person', async ({ page }) => {
 
   // preenche dados do contador
   await page.getByRole('textbox', { name: 'CRC' }).click();
-  await page.getByRole('textbox', { name: 'CRC' }).fill(person.crc);
+  await page.getByRole('textbox', { name: 'CRC' }).fill(person.crc!);
 
   // preenche dados do vendedor - playwright não consegue identificálos
   /*
@@ -348,6 +437,8 @@ test('Should create a new Person', async ({ page }) => {
   await expect.soft(page.getByText('Município' + person.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + person.country)).toBeVisible();
 
+  // adiciona a pessoa ao array de pessoas adicionadas
+  addedData.people.push(person);
 });
 
 test('Should create a new Seller', async ({ page }) => {
@@ -454,6 +545,8 @@ test('Should create a new Seller', async ({ page }) => {
   await expect.soft(page.getByText('Município' + seller.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + seller.country)).toBeVisible();
 
+  // adiciona o vendedor ao array de pessoas adicionadas
+  addedData.people.push(seller);
 });
 
 test('Should create a new company', async ({ page }) => {
@@ -683,7 +776,7 @@ test('Should create a new accountant', async ({ page }) => {
 
   // preenche dados do contador
   await page.getByRole('textbox', { name: 'CRC' }).click();
-  await page.getByRole('textbox', { name: 'CRC' }).fill(accountant.crc);
+  await page.getByRole('textbox', { name: 'CRC' }).fill(accountant.crc!);
 
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
@@ -754,6 +847,7 @@ test('Should create a new accountant', async ({ page }) => {
   await expect.soft(page.getByText('UF' + accountant.state)).toBeVisible();
   await expect.soft(page.getByText('Município' + accountant.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + accountant.country)).toBeVisible();
+  addedData.people.push(accountant);
 });
 
 test('Should create a new transporter', async ({ page }) => {
@@ -828,7 +922,7 @@ test('Should create a new transporter', async ({ page }) => {
   // preenche transportador
 
   await page.getByRole('textbox', { name: 'RNTRC' }).click();
-  await page.getByRole('textbox', { name: 'RNTRC' }).fill(transporter.rntrc);
+  await page.getByRole('textbox', { name: 'RNTRC' }).fill(transporter.rntrc!);
   await page.getByLabel('Tipo da transportadora').getByText('Tipo da transportadora').click();
   await page.getByRole('option', { name: 'TAC - Transportador Autônomo' }).click();
   await page.getByLabel('Tipo do proprietário').getByText('Tipo do proprietário').click();
@@ -837,21 +931,21 @@ test('Should create a new transporter', async ({ page }) => {
   // preenche veículos
   await page.locator('mat-list').getByRole('button').click();
   await page.getByRole('textbox', { name: 'Descrição' }).click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(transporter.vehicle.description);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(transporter.vehicle!.description);
   await page.getByRole('textbox', { name: 'Placa' }).click();
-  await page.getByRole('textbox', { name: 'Placa' }).fill(transporter.vehicle.plate);
+  await page.getByRole('textbox', { name: 'Placa' }).fill(transporter.vehicle!.plate);
   await page.getByRole('combobox', { name: 'UF UF' }).locator('span').click();
   await page.getByRole('option', { name: 'SC' }).click();
   await page.getByRole('textbox', { name: 'RNTRC' }).click();
-  await page.getByRole('textbox', { name: 'RNTRC' }).fill(transporter.vehicle.rntrc);
+  await page.getByRole('textbox', { name: 'RNTRC' }).fill(transporter.vehicle!.rntrc);
   await page.getByRole('textbox', { name: 'Renavam' }).click();
-  await page.getByRole('textbox', { name: 'Renavam' }).fill(transporter.vehicle.renavam);
+  await page.getByRole('textbox', { name: 'Renavam' }).fill(transporter.vehicle!.renavam);
   await page.getByRole('textbox', { name: 'Tara(KG)' }).click();
-  await page.getByRole('textbox', { name: 'Tara(KG)' }).fill(transporter.vehicle.tara);
+  await page.getByRole('textbox', { name: 'Tara(KG)' }).fill(transporter.vehicle!.tara);
   await page.getByRole('textbox', { name: 'Capacidade(M3)' }).click();
-  await page.getByRole('textbox', { name: 'Capacidade(M3)' }).fill(transporter.vehicle.cap_m3);
+  await page.getByRole('textbox', { name: 'Capacidade(M3)' }).fill(transporter.vehicle!.cap_m3);
   await page.getByRole('textbox', { name: 'Capacidade(KG)' }).click();
-  await page.getByRole('textbox', { name: 'Capacidade(KG)' }).fill(transporter.vehicle.cap_kg);
+  await page.getByRole('textbox', { name: 'Capacidade(KG)' }).fill(transporter.vehicle!.cap_kg);
   await page.getByLabel('Tipo de rodado').getByText('Tipo de rodado').click();
   await page.getByRole('option', { name: 'Truck' }).click();
   await page.getByLabel('Tipo de carroceria').getByText('Tipo de carroceria').click();
@@ -877,7 +971,7 @@ test('Should create a new transporter', async ({ page }) => {
   await expect.soft(page.getByText('CEP' + transporter.postal_code)).toBeVisible();
   await expect.soft(page.getByText('Município' + transporter.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + transporter.country)).toBeVisible();
-
+  addedData.people.push(transporter);
 });
 
 test('Should edit user #2', async ({ page }) => {
@@ -927,70 +1021,64 @@ test('Should delete People', async ({ page }) => {
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
 
-  // cria uma lista com as pessoas comuns para deletar
-  let deleteList: string[] = [
-    person.name,
-    seller.name,
-    company.name,
-    rural_producer.name,
-    accountant.name
-  ];
-
   // deleta pessoas da lista acima
-  for (let i = 0; i < deleteList.length; i++) {
-    const name = deleteList[i];
-
-    // pesquisa a pessoa
-    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(name);
-    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
-    await page.waitForTimeout(2000);
-
-    if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + name + '"' }).isVisible()) {
-      // verifica se a pessoa foi encontrada
-      await page.getByRole('heading', { name: new RegExp('(' + name + ')') }).hover();
-      await page.getByRole('navigation').filter({ hasText: new RegExp('(' + name + ')') }).getByRole('button').click();
-      await page.getByRole('menuitem', { name: 'Apagar' }).click();
-      await page.getByRole('button', { name: 'Apagar' }).click();
+  for (let i = 0; i < addedData.people.length; i++) {
+    const person = addedData.people[i];
+    if ('type' in person && person.type === 'Transportador') {  
+      // deleta transportadora
+      // deleta o veículo da transportadora
+      // acessa o menu de veículos
+      await page.getByRole('link', { name: 'Veículos' }).click();
+      // pesquisa o veículo
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person?.vehicle?.description ?? '');
       await page.waitForTimeout(2000);
+      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + person?.vehicle?.description + '"' }).isVisible()) {
+        await page.getByRole('heading', { name: new RegExp('(' + person?.vehicle?.description + ')') }).hover();
+        await page.getByRole('navigation').filter({ hasText: new RegExp('(' + person?.vehicle?.description + ')') }).getByRole('button').nth(1).click();
+        await page.getByRole('button', { name: 'Excluir' }).click();
+        await page.waitForTimeout(2000);
+      }
+      // deleta o veículo
+      // verifica se o veículo foi deletado
+      await expect(page.locator('h3')).toContainText('Nada encontrado com "'+person?.vehicle?.description+'"');
+
+      // deleta a pessoa transportadora
+      await page.getByRole('link', { name: 'Pessoas' }).click();
+      // pesquisa a pessoa transportadora
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person!.name);
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
+      await page.waitForTimeout(2000);
+      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + person!.name + '"' }).isVisible()) {
+        // deleta a pessoa transportadora
+        await page.getByRole('heading', { name: new RegExp('(' + person!.name + ')') }).hover();
+        await page.getByRole('navigation').filter({ hasText: new RegExp('(' + person!.name + ')') }).getByRole('button').click();
+        await page.getByRole('menuitem', { name: 'Apagar' }).click();
+        await page.getByRole('button', { name: 'Apagar' }).click();
+        await page.waitForTimeout(2000);
+      }
+
+      // verifica se a pessoa transportadora foi deletada
+      await expect(page.locator('h3')).toContainText('Nada encontrado com "' + person!.name + '"'); 
+    } else {
+      const name = person.name;
+  
+      // pesquisa a pessoa
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(name);
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
+      await page.waitForTimeout(2000);
+  
+      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + name + '"' }).isVisible()) {
+        // verifica se a pessoa foi encontrada
+        await page.getByRole('heading', { name: new RegExp('(' + name + ')') }).hover();
+        await page.getByRole('navigation').filter({ hasText: new RegExp('(' + name + ')') }).getByRole('button').click();
+        await page.getByRole('menuitem', { name: 'Apagar' }).click();
+        await page.getByRole('button', { name: 'Apagar' }).click();
+        await page.waitForTimeout(2000);
+      }
+  
+  
+      await expect(page.locator('h3')).toContainText('Nada encontrado com "' + name + '"');
     }
-
-
-    await expect(page.locator('h3')).toContainText('Nada encontrado com "' + name + '"');
   }
-
-  // deleta transportadora
-  // deleta o veículo da transportadora
-  // acessa o menu de veículos
-  await page.getByRole('link', { name: 'Veículos' }).click();
-  // pesquisa o veículo
-  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
-  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(transporter.vehicle.description);
-  await page.waitForTimeout(2000);
-  if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + transporter.vehicle.description + '"' }).isVisible()) {
-    await page.getByRole('heading', { name: new RegExp('(' + transporter.vehicle.description + ')') }).hover();
-    await page.getByRole('navigation').filter({ hasText: new RegExp('(' + transporter.vehicle.description + ')') }).getByRole('button').nth(1).click();
-    await page.getByRole('button', { name: 'Excluir' }).click();
-    await page.waitForTimeout(2000);
-  }
-  // deleta o veículo
-  // verifica se o veículo foi deletado
-  await expect(page.locator('h3')).toContainText('Nada encontrado com "'+transporter.vehicle.description+'"');
-
-  // deleta a pessoa transportadora
-  await page.getByRole('link', { name: 'Pessoas' }).click();
-  // pesquisa a pessoa transportadora
-  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(transporter.name);
-  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
-  await page.waitForTimeout(2000);
-  if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + transporter.name + '"' }).isVisible()) {
-    // deleta a pessoa transportadora
-    await page.getByRole('heading', { name: new RegExp('(' + transporter.name + ')') }).hover();
-    await page.getByRole('navigation').filter({ hasText: new RegExp('(' + transporter.name + ')') }).getByRole('button').click();
-    await page.getByRole('menuitem', { name: 'Apagar' }).click();
-    await page.getByRole('button', { name: 'Apagar' }).click();
-    await page.waitForTimeout(2000);
-  }
-
-  // verifica se a pessoa transportadora foi deletada
-  await expect(page.locator('h3')).toContainText('Nada encontrado com "' + transporter.name + '"');
 });
