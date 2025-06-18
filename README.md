@@ -86,7 +86,7 @@ Este projeto utiliza o Playwright para automatizar e validar funcionalidades do 
 ## 🧩 Controle de cobertura de testes
 
 Acompanhe o progresso dos testes pela planilha compartilhada:  
-👉 [Planilha de controle de casos de teste](https://docs.google.com/spreadsheets/d/10HJTxnl301riTtdf22eA8VUVJHZv90ZIadSv-17pblM/edit?gid=1386834576)
+👉 [Planilha de controle de casos de teste]([https://docs.google.com/spreadsheets/d/10HJTxnl301riTtdf22eA8VUVJHZv90ZIadSv-17pblM/edit?gid=1386834576](https://docs.google.com/spreadsheets/d/10HJTxnl301riTtdf22eA8VUVJHZv90ZIadSv-17pblM/edit?usp=sharing))
 
 
 ## 🏗️ Contribuições
