@@ -3,10 +3,12 @@ import { test } from '../helpers/fixtures';
 import { generate as generateCpf } from 'gerador-validador-cpf'
 import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
+import { Person, Company, Seller, RuralProducer, Accountant, Transporter } from '../types/registers/person.type';
 import 'dotenv/config';
 
 // cria uma pessoa para ser cadastrada
 let person: Person = {
+  type: 'Pessoa',
   name: "AutoPerson " + faker.person.fullName(),
   surname: "AutoPerson " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
@@ -37,7 +39,7 @@ let person: Person = {
 }
 
 //cria um vendedor para ser cadastrado
-let seller: Person = {
+let seller: Seller = {
   type: 'Vendedor',
   name: "AutoSeller " + faker.person.fullName(),
   surname: "AutoSeller " + faker.person.firstName(),
@@ -75,7 +77,7 @@ let seller: Person = {
 
 // cria uma empresa para ser cadastrada
 let company: Company = {
-  id: "0",
+  type: 'Empresa',
   name: "AutoCompany " + faker.company.name(),
   trade_name: "AutoCompany " + faker.company.name(),
   national_document: formatCnpj(generateCnpj()),
@@ -111,14 +113,13 @@ let company: Company = {
 }
 
 // cria um produtor rural
-let rural_producer: Person = {
+let rural_producer: RuralProducer = {
   type: 'Produtor Rural',
   name: "AutoRural " + faker.person.fullName(),
   surname: "AutoRural " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
   birth_date: '05032000',
-  crc: '123456789',
   postal_code: '89700-055',
   local: 'Rua Marechal Deodoro',
   district: 'Centro',
@@ -143,7 +144,7 @@ let rural_producer: Person = {
 }
 
 // cria um contador
-let accountant: Person = {
+let accountant: Accountant = {
   type: 'Contador',
   name: "AutoAccountant " + faker.person.fullName(),
   surname: "AutoAccountant " + faker.person.firstName(),
@@ -175,14 +176,12 @@ let accountant: Person = {
 }
 
 // cria uma transportadora
-let transporter: Person = {
+let transporter: Transporter = {
   type: 'Transportador',
   name: "AutoTransporter " + faker.person.fullName(),
-  surname: "AutoTransporter " + faker.person.firstName(),
-  national_document: generateCpf({ format: true }),  // formatCnpj(generateCnpj()),
+  trade_name: "AutoTransporter " + faker.person.firstName(),
+  national_document: formatCnpj(generateCnpj()),
   state_document: faker.string.numeric({ length: 7 }),
-  birth_date: '05032000',
-  crc: '123456789',
   postal_code: '89700-055',
   local: 'Rua Marechal Deodoro',
   district: 'Centro',
@@ -230,90 +229,7 @@ let adm = {
   city_name: 'Concórdia',
 }
 
-type Person = {
-  type?: string;
-  name: string;
-  surname: string;
-  national_document: string;
-  state_document: string;
-  birth_date: string;
-  crc?: string;
-  postal_code: string;
-  local: string;
-  district: string;
-  number: string;
-  country: string;
-  state: string;
-  city_name: string;
-  phone: string;
-  cell: string;
-  fax: string;
-  secondary_cell: {
-    description: string;
-    cell: string;
-  };
-  email: string;
-  homepage: string;
-  secondary_email: {
-    description: string;
-    email: string;
-  };
-  comission?: {
-    product_cash_payment_commission: number;
-    product_future_payment_commission: number;
-    service_cash_payment_commission: number;
-    service_future_payment_commission: number;
-  },
-  rntrc?: string;
-  vehicle?: {
-    description: string;
-    plate: string;
-    rntrc: string;
-    renavam: string;
-    tara: string;
-    cap_m3: string;
-    cap_kg: string;
-  };
-  obs: string;
-};
-
-type Company = {
-  id: string;
-  name: string;
-  trade_name: string;
-  national_document: string;
-  state_document: string;
-  municipal_document: string;
-  suframa_number: string;
-  cnae: string;
-  person: {
-    name: string;
-    national_document: string;
-  };
-  postal_code: string;
-  local: string;
-  district: string;
-  number: string;
-  country: string;
-  state: string;
-  city_name: string;
-  phone: string;
-  cell: string;
-  fax: string;
-  secondary_cell: {
-    description: string;
-    cell: string;
-  };
-  email: string;
-  homepage: string;
-  secondary_email: {
-    description: string;
-    email: string;
-  };
-  obs: string;
-};
-
-var addedData: { people: (Person | Company)[] } = { people: [] };
+var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer)[] } = { people: [] };
 
 test('Should create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
@@ -476,7 +392,7 @@ test('Should create a new Seller', async ({ page }) => {
   await page.locator('input[name="seller.service_commission"]').fill('6,00');
   await page.locator('input[name="seller.future_service_commission"]').click();
   await page.locator('input[name="seller.future_service_commission"]').fill('4,00');
-  */ 
+  */
 
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
@@ -655,6 +571,8 @@ test('Should create a new company', async ({ page }) => {
   await expect.soft(page.getByText('UF' + company.state)).toBeVisible();
   await expect.soft(page.getByText('Município' + company.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + company.country)).toBeVisible();
+
+  addedData.people.push(company);
 });
 
 test('Should create a new rural producer', async ({ page }) => {
@@ -746,6 +664,8 @@ test('Should create a new rural producer', async ({ page }) => {
   await expect.soft(page.getByText('UF' + rural_producer.state)).toBeVisible();
   await expect.soft(page.getByText('Município' + rural_producer.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + rural_producer.country)).toBeVisible();
+
+  addedData.people.push(rural_producer);
 });
 
 test('Should create a new accountant', async ({ page }) => {
@@ -847,6 +767,7 @@ test('Should create a new accountant', async ({ page }) => {
   await expect.soft(page.getByText('UF' + accountant.state)).toBeVisible();
   await expect.soft(page.getByText('Município' + accountant.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + accountant.country)).toBeVisible();
+
   addedData.people.push(accountant);
 });
 
@@ -858,19 +779,18 @@ test('Should create a new transporter', async ({ page }) => {
   // abre o cadastro de uma nova pessoa
   await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
+  // marca como pessoa jurídica
+  await page.getByText('Pessoa jurídica').click();
+
   //preenche campos de identificação
-  await page.getByRole('textbox', { name: 'Nome' }).click();
-  await page.getByRole('textbox', { name: 'Nome' }).fill(transporter.name);
-  await page.getByRole('textbox', { name: 'Apelido' }).click();
-  await page.getByRole('textbox', { name: 'Apelido' }).fill(transporter.surname);
-  await page.getByRole('textbox', { name: 'CPF' }).click();
-  await page.getByRole('textbox', { name: 'CPF' }).fill(transporter.national_document);
-  await page.getByRole('textbox', { name: 'RG' }).click();
-  await page.getByRole('textbox', { name: 'RG' }).fill(transporter.state_document);
-  await page.getByRole('textbox', { name: 'Data de nascimento' }).click();
-  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(transporter.birth_date);
-  await page.getByRole('textbox', { name: 'Contato' }).click();
-  await page.getByRole('textbox', { name: 'Contato' }).fill(transporter.surname);
+  await page.getByRole('textbox', { name: 'Nome', exact: true }).click();
+  await page.getByRole('textbox', { name: 'Nome', exact: true }).fill(transporter.name);
+  await page.getByRole('textbox', { name: 'Nome Fantasia' }).click();
+  await page.getByRole('textbox', { name: 'Nome Fantasia' }).fill(transporter.trade_name);
+  await page.getByRole('textbox', { name: 'CNPJ' }).click();
+  await page.getByRole('textbox', { name: 'CNPJ' }).fill(transporter.national_document);
+  await page.getByRole('textbox', { name: 'IE' }).click();
+  await page.getByRole('textbox', { name: 'IE' }).fill(transporter.state_document);
 
   // marca transportador
   await page.locator('label').filter({ hasText: 'Transportador' }).click();
@@ -963,14 +883,15 @@ test('Should create a new transporter', async ({ page }) => {
 
   // valida os campos na página de visualização pós cadastro
   await expect.soft(page.getByText('Nome' + transporter.name)).toBeVisible();
-  await expect.soft(page.getByText('Apelido' + transporter.surname)).toBeVisible();
-  await expect.soft(page.getByText('CPF' + transporter.national_document)).toBeVisible();
+  await expect.soft(page.getByText('Nome comercial' + transporter.trade_name)).toBeVisible();
+  await expect.soft(page.getByText('CNPJ' + transporter.national_document)).toBeVisible();
   await expect.soft(page.getByText('Logradouro' + transporter.local)).toBeVisible();
   await expect.soft(page.getByText('Número' + transporter.number)).toBeVisible();
   await expect.soft(page.getByText('Bairro' + transporter.district)).toBeVisible();
   await expect.soft(page.getByText('CEP' + transporter.postal_code)).toBeVisible();
   await expect.soft(page.getByText('Município' + transporter.city_name)).toBeVisible();
   await expect.soft(page.getByText('País' + transporter.country)).toBeVisible();
+
   addedData.people.push(transporter);
 });
 
@@ -979,18 +900,18 @@ test('Should edit user #2', async ({ page }) => {
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/2/editar");
   await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/2/editar");
   await page.getByRole('heading', { name: 'Editando cadastro de pessoa' }).click();
-  
+
   // edita a pessoa
   await page.getByRole('textbox', { name: 'Apelido' }).click();
   await page.getByRole('textbox', { name: 'Apelido' }).fill(adm.surname);
   await page.getByRole('textbox', { name: 'CPF' }).click();
   await page.getByRole('textbox', { name: 'CPF' }).fill(adm.national_document);
-  
+
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
   await page.getByRole('textbox', { name: 'CEP' }).fill(adm.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
-   await page.waitForTimeout(2000);
+  await page.waitForTimeout(2000);
   await page.getByRole('textbox', { name: 'Número' }).click();
   await page.getByRole('textbox', { name: 'Número' }).fill(adm.number);
   // verificações do preenchimento do CEP
@@ -1002,7 +923,7 @@ test('Should edit user #2', async ({ page }) => {
 
   // salva a pessoa
   await page.getByRole('button', { name: 'Salvar' }).click();
-  await expect(page.getByText('('+adm.surname+')')).toBeVisible();
+  await expect(page.getByText('(' + adm.surname + ')')).toBeVisible();
 
   // valida os campos na página de visualização pós cadastro
   await expect.soft(page.getByText('Apelido' + adm.surname)).toBeVisible();
@@ -1024,7 +945,7 @@ test('Should delete People', async ({ page }) => {
   // deleta pessoas da lista acima
   for (let i = 0; i < addedData.people.length; i++) {
     const person = addedData.people[i];
-    if ('type' in person && person.type === 'Transportador') {  
+    if (person.type === 'Transportador' && 'vehicle' in person) {
       // deleta transportadora
       // deleta o veículo da transportadora
       // acessa o menu de veículos
@@ -1033,7 +954,7 @@ test('Should delete People', async ({ page }) => {
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person?.vehicle?.description ?? '');
       await page.waitForTimeout(2000);
-      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + person?.vehicle?.description + '"' }).isVisible()) {
+      if (!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + person?.vehicle?.description + '"' }).isVisible()) {
         await page.getByRole('heading', { name: new RegExp('(' + person?.vehicle?.description + ')') }).hover();
         await page.getByRole('navigation').filter({ hasText: new RegExp('(' + person?.vehicle?.description + ')') }).getByRole('button').nth(1).click();
         await page.getByRole('button', { name: 'Excluir' }).click();
@@ -1041,7 +962,7 @@ test('Should delete People', async ({ page }) => {
       }
       // deleta o veículo
       // verifica se o veículo foi deletado
-      await expect(page.locator('h3')).toContainText('Nada encontrado com "'+person?.vehicle?.description+'"');
+      await expect(page.locator('h3')).toContainText('Nada encontrado com "' + person?.vehicle?.description + '"');
 
       // deleta a pessoa transportadora
       await page.getByRole('link', { name: 'Pessoas' }).click();
@@ -1049,7 +970,7 @@ test('Should delete People', async ({ page }) => {
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person!.name);
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
       await page.waitForTimeout(2000);
-      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + person!.name + '"' }).isVisible()) {
+      if (!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + person!.name + '"' }).isVisible()) {
         // deleta a pessoa transportadora
         await page.getByRole('heading', { name: new RegExp('(' + person!.name + ')') }).hover();
         await page.getByRole('navigation').filter({ hasText: new RegExp('(' + person!.name + ')') }).getByRole('button').click();
@@ -1059,25 +980,25 @@ test('Should delete People', async ({ page }) => {
       }
 
       // verifica se a pessoa transportadora foi deletada
-      await expect(page.locator('h3')).toContainText('Nada encontrado com "' + person!.name + '"'); 
+      await expect(page.locator('h3')).toContainText('Nada encontrado com "' + person!.name + '"');
     } else {
       const name = person.name;
-  
+
       // pesquisa a pessoa
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(name);
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
       await page.waitForTimeout(2000);
-  
-      if(!await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + name + '"' }).isVisible()) {
-        // verifica se a pessoa foi encontrada
+
+      // verifica se a pessoa foi encontrada
+      let isDeleted = await page.locator('h3').filter({ hasText: 'Nada encontrado com "' + name + '"' }).isVisible();
+      if (!isDeleted) {
         await page.getByRole('heading', { name: new RegExp('(' + name + ')') }).hover();
         await page.getByRole('navigation').filter({ hasText: new RegExp('(' + name + ')') }).getByRole('button').click();
         await page.getByRole('menuitem', { name: 'Apagar' }).click();
         await page.getByRole('button', { name: 'Apagar' }).click();
         await page.waitForTimeout(2000);
       }
-  
-  
+
       await expect(page.locator('h3')).toContainText('Nada encontrado com "' + name + '"');
     }
   }
