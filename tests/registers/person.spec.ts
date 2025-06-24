@@ -945,7 +945,7 @@ test('Should delete People', async ({ page }) => {
   // deleta pessoas da lista acima
   for (let i = 0; i < addedData.people.length; i++) {
     const person = addedData.people[i];
-    if (person.type === 'Transportador' && 'vehicle' in person) {
+    if (person.type === 'Transportador' && 'vehicle' in person && person.vehicle) {
       // deleta transportadora
       // deleta o veículo da transportadora
       // acessa o menu de veículos
