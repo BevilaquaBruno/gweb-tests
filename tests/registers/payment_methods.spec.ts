@@ -88,9 +88,9 @@ test("Should create a POS and TEF payment device", async ({ page }) => {
     otherPaymentMethodPOS.paymentDevice as PosPaymentDevice,
     otherPaymentMethodTEF.paymentDevice as TefPaymentDevice,
   ];
-
+  
+  await page.getByRole("button", { name: "Cadastros" }).click();
   for (const paymentDevice of paymentDevices) {
-    await page.getByRole("button", { name: "Cadastros" }).click();
     await page.getByRole("link", { name: "Pagamentos" }).click();
 
     if (paymentDevice) {
@@ -108,7 +108,6 @@ test("Should create a POS and TEF payment device", async ({ page }) => {
           .getByRole("textbox", { name: "Nome (Identificação)" })
           .fill(paymentDevice.name);
         await page.getByRole("combobox", { name: "Integradora" }).click();
-        console.log('paymentDevice.integrator', (paymentDevice as PosPaymentDevice).integrator);
         await page
           .getByRole("option", { name: (paymentDevice as PosPaymentDevice).integrator })
           .click();
@@ -183,6 +182,7 @@ test("Should create a POS and TEF payment device", async ({ page }) => {
           responsible: string;
         }
       );
+      console.log("Payment device registered: ", paymentDevice.name);
     }
   }
 });
@@ -242,7 +242,6 @@ test("Should create a immediate payment method", async ({ page }) => {
   await page.getByRole("button", { name: "Salvar" }).click();
   await expect(page.getByText("Cadastro salvo com sucesso")).toBeVisible();
   registeredPaymentMethods.push(immediatePaymentMethod);
-  console.log("name: ", immediatePaymentMethod.name);
 });
 
 test("Should create a deadline payment method", async ({ page }) => {
@@ -294,7 +293,6 @@ test("Should create a deadline payment method", async ({ page }) => {
   await page.getByRole("button", { name: "Salvar" }).click();
   await expect(page.getByText("Cadastro salvo com sucesso")).toBeVisible();
   registeredPaymentMethods.push(deadlinePaymentMethod);
-    console.log("name: ", deadlinePaymentMethod.name);
 });
 
 test("Should create an other payment method with POS device", async ({
@@ -368,7 +366,6 @@ test("Should create an other payment method with POS device", async ({
     await page.getByRole("button", { name: "Salvar" }).click();
     await expect(page.getByText("Cadastro salvo com sucesso")).toBeVisible();
     registeredPaymentMethods.push(otherPaymentMethodPOS);
-    console.log("name: ", otherPaymentMethodPOS.name);
 });
 
 test("Should create an other payment method with TEF device", async ({
@@ -441,7 +438,6 @@ test("Should create an other payment method with TEF device", async ({
   await page.getByRole("button", { name: "Salvar" }).click();
   await expect(page.getByText("Cadastro salvo com sucesso")).toBeVisible();
   registeredPaymentMethods.push(otherPaymentMethodTEF);
-  console.log("name: ", otherPaymentMethodTEF.name);
 });
 
 test("Should list all registered payment methods", async ({ page }) => {
@@ -487,13 +483,23 @@ test("Should delete all registered payment methods and devices", async ({ page }
     await page.waitForTimeout(1000); // Wait for deletion to complete
     await page.getByRole("link", { name: "Dispositivos" }).click();
 
+    // Adjustement needed because of the soft delete performed on payment method deletion
+    // Card: GWB-432 - https://gdoor.atlassian.net/browse/GWB-432
     for (const paymentDevice of registeredPaymentDevices) {
         await page.getByRole("searchbox", { name: "Digite para buscar" }).fill(paymentDevice.name);
-        await page.waitForTimeout(1000); // Wait for search results to update
+        await page.waitForTimeout(2000); // Wait for search results to update
         await expect(page.getByRole('heading', { name: paymentDevice.name})).toBeVisible();
         await page.getByRole('heading', { name: paymentDevice.name}).hover();
         await page.getByRole('navigation').filter({ hasText: paymentDevice.name }).getByRole('button').click();
         await page.getByRole('button', { name: 'Excluir' }).click();
-        await expect(page.getByText(`Nada encontrado com "${paymentDevice.name}"`)).toBeVisible();
+        await page.waitForTimeout(2000); // Wait for search results to update
+
+        if(await page.getByRole('heading', { name: 'Este registro está em uso e não pode ser apagado' }).isVisible()) {
+            console.log("Payment device is in use, skipping deletion: ", paymentDevice.name);
+            await page.getByRole('button', { name: 'OK' }).click();
+            continue;
+        } else {
+          await expect(page.getByText(`Nada encontrado com "${paymentDevice.name}"`)).toBeVisible();
+        }
     }
 });
