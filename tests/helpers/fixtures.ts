@@ -15,9 +15,11 @@ export const test = base.extend<{ forEachTest: void }>({
         .getByRole("textbox", { name: "Senha" })
         .fill(process.env.PLAYWRIGHT_GWEB_PASSWORD || "");
       await page.getByRole("button", { name: "Entrar" }).click();
-      await page.waitForURL(
-        "https://app.gdoorweb.com.br/selecionar-conta?origin=login"
-      );
+      //espera carregar a página de selecionar conta
+      await page.getByText('Selecionar conta').click();
+
+      // seleciona a empresa
+      await page.getByRole('combobox', { name: 'Digite para buscar a conta' }).click();
       await page.getByRole("heading", { name: process.env.PLAYWRIGHT_GWEB_ACCOUNT }).click();
       await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL || "");
       // follows next tests
