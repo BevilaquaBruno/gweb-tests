@@ -3,7 +3,7 @@ import { test } from '../helpers/fixtures';
 import { generate as generateCpf } from 'gerador-validador-cpf'
 import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
-import { Person, Company, Seller, RuralProducer, Accountant, Transporter } from '../types/registers/person.type';
+import { Person, Company, Seller, RuralProducer, Accountant, Transporter, Foreigner } from '../types/registers/person.type';
 import 'dotenv/config';
 
 // cria uma pessoa para ser cadastrada
@@ -215,6 +215,23 @@ let transporter: Transporter = {
   obs: "AutoTransporter " + faker.lorem.sentences(10, '\n')
 }
 
+let foreigner: Foreigner = {
+  type: 'Estrangeiro',
+  name: 'Auto Person from Gibraltar',
+  surname: 'Auto Gibraltarian',
+  document: faker.string.numeric({ length: 8 }),
+  birth_date: '01/01/2000',
+  local: 'John Mackintosh Square',
+  district: 'Gibraltar GX11 1AA',
+  number: '1',
+  country: 'Gibraltar',
+  state: 'EX',
+  city_name: 'Exterior',
+  phone: '4934414120',
+  cell: '(49) 9200-11913',
+  fax: '1234567',
+}
+
 // usuário administrador para ser editado
 let adm = {
   surname: "Usuário administrador",
@@ -229,7 +246,7 @@ let adm = {
   city_name: 'Concórdia',
 }
 
-var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer)[] } = { people: [] };
+var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer | Foreigner)[] } = { people: [] };
 
 test('Should create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
@@ -893,6 +910,65 @@ test('Should create a new transporter', async ({ page }) => {
   await expect.soft(page.getByText('País' + transporter.country)).toBeVisible();
 
   addedData.people.push(transporter);
+});
+
+test('Should create a new foreigner', async ({ page }) => {
+  //navega para o menu de pessoa
+  await page.getByRole('button', { name: 'Cadastros' }).click();
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+
+  // abre o cadastro de uma nova pessoa
+  await page.getByRole('link').filter({ hasText: /^$/ }).click();
+
+  // troca o país para Gibraltar e cidade para Ex
+  await page.getByRole('combobox', { name: 'País' }).click();
+  await page.getByRole('combobox', { name: 'País' }).fill(foreigner.country);
+  await page.getByText(foreigner.country).click();
+  await page.getByRole('combobox', { name: 'Município' }).click();
+  await page.getByText(foreigner.city_name + ' - ' + foreigner.state).click();
+
+  // preenche dados gerais
+  await page.getByRole('textbox', { name: 'Nome' }).click();
+  await page.getByRole('textbox', { name: 'Nome' }).fill(foreigner.name);
+  await page.getByRole('textbox', { name: 'Apelido' }).click();
+  await page.getByRole('textbox', { name: 'Apelido' }).fill(foreigner.surname);
+  await page.getByRole('textbox', { name: 'Documento de identificação' }).click();
+  await page.getByRole('textbox', { name: 'Documento de identificação' }).fill(foreigner.document);
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).click();
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(foreigner.birth_date);
+
+  // preenche o resto do endereço
+  await page.getByRole('textbox', { name: 'Logradouro' }).click();
+  await page.getByRole('textbox', { name: 'Logradouro' }).fill(foreigner.local);
+  await page.getByRole('textbox', { name: 'Número' }).click();
+  await page.getByRole('textbox', { name: 'Número' }).fill(foreigner.number);
+  await page.getByRole('textbox', { name: 'Bairro' }).click();
+  await page.getByRole('textbox', { name: 'Bairro' }).fill(foreigner.district);
+
+  // preenche telefones
+  await page.getByRole('textbox', { name: 'Telefone' }).click();
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(foreigner.phone);
+  await page.getByRole('textbox', { name: 'Celular' }).click();
+  await page.getByRole('textbox', { name: 'Celular' }).fill(foreigner.cell);
+  await page.getByRole('textbox', { name: 'Fax' }).click();
+  await page.getByRole('textbox', { name: 'Fax' }).fill(foreigner.fax);
+
+  //salva a pessoa
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await page.getByRole('heading', { name: foreigner.name }).click();
+
+
+  // valida os campos na página de visualização pós cadastro
+  await expect.soft(page.getByText('Nome' + foreigner.name)).toBeVisible();
+  await expect.soft(page.getByText('Apelido' + foreigner.surname)).toBeVisible();
+  await expect.soft(page.getByText('Documento de identificação' + foreigner.document)).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + foreigner.local)).toBeVisible();
+  await expect.soft(page.getByText('Número' + foreigner.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + foreigner.district)).toBeVisible();
+  await expect.soft(page.getByText('Município' + foreigner.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País' + foreigner.country)).toBeVisible();
+
+  addedData.people.push(foreigner);
 });
 
 test('Should edit user #2', async ({ page }) => {
