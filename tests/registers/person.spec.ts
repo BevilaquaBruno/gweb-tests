@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
 import { Person, Company, Seller, RuralProducer, Accountant, Transporter, Foreigner } from '../types/registers/person.type';
 import 'dotenv/config';
+import { Search } from '../types/general/search.type';
 
 // cria uma pessoa para ser cadastrada
 let person: Person = {
@@ -120,13 +121,13 @@ let rural_producer: RuralProducer = {
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
   birth_date: '05032000',
-  postal_code: '89700-055',
-  local: 'Rua Marechal Deodoro',
+  postal_code: '88015-100',
+  local: 'Avenida Prefeito Osmar Cunha',
   district: 'Centro',
-  number: '1280',
+  number: '77',
   country: 'Brasil',
   state: 'SC',
-  city_name: 'Concórdia',
+  city_name: 'Florianópolis',
   phone: '4934414120',
   cell: '(49) 9200-11913',
   fax: '1234567',
@@ -217,7 +218,7 @@ let transporter: Transporter = {
 
 let foreigner: Foreigner = {
   type: 'Estrangeiro',
-  name: 'Auto Person from Gibraltar',
+  name: 'AutoForeigner from Gibraltar',
   surname: 'Auto Gibraltarian',
   document: faker.string.numeric({ length: 8 }),
   birth_date: '01/01/2000',
@@ -971,6 +972,70 @@ test('Should create a new foreigner', async ({ page }) => {
   addedData.people.push(foreigner);
 });
 
+test('Should search people', async ({ page }) => {
+  //navega para o menu de pessoa
+  await page.getByRole('button', { name: 'Cadastros' }).click();
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+
+  // Pesquisa por (em ordem) código, CNPF/CNPJ, telefone, celular ou fax,
+  // nome, fantasia/apelido, CPF/CNPJ, telefone, celular, fax, e-mail principal ou cidade.
+  let search_list: Search[] = [
+    {
+      searchFor: '2',
+      shouldFind: 'Bruno Fernando Bevilaqua'
+    },
+    {
+      searchFor: person.national_document,
+      shouldFind: person.name
+    },
+    {
+      searchFor: company.national_document,
+      shouldFind: company.name
+    },
+    {
+      searchFor: person.phone,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.cell,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.fax,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.name,
+      shouldFind: person.name
+    },
+    {
+      searchFor: company.trade_name,
+      shouldFind: company.trade_name
+    },
+    {
+      searchFor: company.email,
+      shouldFind: company.name
+    },
+    {
+      searchFor: rural_producer.city_name,
+      shouldFind: rural_producer.name
+    }
+  ];
+
+  for (let i = 0; i < search_list.length; i++) {
+    const item = search_list[i];
+
+    // pesquisa a pessoa e espera 2 segundos para carregar a lista
+    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(item.searchFor);
+    await page.waitForTimeout(2000);
+
+    // valida se a pesquisa encontrou o item
+    await expect.soft(page.getByRole('heading', { name: new RegExp(item.shouldFind) })).toBeVisible();
+  }
+
+});
+
 test('Should edit user #2', async ({ page }) => {
   // navega para o cadastro
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/2/editar");
@@ -1017,7 +1082,8 @@ test('Should delete People', async ({ page }) => {
   // acessa o menu
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
-
+  await page.waitForTimeout(2000);
+  
   // deleta pessoas da lista acima
   for (let i = 0; i < addedData.people.length; i++) {
     const person = addedData.people[i];
@@ -1061,6 +1127,7 @@ test('Should delete People', async ({ page }) => {
       const name = person.name;
 
       // pesquisa a pessoa
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(name);
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
       await page.waitForTimeout(2000);
