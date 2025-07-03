@@ -3,11 +3,12 @@ import { test } from '../helpers/fixtures';
 import { generate as generateCpf } from 'gerador-validador-cpf'
 import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
-import { Person, Company, Seller, RuralProducer, Accountant, Transporter } from '../types/registers/person.type';
+import { Person, Company, Seller, RuralProducer, Accountant, Transporter, Foreigner } from '../types/registers/person.type';
 import 'dotenv/config';
+import { Search } from '../types/general/search.type';
 
 // cria uma pessoa para ser cadastrada
-let person: Person = {
+var person: Person = {
   type: 'Pessoa',
   name: "AutoPerson " + faker.person.fullName(),
   surname: "AutoPerson " + faker.person.firstName(),
@@ -39,7 +40,7 @@ let person: Person = {
 }
 
 //cria um vendedor para ser cadastrado
-let seller: Seller = {
+var seller: Seller = {
   type: 'Vendedor',
   name: "AutoSeller " + faker.person.fullName(),
   surname: "AutoSeller " + faker.person.firstName(),
@@ -76,7 +77,7 @@ let seller: Seller = {
 }
 
 // cria uma empresa para ser cadastrada
-let company: Company = {
+var company: Company = {
   type: 'Empresa',
   name: "AutoCompany " + faker.company.name(),
   trade_name: "AutoCompany " + faker.company.name(),
@@ -113,20 +114,20 @@ let company: Company = {
 }
 
 // cria um produtor rural
-let rural_producer: RuralProducer = {
+var rural_producer: RuralProducer = {
   type: 'Produtor Rural',
   name: "AutoRural " + faker.person.fullName(),
   surname: "AutoRural " + faker.person.firstName(),
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
   birth_date: '05032000',
-  postal_code: '89700-055',
-  local: 'Rua Marechal Deodoro',
+  postal_code: '88015-100',
+  local: 'Avenida Prefeito Osmar Cunha',
   district: 'Centro',
-  number: '1280',
+  number: '77',
   country: 'Brasil',
   state: 'SC',
-  city_name: 'Concórdia',
+  city_name: 'Florianópolis',
   phone: '4934414120',
   cell: '(49) 9200-11913',
   fax: '1234567',
@@ -144,7 +145,7 @@ let rural_producer: RuralProducer = {
 }
 
 // cria um contador
-let accountant: Accountant = {
+var accountant: Accountant = {
   type: 'Contador',
   name: "AutoAccountant " + faker.person.fullName(),
   surname: "AutoAccountant " + faker.person.firstName(),
@@ -176,7 +177,7 @@ let accountant: Accountant = {
 }
 
 // cria uma transportadora
-let transporter: Transporter = {
+var transporter: Transporter = {
   type: 'Transportador',
   name: "AutoTransporter " + faker.person.fullName(),
   trade_name: "AutoTransporter " + faker.person.firstName(),
@@ -215,8 +216,25 @@ let transporter: Transporter = {
   obs: "AutoTransporter " + faker.lorem.sentences(10, '\n')
 }
 
+var foreigner: Foreigner = {
+  type: 'Estrangeiro',
+  name: 'AutoForeigner from Gibraltar',
+  surname: 'Auto Gibraltarian',
+  document: faker.string.numeric({ length: 8 }),
+  birth_date: '01/01/2000',
+  local: 'John Mackintosh Square',
+  district: 'Gibraltar GX11 1AA',
+  number: '1',
+  country: 'Gibraltar',
+  state: 'EX',
+  city_name: 'Exterior',
+  phone: '4934414120',
+  cell: '(49) 9200-11913',
+  fax: '1234567',
+}
+
 // usuário administrador para ser editado
-let adm = {
+var adm = {
   surname: "Usuário administrador",
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
@@ -229,7 +247,7 @@ let adm = {
   city_name: 'Concórdia',
 }
 
-var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer)[] } = { people: [] };
+var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer | Foreigner)[] } = { people: [] };
 
 test('Should create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
@@ -895,6 +913,159 @@ test('Should create a new transporter', async ({ page }) => {
   addedData.people.push(transporter);
 });
 
+test('Should create a new foreigner', async ({ page }) => {
+  //navega para o menu de pessoa
+  await page.getByRole('button', { name: 'Cadastros' }).click();
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+
+  // abre o cadastro de uma nova pessoa
+  await page.getByRole('link').filter({ hasText: /^$/ }).click();
+
+  // troca o país para Gibraltar e cidade para Ex
+  await page.getByRole('combobox', { name: 'País' }).click();
+  await page.getByRole('combobox', { name: 'País' }).fill(foreigner.country);
+  await page.getByText(foreigner.country).click();
+  await page.getByRole('combobox', { name: 'Município' }).click();
+  await page.getByText(foreigner.city_name + ' - ' + foreigner.state).click();
+
+  // preenche dados gerais
+  await page.getByRole('textbox', { name: 'Nome' }).click();
+  await page.getByRole('textbox', { name: 'Nome' }).fill(foreigner.name);
+  await page.getByRole('textbox', { name: 'Apelido' }).click();
+  await page.getByRole('textbox', { name: 'Apelido' }).fill(foreigner.surname);
+  await page.getByRole('textbox', { name: 'Documento de identificação' }).click();
+  await page.getByRole('textbox', { name: 'Documento de identificação' }).fill(foreigner.document);
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).click();
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(foreigner.birth_date);
+
+  // preenche o resto do endereço
+  await page.getByRole('textbox', { name: 'Logradouro' }).click();
+  await page.getByRole('textbox', { name: 'Logradouro' }).fill(foreigner.local);
+  await page.getByRole('textbox', { name: 'Número' }).click();
+  await page.getByRole('textbox', { name: 'Número' }).fill(foreigner.number);
+  await page.getByRole('textbox', { name: 'Bairro' }).click();
+  await page.getByRole('textbox', { name: 'Bairro' }).fill(foreigner.district);
+
+  // preenche telefones
+  await page.getByRole('textbox', { name: 'Telefone' }).click();
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(foreigner.phone);
+  await page.getByRole('textbox', { name: 'Celular' }).click();
+  await page.getByRole('textbox', { name: 'Celular' }).fill(foreigner.cell);
+  await page.getByRole('textbox', { name: 'Fax' }).click();
+  await page.getByRole('textbox', { name: 'Fax' }).fill(foreigner.fax);
+
+  //salva a pessoa
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await page.getByRole('heading', { name: foreigner.name }).click();
+
+
+  // valida os campos na página de visualização pós cadastro
+  await expect.soft(page.getByText('Nome' + foreigner.name)).toBeVisible();
+  await expect.soft(page.getByText('Apelido' + foreigner.surname)).toBeVisible();
+  await expect.soft(page.getByText('Documento de identificação' + foreigner.document)).toBeVisible();
+  await expect.soft(page.getByText('Logradouro' + foreigner.local)).toBeVisible();
+  await expect.soft(page.getByText('Número' + foreigner.number)).toBeVisible();
+  await expect.soft(page.getByText('Bairro' + foreigner.district)).toBeVisible();
+  await expect.soft(page.getByText('Município' + foreigner.city_name)).toBeVisible();
+  await expect.soft(page.getByText('País' + foreigner.country)).toBeVisible();
+
+  addedData.people.push(foreigner);
+});
+
+test('Should search people', async ({ page }) => {
+  //navega para o menu de pessoa
+  await page.getByRole('button', { name: 'Cadastros' }).click();
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+
+  // Pesquisa por (em ordem) código, CNPF/CNPJ, telefone, celular ou fax,
+  // nome, fantasia/apelido, CPF/CNPJ, telefone, celular, fax, e-mail principal ou cidade.
+  let search_list: Search[] = [
+    {
+      searchFor: '2',
+      shouldFind: 'Bruno Fernando Bevilaqua'
+    },
+    {
+      searchFor: person.national_document,
+      shouldFind: person.name
+    },
+    {
+      searchFor: company.national_document,
+      shouldFind: company.name
+    },
+    {
+      searchFor: person.phone,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.cell,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.fax,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.name,
+      shouldFind: person.name
+    },
+    {
+      searchFor: company.trade_name,
+      shouldFind: company.trade_name
+    },
+    {
+      searchFor: company.email,
+      shouldFind: company.name
+    },
+    {
+      searchFor: rural_producer.city_name,
+      shouldFind: rural_producer.name
+    }
+  ];
+
+  for (let i = 0; i < search_list.length; i++) {
+    const item = search_list[i];
+
+    // pesquisa a pessoa e espera 2 segundos para carregar a lista
+    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+    await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(item.searchFor);
+    await page.waitForTimeout(2000);
+
+    // valida se a pesquisa encontrou o item
+    await expect.soft(page.getByRole('heading', { name: new RegExp(item.shouldFind) })).toBeVisible();
+  }
+
+});
+
+test('Should inactivate AutoPerson', async ({ page }) => {
+  // navega para o menu de pessoa
+  await page.getByRole('button', { name: 'Cadastros' }).click();
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+
+  // pesquisa a pessoa e espera 2 segundos para carregar a lista
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person.name);
+  await page.waitForTimeout(2000);
+
+  // abre para editar
+  await page.getByRole('heading', { name: new RegExp(person.name) }).click();
+  await page.getByRole('button', { name: 'Editar' }).click();
+
+  //inativa e salva
+  await page.locator('label').filter({ hasText: 'Ativo' }).click();
+  await page.getByRole('button', { name: 'Salvar' }).click();
+
+  // clica no nome para esperar carregar e verifica se está inativo
+  await page.getByRole('heading', { name: person.name }).click();
+  await expect(page.getByText('StatusInativo')).toBeVisible();
+
+  // pesquisa se a pessoa ficou inativa na lista
+  await page.getByRole('link', { name: 'Pessoas' }).click();
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person.name);
+  await page.waitForTimeout(2000);
+  await expect(page.getByRole('heading', { name: new RegExp('Inativo') })).toBeVisible();
+});
+
 test('Should edit user #2', async ({ page }) => {
   // navega para o cadastro
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/2/editar");
@@ -941,6 +1112,7 @@ test('Should delete People', async ({ page }) => {
   // acessa o menu
   await page.getByRole('button', { name: 'Cadastros' }).click();
   await page.getByRole('link', { name: 'Pessoas' }).click();
+  await page.waitForTimeout(2000);
 
   // deleta pessoas da lista acima
   for (let i = 0; i < addedData.people.length; i++) {
@@ -985,6 +1157,7 @@ test('Should delete People', async ({ page }) => {
       const name = person.name;
 
       // pesquisa a pessoa
+      await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(name);
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).press('Tab');
       await page.waitForTimeout(2000);

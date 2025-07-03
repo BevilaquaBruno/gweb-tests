@@ -94,3 +94,20 @@ export type Transporter = BasePerson & {
     cap_kg: string,
   }
 }
+
+export type Foreigner = {
+  type: string,
+  name: string,
+  surname: string,
+  document: string,
+  birth_date: string,
+  local: string;
+  district: string;
+  number: string;
+  country: string;
+  state: string;
+  city_name: string;
+  phone: string;
+  cell: string;
+  fax: string;
+}
