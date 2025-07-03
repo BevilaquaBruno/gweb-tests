@@ -8,7 +8,7 @@ import 'dotenv/config';
 import { Search } from '../types/general/search.type';
 
 // cria uma pessoa para ser cadastrada
-let person: Person = {
+var person: Person = {
   type: 'Pessoa',
   name: "AutoPerson " + faker.person.fullName(),
   surname: "AutoPerson " + faker.person.firstName(),
@@ -40,7 +40,7 @@ let person: Person = {
 }
 
 //cria um vendedor para ser cadastrado
-let seller: Seller = {
+var seller: Seller = {
   type: 'Vendedor',
   name: "AutoSeller " + faker.person.fullName(),
   surname: "AutoSeller " + faker.person.firstName(),
@@ -77,7 +77,7 @@ let seller: Seller = {
 }
 
 // cria uma empresa para ser cadastrada
-let company: Company = {
+var company: Company = {
   type: 'Empresa',
   name: "AutoCompany " + faker.company.name(),
   trade_name: "AutoCompany " + faker.company.name(),
@@ -114,7 +114,7 @@ let company: Company = {
 }
 
 // cria um produtor rural
-let rural_producer: RuralProducer = {
+var rural_producer: RuralProducer = {
   type: 'Produtor Rural',
   name: "AutoRural " + faker.person.fullName(),
   surname: "AutoRural " + faker.person.firstName(),
@@ -145,7 +145,7 @@ let rural_producer: RuralProducer = {
 }
 
 // cria um contador
-let accountant: Accountant = {
+var accountant: Accountant = {
   type: 'Contador',
   name: "AutoAccountant " + faker.person.fullName(),
   surname: "AutoAccountant " + faker.person.firstName(),
@@ -177,7 +177,7 @@ let accountant: Accountant = {
 }
 
 // cria uma transportadora
-let transporter: Transporter = {
+var transporter: Transporter = {
   type: 'Transportador',
   name: "AutoTransporter " + faker.person.fullName(),
   trade_name: "AutoTransporter " + faker.person.firstName(),
@@ -216,7 +216,7 @@ let transporter: Transporter = {
   obs: "AutoTransporter " + faker.lorem.sentences(10, '\n')
 }
 
-let foreigner: Foreigner = {
+var foreigner: Foreigner = {
   type: 'Estrangeiro',
   name: 'AutoForeigner from Gibraltar',
   surname: 'Auto Gibraltarian',
@@ -234,7 +234,7 @@ let foreigner: Foreigner = {
 }
 
 // usuário administrador para ser editado
-let adm = {
+var adm = {
   surname: "Usuário administrador",
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
