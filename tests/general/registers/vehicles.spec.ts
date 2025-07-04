@@ -1,4 +1,4 @@
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 import { expect, Page } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';

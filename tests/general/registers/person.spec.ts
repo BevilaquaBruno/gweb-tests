@@ -1,9 +1,9 @@
 import { expect } from '@playwright/test';
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 import { generate as generateCpf } from 'gerador-validador-cpf'
 import { faker } from '@faker-js/faker';
 import { generate as generateCnpj, format as formatCnpj } from 'cnpj';
-import { Person, Company, Seller, RuralProducer, Accountant, Transporter } from '../types/registers/person.type';
+import { Person, Company, Seller, RuralProducer, Accountant, Transporter } from '../../types/registers/person.type';
 import 'dotenv/config';
 
 // cria uma pessoa para ser cadastrada

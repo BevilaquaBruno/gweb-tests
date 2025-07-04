@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 import { faker, fakerPT_BR } from '@faker-js/faker';
 
 const cost = faker.number.float({ min: 0, max: 100, fractionDigits: 2 });
