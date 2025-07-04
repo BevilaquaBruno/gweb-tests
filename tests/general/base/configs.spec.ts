@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 import 'dotenv/config';
 
 test('Put .pfx in account', async ({ page }) => {
