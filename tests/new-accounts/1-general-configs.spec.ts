@@ -22,19 +22,26 @@ test('Put .pfx in account', async ({ page }) => {
     await expect.soft(page.locator('gw-general-settings')).toContainText('Emitido para');
 });
 
-test('Allow negative stock', async ({ page }) => {
+test('Allow negative stock and services', async ({ page }) => {
     //acessa as configurações
     await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
     await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
     await page.getByRole('heading', { name: 'Configurações gerais' }).click();
 
+    // marca estoque negativo
     let allow_negative_stock = await page.getByRole("checkbox", { name: "Permitir estoque negativo" }).isChecked();
     if (!allow_negative_stock) {
         await page.locator('label').filter({ hasText: 'Permitir estoque negativo' }).click();
         await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
     }
     allow_negative_stock = await page.locator('.mat-checkbox-inner-container').first().isChecked();
-    expect(allow_negative_stock).toEqual(true);
+    expect.soft(allow_negative_stock).toEqual(true);
+
+    // marca para utilizar serviços
+    await page.getByText('Habilitar o uso de serviços').click();
+    await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
+
+    await expect(page.getByText('Local padrão do fato gerador do ISS')).toBeVisible();
 });
 
 test('Deactivate IP address verification', async ({ page }) => {
