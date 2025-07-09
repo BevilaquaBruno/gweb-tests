@@ -20,7 +20,7 @@ var vehicle: Vehicle = {
     }
 }
 
-test('Register new vehicle', async ({ page }) => {
+test('Set Company #1 as Trasporter and Register new vehicle', async ({ page }) => {
     //acessa o emitente
     await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/emitente");
     await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/emitente");
@@ -52,6 +52,7 @@ test('Register new vehicle', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Proprietário' }).click();
     await page.getByRole('textbox', { name: 'Proprietário' }).fill(vehicle?.owner?.id ?? '1');
     await page.getByRole('textbox', { name: 'Proprietário' }).press('Enter');
+    await page.waitForTimeout(3000);
 
     // informações do veículo
     await page.getByRole('textbox', { name: 'Tara (Kg)' }).fill(vehicle.tara);
@@ -59,8 +60,10 @@ test('Register new vehicle', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Capacidade (m³)' }).fill(vehicle.cap_m3);
     await page.getByLabel('Tipo de rodado').getByText('Tipo de rodado').click();
     await page.getByText(vehicle.wheelset_type).click();
+    await page.waitForTimeout(2000);
     await page.getByLabel('Tipo de carroceria').getByText('Tipo de carroceria').click();
     await page.getByText(vehicle.car_body_type).click();
+    await page.waitForTimeout(2000);
     await page.getByRole('textbox', { name: 'Quantidade de eixos' }).fill(vehicle.axes_quantity);
 
     //salva o veículo
