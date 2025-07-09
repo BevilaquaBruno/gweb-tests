@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+   <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+      <infNFe versao="4.00" Id="NFe23240745205832000182650010000545841718257555">
+         <ide>
+            <cUF>23</cUF>
+            <cNF>71825755</cNF>
+            <natOp>VENDA</natOp>
+            <mod>65</mod>
+            <serie>1</serie>
+            <nNF>54584</nNF>
+            <dhEmi>2024-07-03T07:55:20-03:00</dhEmi>
+            <tpNF>1</tpNF>
+            <idDest>1</idDest>
+            <cMunFG>2313302</cMunFG>
+            <tpImp>4</tpImp>
+            <tpEmis>1</tpEmis>
+            <cDV>5</cDV>
+            <tpAmb>1</tpAmb>
+            <finNFe>1</finNFe>
+            <indFinal>1</indFinal>
+            <indPres>1</indPres>
+            <procEmi>0</procEmi>
+            <verProc>3.0.0.583 Gpro</verProc>
+         </ide>
+         <emit>
+            <CNPJ>45205832000182</CNPJ>
+            <xNome>M F DE OLIVEIRA LTDA</xNome>
+            <xFant>SEMEAR DELICATESSEN</xFant>
+            <enderEmit>
+               <xLgr>Avenida Cel. Vicente Alexandrino de Sous</xLgr>
+               <nro>51</nro>
+               <xBairro>TAUAZINHO</xBairro>
+               <cMun>2313302</cMun>
+               <xMun>Taua</xMun>
+               <UF>CE</UF>
+               <CEP>63660000</CEP>
+               <cPais>1058</cPais>
+               <xPais>BRASIL</xPais>
+               <fone>088999794077</fone>
+            </enderEmit>
+            <IE>070450480</IE>
+            <CRT>1</CRT>
+         </emit>
+         <det nItem="1">
+            <prod>
+               <cProd>000242</cProd>
+               <cEAN>SEM GTIN</cEAN>
+               <xProd>ROSCA SALGADA</xProd>
+               <NCM>20029000</NCM>
+               <CEST>2806300</CEST>
+               <CFOP>5102</CFOP>
+               <uCom>UND</uCom>
+               <qCom>4.0000</qCom>
+               <vUnCom>2.0000000000</vUnCom>
+               <vProd>8.00</vProd>
+               <cEANTrib>SEM GTIN</cEANTrib>
+               <uTrib>UND</uTrib>
+               <qTrib>4.0000</qTrib>
+               <vUnTrib>2.0000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>0</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <det nItem="2">
+            <prod>
+               <cProd>000200</cProd>
+               <cEAN>SEM GTIN</cEAN>
+               <xProd>TORTA DE FRANGO (FATIA)</xProd>
+               <NCM>19023000</NCM>
+               <CEST>2806300</CEST>
+               <CFOP>5102</CFOP>
+               <uCom>UND</uCom>
+               <qCom>1.0000</qCom>
+               <vUnCom>4.0000000000</vUnCom>
+               <vProd>4.00</vProd>
+               <cEANTrib>SEM GTIN</cEANTrib>
+               <uTrib>UND</uTrib>
+               <qTrib>1.0000</qTrib>
+               <vUnTrib>4.0000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <vTotTrib>1.34</vTotTrib>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>0</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <det nItem="3">
+            <prod>
+               <cProd>000148</cProd>
+               <cEAN>7896045102570</cEAN>
+               <xProd>CAPSULA CAFE CAPP TRES H DLEITE 8X10X11G</xProd>
+               <NCM>21011200</NCM>
+               <CEST>1710900</CEST>
+               <CFOP>5102</CFOP>
+               <uCom>CTC</uCom>
+               <qCom>1.0000</qCom>
+               <vUnCom>3.0000000000</vUnCom>
+               <vProd>3.00</vProd>
+               <cEANTrib>7896045102570</cEANTrib>
+               <uTrib>CTC</uTrib>
+               <qTrib>1.0000</qTrib>
+               <vUnTrib>3.0000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <vTotTrib>1.00</vTotTrib>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>5</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <det nItem="4">
+            <prod>
+               <cProd>000205</cProd>
+               <cEAN>SEM GTIN</cEAN>
+               <xProd>EMPADA DE FRANGO</xProd>
+               <NCM>19023000</NCM>
+               <CEST>2806300</CEST>
+               <CFOP>5102</CFOP>
+               <uCom>UND</uCom>
+               <qCom>1.0000</qCom>
+               <vUnCom>3.0000000000</vUnCom>
+               <vProd>3.00</vProd>
+               <cEANTrib>SEM GTIN</cEANTrib>
+               <uTrib>UND</uTrib>
+               <qTrib>1.0000</qTrib>
+               <vUnTrib>3.0000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <vTotTrib>1.00</vTotTrib>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>0</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <det nItem="5">
+            <prod>
+               <cProd>000168</cProd>
+               <cEAN>SEM GTIN</cEAN>
+               <xProd>CAFE COADO</xProd>
+               <NCM>09011190</NCM>
+               <CFOP>5102</CFOP>
+               <uCom>UND</uCom>
+               <qCom>1.0000</qCom>
+               <vUnCom>2.0000000000</vUnCom>
+               <vProd>2.00</vProd>
+               <cEANTrib>SEM GTIN</cEANTrib>
+               <uTrib>UND</uTrib>
+               <qTrib>1.0000</qTrib>
+               <vUnTrib>2.0000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <vTotTrib>0.67</vTotTrib>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>0</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <det nItem="6">
+            <prod>
+               <cProd>000194</cProd>
+               <cEAN>SEM GTIN</cEAN>
+               <xProd>MINI COXINHA</xProd>
+               <NCM>19023000</NCM>
+               <CEST>2806300</CEST>
+               <CFOP>5102</CFOP>
+               <uCom>KG</uCom>
+               <qCom>0.1000</qCom>
+               <vUnCom>40.0000000000</vUnCom>
+               <vProd>4.00</vProd>
+               <cEANTrib>SEM GTIN</cEANTrib>
+               <uTrib>KG</uTrib>
+               <qTrib>0.1000</qTrib>
+               <vUnTrib>40.0000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <vTotTrib>1.34</vTotTrib>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>0</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <det nItem="7">
+            <prod>
+               <cProd>000246</cProd>
+               <cEAN>SEM GTIN</cEAN>
+               <xProd>PAO LUA DE MEL ( CHOCOLATE )</xProd>
+               <NCM>19059090</NCM>
+               <CEST>2806300</CEST>
+               <CFOP>5102</CFOP>
+               <uCom>UND</uCom>
+               <qCom>1.0000</qCom>
+               <vUnCom>1.5000000000</vUnCom>
+               <vProd>1.50</vProd>
+               <cEANTrib>SEM GTIN</cEANTrib>
+               <uTrib>UND</uTrib>
+               <qTrib>1.0000</qTrib>
+               <vUnTrib>1.5000000000</vUnTrib>
+               <indTot>1</indTot>
+            </prod>
+            <imposto>
+               <vTotTrib>0.50</vTotTrib>
+               <ICMS>
+                  <ICMSSN500>
+                     <orig>0</orig>
+                     <CSOSN>102</CSOSN>
+                  </ICMSSN500>
+               </ICMS>
+            </imposto>
+         </det>
+         <total>
+            <ICMSTot>
+               <vBC>0.00</vBC>
+               <vICMS>0.00</vICMS>
+               <vICMSDeson>0.00</vICMSDeson>
+               <vFCP>0.00</vFCP>
+               <vBCST>0.00</vBCST>
+               <vST>0.00</vST>
+               <vFCPST>0.00</vFCPST>
+               <vFCPSTRet>0.00</vFCPSTRet>
+               <vProd>29.50</vProd>
+               <vFrete>0.00</vFrete>
+               <vSeg>0.00</vSeg>
+               <vDesc>0.00</vDesc>
+               <vII>0.00</vII>
+               <vIPI>0.00</vIPI>
+               <vIPIDevol>0.00</vIPIDevol>
+               <vPIS>0.00</vPIS>
+               <vCOFINS>0.00</vCOFINS>
+               <vOutro>0.00</vOutro>
+               <vNF>29.50</vNF>
+               <vTotTrib>7.19</vTotTrib>
+            </ICMSTot>
+         </total>
+         <transp>
+            <modFrete>9</modFrete>
+         </transp>
+         <pag>
+            <detPag>
+               <tPag>17</tPag>
+               <vPag>29.50</vPag>
+            </detPag>
+         </pag>
+         <infAdic>
+            <infCpl>Trib.Aprox.: R$ 2,89 Fed. e R$ 4,30 Est. e R$ 0,00 Mun.; Fonte: IBPT CE
+               691A69;Operador: ADMINISTRADOR ;Obrigada pela preferencia.;Volte sempre!;;Se
+               possivel, siga o nosso instagran @semeardelicatessen para ficar por dento de todas as
+               novidades ou salve o nosso whatsApp (88) 9 9750-2769 que vamos ate voce!</infCpl>
+         </infAdic>
+         <infRespTec>
+            <CNPJ>09358661000168</CNPJ>
+            <xContato>Marcelo Stivanello</xContato>
+            <email>gdoor@gdoor.com.br</email>
+            <fone>4934413105</fone>
+         </infRespTec>
+      </infNFe>
+      <infNFeSupl>
+         <qrCode>
+            http://nfce.sefaz.ce.gov.br/pages/ShowNFCe.html?p=23240745205832000182650010000545841718257555|2|1|1|A08EB918A41080EF440FAE3B0ACAACE754861B0B</qrCode>
+         <urlChave>www.sefaz.ce.gov.br/nfce/consulta</urlChave>
+      </infNFeSupl>
+      <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+         <SignedInfo>
+            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+            <Reference URI="#NFe23240745205832000182650010000545841718257555">
+               <Transforms>
+                  <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+                  <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+               </Transforms>
+               <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+               <DigestValue>2M/+gEz86Fz26wyaH4Q0WxbR/Jc=</DigestValue>
+            </Reference>
+         </SignedInfo>
+         <SignatureValue>
+            g6iD/JAC+Zp5Jo1EcHUVCvrBtW/IuwGu8wc6/iLbvaYVR2X2kw4l7IByDV2ygXPUdrKcw7a6uviG8HeYSRU44zefhJ/V3CxlFWACoR3KMEk8WRnVWn8lcR72lXnlgHSUTXl1plbC+3Gilbpu4LlMHW8ukRrcG0Llw3hCtWrxx3uQIpdOQ00aBDsa2BAOh9wb+jS6q7uAgrIDcY01T/4BGQMQxsXQuqSlPh5Dc+NigHyHwv9wr2vfLMlm3Pn1UU/EIJzieB9xpyxFxLa7YL9SSXoE6dJBg8gMfEITbLc7WQyXlxF8y//9s9BFiEFfZQ1tZCPsXs4iYBR+ScmhnZO9tw==</SignatureValue>
+         <KeyInfo>
+            <X509Data>
+               <X509Certificate>
+                  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</X509Certificate>
+            </X509Data>
+         </KeyInfo>
+      </Signature>
+   </NFe>
+   <protNFe versao="4.00">
+      <infProt Id="ID123240006884021">
+         <tpAmb>1</tpAmb>
+         <verAplic>CE_NFCe_2.4.0</verAplic>
+         <chNFe>23240745205832000182650010000545841718257555</chNFe>
+         <dhRecbto>2024-07-03T07:55:20-03:00</dhRecbto>
+         <nProt>123240006884021</nProt>
+         <digVal>2M/+gEz86Fz26wyaH4Q0WxbR/Jc=</digVal>
+         <cStat>100</cStat>
+         <xMotivo>Autorizado o uso da NF-e</xMotivo>
+      </infProt>
+   </protNFe>
+</nfeProc>
