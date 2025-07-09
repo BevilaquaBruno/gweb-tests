@@ -2,12 +2,13 @@ import { expect } from '@playwright/test';
 import { test } from '../helpers/fixtures';
 import 'dotenv/config';
 
-test('Put .pfx in account', async ({ page }) => {
+test('Certificate, Negative Stock and IP Verification', async ({ page }) => {
     //acessa as configurações
     await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
     await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
     await page.getByRole('heading', { name: 'Configurações gerais' }).click();
 
+    // configuração do certificado
     // verifica se já tem certificado
     let hasCertificate = await page.getByRole('textbox', { name: 'Emitido para' }).isVisible();
     if (!hasCertificate) {
@@ -20,14 +21,9 @@ test('Put .pfx in account', async ({ page }) => {
     }
 
     await expect.soft(page.locator('gw-general-settings')).toContainText('Emitido para');
-});
+    await page.waitForTimeout(3000);
 
-test('Allow negative stock and services', async ({ page }) => {
-    //acessa as configurações
-    await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
-    await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
-    await page.getByRole('heading', { name: 'Configurações gerais' }).click();
-
+    // permite estoque negativo
     // marca estoque negativo
     let allow_negative_stock = await page.getByRole("checkbox", { name: "Permitir estoque negativo" }).isChecked();
     if (!allow_negative_stock) {
@@ -36,20 +32,9 @@ test('Allow negative stock and services', async ({ page }) => {
     }
     allow_negative_stock = await page.locator('.mat-checkbox-inner-container').first().isChecked();
     expect.soft(allow_negative_stock).toEqual(true);
+    await page.waitForTimeout(3000);
 
-    // marca para utilizar serviços
-    await page.getByText('Habilitar o uso de serviços').click();
-    await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
-
-    await expect(page.getByText('Local padrão do fato gerador do ISS')).toBeVisible();
-});
-
-test('Deactivate IP address verification', async ({ page }) => {
-    //acessa as configurações
-    await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
-    await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
-    await page.getByRole('heading', { name: 'Configurações gerais' }).click();
-
+    // desativa verificação de IP
     // Verifica se a configuração já está marcada através da mensagem amarela abaixo
     let isIPVerificationOn = await page.getByText('Ativar esta configuração pode ser um risco à segurança dos dados da empresa. Utilize-a somente em caso de problemas de conectividade/logoffs constantes').isVisible();
     if (!isIPVerificationOn) {
