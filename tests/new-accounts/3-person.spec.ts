@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { test } from '../helpers/fixtures';
 import 'dotenv/config';
 import { Company, Person, RuralProducer } from '../types/registers/person.type';
@@ -137,7 +137,7 @@ var company_from_sp: Company = {
   obs: "Observação da Pessoa Jurídica de SP São Paulo"
 }
 
-let rural_producer: RuralProducer = {
+let main_rural_producer: RuralProducer = {
   type: 'Produtor Rural',
   name: "Pessoa Produtor Rural",
   surname: "Pessoa Produtor Rural",
@@ -167,7 +167,16 @@ let rural_producer: RuralProducer = {
   obs: "Pessoa Produtor Rural"
 }
 
-test('Register new Person from SC', async ({ page }) => {
+test('Register all People', async ({ page }) => {
+  await registerPerson(page, person_from_sc);
+  await registerPerson(page, person_from_rs);
+  await registerCompany(page, company_from_sc);
+  await registerCompany(page, company_from_sp);
+  await registerRuralProducer(page, main_rural_producer);
+  await RegisterSeller(page);
+});
+
+async function registerPerson(page: Page, person: Person) {
   //acessa o cadastro de pessoa
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
   await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
@@ -178,12 +187,12 @@ test('Register new Person from SC', async ({ page }) => {
   await page.locator('label').filter({ hasText: 'Fornecedor' }).click();
 
   //preenche campos de identificação
-  await page.getByRole('textbox', { name: 'Nome' }).fill(person_from_sc.name);
-  await page.getByRole('textbox', { name: 'Apelido' }).fill(person_from_sc.surname);
-  await page.getByRole('textbox', { name: 'CPF' }).fill(person_from_sc.national_document);
-  await page.getByRole('textbox', { name: 'RG' }).fill(person_from_sc.state_document);
-  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(person_from_sc.birth_date);
-  await page.getByRole('textbox', { name: 'Contato' }).fill(person_from_sc.surname);
+  await page.getByRole('textbox', { name: 'Nome' }).fill(person.name);
+  await page.getByRole('textbox', { name: 'Apelido' }).fill(person.surname);
+  await page.getByRole('textbox', { name: 'CPF' }).fill(person.national_document);
+  await page.getByRole('textbox', { name: 'RG' }).fill(person.state_document);
+  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(person.birth_date);
+  await page.getByRole('textbox', { name: 'Contato' }).fill(person.surname);
 
   //preenche dados do cliente
   await page.getByText('Dia de acertoDia de acerto').click();
@@ -195,105 +204,42 @@ test('Register new Person from SC', async ({ page }) => {
   await page.getByRole('option', { name: 'Não definido' }).click();
 
   // preenche endereço
-  await page.getByRole('textbox', { name: 'CEP' }).fill(person_from_sc.postal_code);
+  await page.getByRole('textbox', { name: 'CEP' }).fill(person.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
   await page.waitForTimeout(5000);
-  await page.getByRole('textbox', { name: 'Número' }).fill(person_from_sc.number);
+  await page.getByRole('textbox', { name: 'Número' }).fill(person.number);
 
   // preenche telefone
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person_from_sc.phone);
-  await page.getByRole('textbox', { name: 'Celular' }).fill(person_from_sc.cell);
-  await page.getByRole('textbox', { name: 'Fax' }).fill(person_from_sc.fax);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.phone);
+  await page.getByRole('textbox', { name: 'Celular' }).fill(person.cell);
+  await page.getByRole('textbox', { name: 'Fax' }).fill(person.fax);
   // inclui telefone secundário
   await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(person_from_sc.secondary_cell.description);
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person_from_sc.secondary_cell.cell);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(person.secondary_cell.description);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(person.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
 
   // preencher endereços eletrônicos
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(person_from_sc.email);
-  await page.getByRole('textbox', { name: 'Website' }).fill(person_from_sc.homepage);
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(person.email);
+  await page.getByRole('textbox', { name: 'Website' }).fill(person.homepage);
   // incluir email secundario
   await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(person_from_sc.secondary_email.description);
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(person_from_sc.secondary_email.email);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(person.secondary_email.description);
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(person.secondary_email.email);
   await page.getByRole('button', { name: 'Confirmar' }).click();
 
   // preenche observacoes
-  await page.getByRole('textbox', { name: 'Observações' }).fill(person_from_sc.obs);
+  await page.getByRole('textbox', { name: 'Observações' }).fill(person.obs);
 
   // salva a pessoa
   await page.getByRole('button', { name: 'Salvar' }).click();
-  await page.getByRole('heading', { name: person_from_sc.name }).click();
+  await page.getByRole('heading', { name: person.name }).click();
 
   // valida os campos na página de visualização pós cadastro
-  await expect(page.getByText('Nome' + person_from_sc.name)).toBeVisible();
-});
+  await expect(page.getByText('Nome' + person.name)).toBeVisible();
+}
 
-test('Register new Person from RS', async ({ page }) => {
-  //acessa o cadastro de pessoa
-  await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
-  await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
-  await page.getByRole('heading', { name: 'Novo Cadastro' }).click();
-
-  // clica nos checkboxes do cadastro
-  await page.locator('label').filter({ hasText: 'Cliente' }).click();
-  await page.locator('label').filter({ hasText: 'Fornecedor' }).click();
-
-  //preenche campos de identificação
-  await page.getByRole('textbox', { name: 'Nome' }).fill(person_from_rs.name);
-  await page.getByRole('textbox', { name: 'Apelido' }).fill(person_from_rs.surname);
-  await page.getByRole('textbox', { name: 'CPF' }).fill(person_from_rs.national_document);
-  await page.getByRole('textbox', { name: 'RG' }).fill(person_from_rs.state_document);
-  await page.getByRole('textbox', { name: 'Data de nascimento' }).fill(person_from_rs.birth_date);
-  await page.getByRole('textbox', { name: 'Contato' }).fill(person_from_rs.surname);
-
-  //preenche dados do cliente
-  await page.getByText('Dia de acertoDia de acerto').click();
-  await page.getByRole('option', { name: '13' }).click();
-  await page.getByRole('textbox', { name: 'Limite de crédito' }).click();
-  await page.getByLabel('Tabela de preços preferencial').getByText('Tabela de preços preferencial').click();
-  await page.getByRole('option', { name: 'Nenhuma' }).click();
-  await page.locator('div').filter({ hasText: /^Vendedor$/ }).nth(1).click();
-  await page.getByRole('option', { name: 'Não definido' }).click();
-
-  // preenche endereço
-  await page.getByRole('textbox', { name: 'CEP' }).fill(person_from_rs.postal_code);
-  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
-  await page.waitForTimeout(5000);
-  await page.getByRole('textbox', { name: 'Número' }).fill(person_from_rs.number);
-
-  // preenche telefone
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person_from_rs.phone);
-  await page.getByRole('textbox', { name: 'Celular' }).fill(person_from_rs.cell);
-  await page.getByRole('textbox', { name: 'Fax' }).fill(person_from_rs.fax);
-  // inclui telefone secundário
-  await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(person_from_rs.secondary_cell.description);
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(person_from_rs.secondary_cell.cell);
-  await page.getByRole('button', { name: 'Confirmar' }).click();
-
-  // preencher endereços eletrônicos
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(person_from_rs.email);
-  await page.getByRole('textbox', { name: 'Website' }).fill(person_from_rs.homepage);
-  // incluir email secundario
-  await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(person_from_rs.secondary_email.description);
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(person_from_rs.secondary_email.email);
-  await page.getByRole('button', { name: 'Confirmar' }).click();
-
-  // preenche observacoes
-  await page.getByRole('textbox', { name: 'Observações' }).fill(person_from_rs.obs);
-
-  // salva a pessoa
-  await page.getByRole('button', { name: 'Salvar' }).click();
-  await page.getByRole('heading', { name: person_from_rs.name }).click();
-
-  // valida os campos na página de visualização pós cadastro
-  await expect(page.getByText('Nome' + person_from_rs.name)).toBeVisible();
-});
-
-test('Register new Company from SC', async ({ page }) => {
+async function registerCompany(page: Page, company: Company) {
   //acessa o cadastro de pessoa
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
   await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
@@ -307,117 +253,55 @@ test('Register new Company from SC', async ({ page }) => {
   await page.getByText('Pessoa jurídica').click();
 
   // preenche campos de identificação
-  await page.getByRole('textbox', { name: 'Nome', exact: true }).fill(company_from_sc.name);
-  await page.getByRole('textbox', { name: 'Nome fantasia' }).fill(company_from_sc.trade_name);
-  await page.getByRole('textbox', { name: 'CNPJ' }).fill(company_from_sc.national_document);
-  await page.getByRole('textbox', { name: 'IE' }).fill(company_from_sc.state_document);
-  await page.getByRole('textbox', { name: 'IM', exact: true }).fill(company_from_sc.municipal_document);
-  await page.getByRole('textbox', { name: 'SUFRAMA' }).fill(company_from_sc.suframa_number);
-  await page.getByRole('textbox', { name: 'CNAE' }).fill(company_from_sc.cnae);
-  await page.getByRole('textbox', { name: 'Nome do responsável' }).fill(company_from_sc.person.name);
-  await page.getByRole('textbox', { name: 'CPF do responsável' }).fill(company_from_sc.person.national_document);
+  await page.getByRole('textbox', { name: 'Nome', exact: true }).fill(company.name);
+  await page.getByRole('textbox', { name: 'Nome fantasia' }).fill(company.trade_name);
+  await page.getByRole('textbox', { name: 'CNPJ' }).fill(company.national_document);
+  await page.getByRole('textbox', { name: 'IE' }).fill(company.state_document);
+  await page.getByRole('textbox', { name: 'IM', exact: true }).fill(company.municipal_document);
+  await page.getByRole('textbox', { name: 'SUFRAMA' }).fill(company.suframa_number);
+  await page.getByRole('textbox', { name: 'CNAE' }).fill(company.cnae);
+  await page.getByRole('textbox', { name: 'Nome do responsável' }).fill(company.person.name);
+  await page.getByRole('textbox', { name: 'CPF do responsável' }).fill(company.person.national_document);
 
   // preenche endereço
   await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(company_from_sc.postal_code);
+  await page.getByRole('textbox', { name: 'CEP' }).fill(company.postal_code);
   await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
   await page.waitForTimeout(5000);
-  await page.getByRole('textbox', { name: 'Número' }).fill(company_from_sc.number);
+  await page.getByRole('textbox', { name: 'Número' }).fill(company.number);
 
   // preenche telefone
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(company_from_sc.phone);
-  await page.getByRole('textbox', { name: 'Celular' }).fill(company_from_sc.cell);
-  await page.getByRole('textbox', { name: 'Fax' }).fill(company_from_sc.fax);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(company.phone);
+  await page.getByRole('textbox', { name: 'Celular' }).fill(company.cell);
+  await page.getByRole('textbox', { name: 'Fax' }).fill(company.fax);
   // inclui telefone secundário
   await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(company_from_sc.secondary_cell.description);
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(company_from_sc.secondary_cell.cell);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(company.secondary_cell.description);
+  await page.getByRole('textbox', { name: 'Telefone' }).fill(company.secondary_cell.cell);
   await page.getByRole('button', { name: 'Confirmar' }).click();
 
   // preencher endereços eletrônicos
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(company_from_sc.email);
-  await page.getByRole('textbox', { name: 'Website' }).fill(company_from_sc.homepage);
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(company.email);
+  await page.getByRole('textbox', { name: 'Website' }).fill(company.homepage);
   // incluir email secundario
   await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(company_from_sc.secondary_email.description);
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(company_from_sc.secondary_email.email);
+  await page.getByRole('textbox', { name: 'Descrição' }).fill(company.secondary_email.description);
+  await page.getByRole('textbox', { name: 'E-mail' }).fill(company.secondary_email.email);
   await page.getByRole('button', { name: 'Confirmar' }).click();
 
   // preenche observacoes
-  await page.getByRole('textbox', { name: 'Observações' }).fill(company_from_sc.obs);
+  await page.getByRole('textbox', { name: 'Observações' }).fill(company.obs);
 
   // salva a pessoa
   await page.getByRole('button', { name: 'Salvar' }).click();
-  await page.getByRole('heading', { name: company_from_sc.name }).click();
+  await page.getByRole('heading', { name: company.name }).click();
 
 
   // valida os campos na página de visualização pós cadastro
-  await expect(page.getByText('Nome' + company_from_sc.name)).toBeVisible();
-});
+  await expect(page.getByText('Nome' + company.name)).toBeVisible();
+}
 
-test('Register new Company from SP', async ({ page }) => {
-  //acessa o cadastro de pessoa
-  await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
-  await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
-  await page.getByRole('heading', { name: 'Novo Cadastro' }).click();
-
-  // clica nos checkboxes do cadastro
-  await page.locator('label').filter({ hasText: 'Cliente' }).click();
-  await page.locator('label').filter({ hasText: 'Fornecedor' }).click();
-
-  // marca CNPJ
-  await page.getByText('Pessoa jurídica').click();
-
-  // preenche campos de identificação
-  await page.getByRole('textbox', { name: 'Nome', exact: true }).fill(company_from_sp.name);
-  await page.getByRole('textbox', { name: 'Nome fantasia' }).fill(company_from_sp.trade_name);
-  await page.getByRole('textbox', { name: 'CNPJ' }).fill(company_from_sp.national_document);
-  await page.getByRole('textbox', { name: 'IE' }).fill(company_from_sp.state_document);
-  await page.getByRole('textbox', { name: 'IM', exact: true }).fill(company_from_sp.municipal_document);
-  await page.getByRole('textbox', { name: 'SUFRAMA' }).fill(company_from_sp.suframa_number);
-  await page.getByRole('textbox', { name: 'CNAE' }).fill(company_from_sp.cnae);
-  await page.getByRole('textbox', { name: 'Nome do responsável' }).fill(company_from_sp.person.name);
-  await page.getByRole('textbox', { name: 'CPF do responsável' }).fill(company_from_sp.person.national_document);
-
-  // preenche endereço
-  await page.getByRole('textbox', { name: 'CEP' }).click();
-  await page.getByRole('textbox', { name: 'CEP' }).fill(company_from_sp.postal_code);
-  await page.getByRole('textbox', { name: 'CEP' }).press('Tab');
-  await page.waitForTimeout(5000);
-  await page.getByRole('textbox', { name: 'Número' }).fill(company_from_sp.number);
-
-  // preenche telefone
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(company_from_sp.phone);
-  await page.getByRole('textbox', { name: 'Celular' }).fill(company_from_sp.cell);
-  await page.getByRole('textbox', { name: 'Fax' }).fill(company_from_sp.fax);
-  // inclui telefone secundário
-  await page.locator('mat-card').filter({ hasText: 'TelefoneCelularFax' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(company_from_sp.secondary_cell.description);
-  await page.getByRole('textbox', { name: 'Telefone' }).fill(company_from_sp.secondary_cell.cell);
-  await page.getByRole('button', { name: 'Confirmar' }).click();
-
-  // preencher endereços eletrônicos
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(company_from_sp.email);
-  await page.getByRole('textbox', { name: 'Website' }).fill(company_from_sp.homepage);
-  // incluir email secundario
-  await page.locator('mat-card').filter({ hasText: 'E-mailWebsite' }).getByRole('button').click();
-  await page.getByRole('textbox', { name: 'Descrição' }).fill(company_from_sp.secondary_email.description);
-  await page.getByRole('textbox', { name: 'E-mail' }).fill(company_from_sp.secondary_email.email);
-  await page.getByRole('button', { name: 'Confirmar' }).click();
-
-  // preenche observacoes
-  await page.getByRole('textbox', { name: 'Observações' }).fill(company_from_sp.obs);
-
-  // salva a pessoa
-  await page.getByRole('button', { name: 'Salvar' }).click();
-  await page.getByRole('heading', { name: company_from_sp.name }).click();
-
-
-  // valida os campos na página de visualização pós cadastro
-  await expect(page.getByText('Nome' + company_from_sp.name)).toBeVisible();
-});
-
-test('Register new rural producer from SC', async ({ page }) => {
+async function registerRuralProducer(page: Page, rural_producer: RuralProducer) {
   //acessa o cadastro de pessoa
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
   await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
@@ -474,9 +358,9 @@ test('Register new rural producer from SC', async ({ page }) => {
 
   // valida os campos na página de visualização pós cadastro
   await expect(page.getByText('Nome' + rural_producer.name)).toBeVisible();
-});
+}
 
-test('Register new Seller with just a name', async ({ page }) => {
+async function RegisterSeller(page: Page) {
   // Acessa o cadastro de pessoa
   await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
   await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/cadastros/pessoas/nova");
@@ -496,4 +380,4 @@ test('Register new Seller with just a name', async ({ page }) => {
 
   // Valida os campos na página de visualização pós cadastro
   await expect(page.getByText('NomePessoa Vendedor')).toBeVisible();
-});
+}
