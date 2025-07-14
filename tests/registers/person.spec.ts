@@ -249,6 +249,13 @@ var adm = {
 
 var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer | Foreigner)[] } = { people: [] };
 
+var search_list: Search[] = [
+  {
+    searchFor: '2',
+    shouldFind: 'Bruno Fernando Bevilaqua'
+  },
+];
+
 test('Should create a new Person', async ({ page }) => {
   //navega para o menu de pessoa
   await page.getByRole('button', { name: 'Cadastros' }).click();
@@ -373,6 +380,28 @@ test('Should create a new Person', async ({ page }) => {
 
   // adiciona a pessoa ao array de pessoas adicionadas
   addedData.people.push(person);
+  search_list.push(
+    {
+      searchFor: person.national_document,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.phone,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.cell,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.fax,
+      shouldFind: person.name
+    },
+    {
+      searchFor: person.name,
+      shouldFind: person.name
+    },
+  );
 });
 
 test('Should create a new Seller', async ({ page }) => {
@@ -591,6 +620,20 @@ test('Should create a new company', async ({ page }) => {
   await expect.soft(page.getByText('País' + company.country)).toBeVisible();
 
   addedData.people.push(company);
+  search_list.push(
+    {
+      searchFor: company.national_document,
+      shouldFind: company.name
+    },
+    {
+      searchFor: company.trade_name,
+      shouldFind: company.trade_name
+    },
+    {
+      searchFor: company.email,
+      shouldFind: company.name
+    }
+  );
 });
 
 test('Should create a new rural producer', async ({ page }) => {
@@ -684,6 +727,12 @@ test('Should create a new rural producer', async ({ page }) => {
   await expect.soft(page.getByText('País' + rural_producer.country)).toBeVisible();
 
   addedData.people.push(rural_producer);
+  search_list.push(
+    {
+      searchFor: rural_producer.city_name,
+      shouldFind: rural_producer.name
+    }
+  );
 });
 
 test('Should create a new accountant', async ({ page }) => {
@@ -979,48 +1028,6 @@ test('Should search people', async ({ page }) => {
 
   // Pesquisa por (em ordem) código, CNPF/CNPJ, telefone, celular ou fax,
   // nome, fantasia/apelido, CPF/CNPJ, telefone, celular, fax, e-mail principal ou cidade.
-  let search_list: Search[] = [
-    {
-      searchFor: '2',
-      shouldFind: 'Bruno Fernando Bevilaqua'
-    },
-    {
-      searchFor: person.national_document,
-      shouldFind: person.name
-    },
-    {
-      searchFor: company.national_document,
-      shouldFind: company.name
-    },
-    {
-      searchFor: person.phone,
-      shouldFind: person.name
-    },
-    {
-      searchFor: person.cell,
-      shouldFind: person.name
-    },
-    {
-      searchFor: person.fax,
-      shouldFind: person.name
-    },
-    {
-      searchFor: person.name,
-      shouldFind: person.name
-    },
-    {
-      searchFor: company.trade_name,
-      shouldFind: company.trade_name
-    },
-    {
-      searchFor: company.email,
-      shouldFind: company.name
-    },
-    {
-      searchFor: rural_producer.city_name,
-      shouldFind: rural_producer.name
-    }
-  ];
 
   for (let i = 0; i < search_list.length; i++) {
     const item = search_list[i];
@@ -1122,6 +1129,8 @@ test('Should delete People', async ({ page }) => {
       // deleta o veículo da transportadora
       // acessa o menu de veículos
       await page.getByRole('link', { name: 'Veículos' }).click();
+      // esse clique aqui vai esperar carregar a página dos veículos
+      await page.locator('h1').filter({ hasText: 'Veículos' }).click();
       // pesquisa o veículo
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
       await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person?.vehicle?.description ?? '');
