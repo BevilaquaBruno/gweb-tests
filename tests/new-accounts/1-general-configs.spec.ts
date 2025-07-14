@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../helpers/fixtures';
 import 'dotenv/config';
 
-test('Certificate, Negative Stock and IP Verification', async ({ page }) => {
+test('Certificate', async ({ page }) => {
     //acessa as configurações
     await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
     await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
@@ -21,8 +21,13 @@ test('Certificate, Negative Stock and IP Verification', async ({ page }) => {
     }
 
     await expect.soft(page.locator('gw-general-settings')).toContainText('Emitido para');
-    await page.waitForTimeout(3000);
+});
 
+test('Negative Stock', async ({ page }) => {
+    //acessa as configurações
+    await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
+    await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
+    await page.getByRole('heading', { name: 'Configurações gerais' }).click();
     // permite estoque negativo
     // marca estoque negativo
     let allow_negative_stock = await page.getByRole("checkbox", { name: "Permitir estoque negativo" }).isChecked();
@@ -32,8 +37,13 @@ test('Certificate, Negative Stock and IP Verification', async ({ page }) => {
     }
     allow_negative_stock = await page.locator('.mat-checkbox-inner-container').first().isChecked();
     expect.soft(allow_negative_stock).toEqual(true);
-    await page.waitForTimeout(3000);
+});
 
+test('IP Verification', async ({ page }) => {
+    //acessa as configurações
+    await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
+    await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL + "/configuracoes/geral");
+    await page.getByRole('heading', { name: 'Configurações gerais' }).click();
     // desativa verificação de IP
     // Verifica se a configuração já está marcada através da mensagem amarela abaixo
     let isIPVerificationOn = await page.getByText('Ativar esta configuração pode ser um risco à segurança dos dados da empresa. Utilize-a somente em caso de problemas de conectividade/logoffs constantes').isVisible();

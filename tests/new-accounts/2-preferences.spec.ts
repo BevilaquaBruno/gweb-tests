@@ -11,4 +11,5 @@ test('Should set block screen to "never"', async ({ page }) => {
   //await page.getByRole('combobox', { name: '15 minutos' });
   //await page.getByRole('combobox').click();
   await page.getByRole('option', { name: 'Nunca' }).click();
+  await page.waitForTimeout(1500);
 });
