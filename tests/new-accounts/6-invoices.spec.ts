@@ -67,6 +67,8 @@ test('Config NFC-e', async ({ page }) => {
 
    // Salva a configuração
    await page.locator('form[name="environment"]').getByRole('button', { name: 'Salvar' }).click();
+   expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
+
 });
 
 test('Config NF-e', async ({ page }) => {
@@ -94,6 +96,8 @@ test('Config NF-e', async ({ page }) => {
 
    // Salva a configuração
    await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
+   expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
+
 });
 
 async function editProductPrice(page: Page, productName: string) {

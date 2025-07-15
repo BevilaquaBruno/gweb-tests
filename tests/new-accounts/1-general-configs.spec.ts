@@ -37,6 +37,8 @@ test('Negative Stock', async ({ page }) => {
     }
     allow_negative_stock = await page.locator('.mat-checkbox-inner-container').first().isChecked();
     expect.soft(allow_negative_stock).toEqual(true);
+
+    expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
 });
 
 test('IP Verification', async ({ page }) => {
@@ -51,9 +53,11 @@ test('IP Verification', async ({ page }) => {
         // desativa a configuração, salva e confirma
         await page.getByText('Desativar verificação de IP').click();
         await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
+        await page.getByRole('heading', { name: 'Tem certeza que deseja desativar a verificação de ip durante a autenticação?' }).click();
         await page.getByRole('button', { name: 'Confirmar' }).click();
     }
 
     await expect(page.getByText('Ativar esta configuração pode ser um risco à segurança dos dados da empresa. Utilize-a somente em caso de problemas de conectividade/logoffs constantes')
     ).toBeVisible();
+    expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
 });
