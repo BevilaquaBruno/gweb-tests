@@ -8,7 +8,7 @@ import 'dotenv/config';
 import { Search } from '../types/general/search.type';
 
 // cria uma pessoa para ser cadastrada
-var person: Person = {
+const person: Person = {
   type: 'Pessoa',
   name: "AutoPerson " + faker.person.fullName(),
   surname: "AutoPerson " + faker.person.firstName(),
@@ -40,7 +40,7 @@ var person: Person = {
 }
 
 //cria um vendedor para ser cadastrado
-var seller: Seller = {
+const seller: Seller = {
   type: 'Vendedor',
   name: "AutoSeller " + faker.person.fullName(),
   surname: "AutoSeller " + faker.person.firstName(),
@@ -77,7 +77,7 @@ var seller: Seller = {
 }
 
 // cria uma empresa para ser cadastrada
-var company: Company = {
+const company: Company = {
   type: 'Empresa',
   name: "AutoCompany " + faker.company.name(),
   trade_name: "AutoCompany " + faker.company.name(),
@@ -114,7 +114,7 @@ var company: Company = {
 }
 
 // cria um produtor rural
-var rural_producer: RuralProducer = {
+const rural_producer: RuralProducer = {
   type: 'Produtor Rural',
   name: "AutoRural " + faker.person.fullName(),
   surname: "AutoRural " + faker.person.firstName(),
@@ -145,7 +145,7 @@ var rural_producer: RuralProducer = {
 }
 
 // cria um contador
-var accountant: Accountant = {
+const accountant: Accountant = {
   type: 'Contador',
   name: "AutoAccountant " + faker.person.fullName(),
   surname: "AutoAccountant " + faker.person.firstName(),
@@ -177,7 +177,7 @@ var accountant: Accountant = {
 }
 
 // cria uma transportadora
-var transporter: Transporter = {
+const transporter: Transporter = {
   type: 'Transportador',
   name: "AutoTransporter " + faker.person.fullName(),
   trade_name: "AutoTransporter " + faker.person.firstName(),
@@ -216,7 +216,7 @@ var transporter: Transporter = {
   obs: "AutoTransporter " + faker.lorem.sentences(10, '\n')
 }
 
-var foreigner: Foreigner = {
+const foreigner: Foreigner = {
   type: 'Estrangeiro',
   name: 'AutoForeigner from Gibraltar',
   surname: 'Auto Gibraltarian',
@@ -234,7 +234,7 @@ var foreigner: Foreigner = {
 }
 
 // usuário administrador para ser editado
-var adm = {
+const adm = {
   surname: "Usuário administrador",
   national_document: generateCpf({ format: true }),
   state_document: faker.string.numeric({ length: 7 }),
@@ -247,9 +247,9 @@ var adm = {
   city_name: 'Concórdia',
 }
 
-var addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer | Foreigner)[] } = { people: [] };
+const addedData: { people: (Person | Company | Transporter | Accountant | Seller | RuralProducer | Foreigner)[] } = { people: [] };
 
-var search_list: Search[] = [
+const search_list: Search[] = [
   {
     searchFor: '2',
     shouldFind: 'Bruno Fernando Bevilaqua'
