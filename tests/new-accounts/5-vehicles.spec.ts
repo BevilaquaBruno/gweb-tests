@@ -31,7 +31,8 @@ test('Set Company #1 as Trasporter and Register new vehicle', async ({ page }) =
     if(!isTransporter){
         await page.getByText('Transportador').click();
         await page.getByRole('button', { name: 'Salvar' }).click();
-        await page.waitForTimeout(5000);
+        await page.waitForTimeout(1000);
+        await page.getByText("Atualizado com sucesso").click();
     }
 
     //acessa um novo veículo

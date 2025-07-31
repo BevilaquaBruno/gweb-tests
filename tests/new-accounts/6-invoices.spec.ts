@@ -67,6 +67,7 @@ test('Config NFC-e', async ({ page }) => {
 
    // Salva a configuração
    await page.locator('form[name="environment"]').getByRole('button', { name: 'Salvar' }).click();
+   await page.getByText("Configurações alteradas com sucesso").click({timeout: 30000});
    expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
 
 });
@@ -96,6 +97,7 @@ test('Config NF-e', async ({ page }) => {
 
    // Salva a configuração
    await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
+   await page.getByText("Configurações alteradas com sucesso").click({timeout: 30000});
    expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
 
 });
