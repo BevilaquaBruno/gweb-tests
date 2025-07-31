@@ -1050,11 +1050,11 @@ test('Should inactivate AutoPerson', async ({ page }) => {
 
   // pesquisa a pessoa e espera 2 segundos para carregar a lista
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
-  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person.name);
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(addedData.people[0].name);
   await page.waitForTimeout(2000);
 
   // abre para editar
-  await page.getByRole('heading', { name: new RegExp(person.name) }).click();
+  await page.getByRole('heading', { name: new RegExp(addedData.people[0].name) }).click();
   await page.getByRole('button', { name: 'Editar' }).click();
 
   //inativa e salva
@@ -1062,13 +1062,13 @@ test('Should inactivate AutoPerson', async ({ page }) => {
   await page.getByRole('button', { name: 'Salvar' }).click();
 
   // clica no nome para esperar carregar e verifica se está inativo
-  await page.getByRole('heading', { name: person.name }).click();
+  await page.getByRole('heading', { name: addedData.people[0].name }).click();
   await expect(page.getByText('StatusInativo')).toBeVisible();
 
   // pesquisa se a pessoa ficou inativa na lista
   await page.getByRole('link', { name: 'Pessoas' }).click();
   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
-  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(person.name);
+  await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(addedData.people[0].name);
   await page.waitForTimeout(2000);
   await expect(page.getByRole('heading', { name: new RegExp('Inativo') })).toBeVisible();
 });
