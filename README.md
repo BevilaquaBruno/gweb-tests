@@ -17,20 +17,29 @@ Este projeto utiliza o Playwright para automatizar e validar funcionalidades do 
 │   │   │   └── .gitkeep  # Não envia o certificado digital para o repositório
 │   │   ├── CNAE.json     # Arquivo contendo CNAES conforme tabela do IBGE
 │   │   └── services.json # Arquivo contendo códigos de atividade
-│   ├── base/             # Pasta contendo os testes de configurações
-│   │   └── config.spec.ts
+|   ├── general # Testes gerais
+│   |   ├── base/             # Pasta contendo os testes de configurações
+│   |   │   └── ...
+│   |   ├── invoices/         # Pasta contendo testes de movimentações
+│   |   │   └── config.spec.ts
+│   |   │   ├── nfe.spec.ts
+│   |   │   ├── pdv.spec.ts
+│   |   │   └── ...
+│   |   ├── registers/        # Pasta contendo testes de cadastros
+│   |   │   ├── operations.spec.ts
+│   |   │   ├── person.spec.ts
+│   |   │   ├── products.spec.ts
+│   |   │   └── ...
+│   |   └── ...
 │   ├── helpers/          # Pasta contendo o arquivo de função de autenticação
 │   │   └── fixtures.ts 
-│   ├── invoices/         # Pasta contendo testes de movimentações
-│   │   ├── nfe.spec.ts
-│   │   ├── pdv.spec.ts
-│   │   └── ...
-│   ├── registers/        # Pasta contendo testes de cadastros
-│   │   ├── operations.spec.ts
-│   │   ├── person.spec.ts
-│   │   ├── products.spec.ts
-│   │   └── ...
-│   └── ...
+│   ├── new-accounts/          # Pasta contendo os testes para contas novas
+│   |   └── ...
+│   ├── types/          # Pasta contendo os types para os mocks
+│   │   └── registers/
+|   |   |   └── person.type.ts
+│   |   |   └── ...
+│   |   └── ...
 ├── playwright.config.ts  # Configurações do Playwright
 ├── reports/              # Relatórios de execução
 ├── package.json          # Dependências e scripts

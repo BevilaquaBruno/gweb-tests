@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 import 'dotenv/config';
 
 test('Put .pfx in account', async ({ page }) => {
@@ -28,7 +28,7 @@ test('Allow negative stock', async ({ page }) => {
   await page.getByRole('button', { name: 'Configurações' }).click();
   await page.getByRole('link', { name: 'Geral' }).click();
   await page.getByRole('heading', { name: 'Configurações gerais' }).click();
-  let allow_negative_stock = await page.locator('.mat-checkbox-inner-container').first().isChecked();
+  let allow_negative_stock = await page.getByRole("checkbox", { name: "Permitir estoque negativo" }).isChecked();
   if (!allow_negative_stock) {
     await page.locator('label').filter({ hasText: 'Permitir estoque negativo' }).click();
     await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
