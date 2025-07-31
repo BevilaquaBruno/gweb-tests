@@ -252,7 +252,7 @@ const addedData: { people: (Person | Company | Transporter | Accountant | Seller
 const search_list: Search[] = [
   {
     searchFor: '2',
-    shouldFind: 'Bruno Fernando Bevilaqua'
+    shouldFind: '(Usuário Administrador)'
   },
 ];
 
