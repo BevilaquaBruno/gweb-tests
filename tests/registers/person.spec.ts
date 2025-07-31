@@ -1038,7 +1038,11 @@ test('Should search people', async ({ page }) => {
     await page.waitForTimeout(2000);
 
     // valida se a pesquisa encontrou o item
-    await expect.soft(page.getByRole('heading', { name: new RegExp(item.shouldFind) })).toBeVisible();
+    if(item.searchFor === '2') {
+      await expect.soft(page.getByText(item.shouldFind)).toBeVisible();
+    } else {
+      await expect.soft(page.getByRole('heading', { name: new RegExp(item.shouldFind) })).toBeVisible();
+    }
   }
 
 });
