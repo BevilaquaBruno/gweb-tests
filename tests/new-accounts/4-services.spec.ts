@@ -23,6 +23,8 @@ test('Allow Services and Register a new Service', async ({ page }) => {
       // marca para utilizar serviços
       await page.getByText('Habilitar o uso de serviços').click();
       await page.locator('mat-card-actions').filter({ hasText: 'Desfazer Salvar' }).getByRole('button').nth(1).click();
+      await page.waitForTimeout(2000);
+      expect(await page.getByText("Configurações alteradas com sucesso")).toBeVisible();
    }
    await expect(page.getByText('Local padrão do fato gerador do ISS')).toBeVisible();
 
