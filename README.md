@@ -59,7 +59,7 @@ Este projeto utiliza o Playwright para automatizar e validar funcionalidades do 
     PLAYWRIGHT_GWEB_LOGIN="example@mail.com" //email utilizado para login
     PLAYWRIGHT_GWEB_PASSWORD="password" //senha utilizada para login
     PLAYWRIGHT_CERT_FILE="certificate.pfx" //nome do arquivo do certificado digital
-    PLAYWRIGHT_CERT_PASSWORD="Zuc@1234" //senha do certificado digital
+    PLAYWRIGHT_CERT_PASSWORD="senhaDoCertificado" //senha do certificado digital
     PLAYWRIGHT_GWEB_ACCOUNT="Company to Select" //Nome da empresa a selecionar (conforme está no gweb)
     PLAYWRIGHT_GWEB_URL="https://app.gdoorweb.com.br" //link do sistema utilizado para os testes
     ```
