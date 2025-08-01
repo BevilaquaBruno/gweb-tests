@@ -1,4 +1,4 @@
-import { test } from "../helpers/fixtures";
+import { test } from "../../helpers/fixtures";
 import { expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
 import { generate as generateCNPJ, format as formatCNPJ } from "cnpj";
@@ -9,7 +9,7 @@ import {
   PaymentMethodType,
   PosPaymentDevice,
   TefPaymentDevice,
-} from "../types/registers/payment-method.type";
+} from "../../types/registers/payment-method.type";
 
 const immediatePaymentMethod: ImmediatePaymentMethod = {
   name: "AutoImmediatePayment " + faker.number.int({min: 1000, max: 9999}),

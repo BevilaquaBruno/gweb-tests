@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test } from "../helpers/fixtures";
+import { test } from "../../helpers/fixtures";
 import { faker } from "@faker-js/faker";
 
 const operations = [

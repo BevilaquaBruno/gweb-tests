@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 
 // test('New sell NF-e', async ({ page }) => {
 //     // Acessa o menu

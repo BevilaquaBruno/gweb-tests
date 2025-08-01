@@ -4,6 +4,8 @@ import "dotenv/config";
 export const test = base.extend<{ forEachTest: void }>({
   forEachTest: [
     async ({ page }, use) => {
+      let isMultiAccount: Boolean = ('true' == process.env.PLAYWRIGHT_MULTI_ACCOUNT) ? true : false;
+
       // This code runs before every test.
       await page.goto(process.env.PLAYWRIGHT_GWEB_URL + "/login");
       await page.getByRole("textbox", { name: "E-mail" }).click();
@@ -15,13 +17,17 @@ export const test = base.extend<{ forEachTest: void }>({
         .getByRole("textbox", { name: "Senha" })
         .fill(process.env.PLAYWRIGHT_GWEB_PASSWORD || "");
       await page.getByRole("button", { name: "Entrar" }).click();
-      //espera carregar a página de selecionar conta
-      await page.getByText('Selecionar conta').click();
+      if (isMultiAccount) {
+        //espera carregar a página de selecionar conta
+        await page.getByText('Selecionar conta').click();
 
-      // seleciona a empresa
-      await page.getByRole('combobox', { name: 'Digite para buscar a conta' }).click();
-      await page.getByRole("heading", { name: process.env.PLAYWRIGHT_GWEB_ACCOUNT }).click();
-      await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL || "");
+        // seleciona a empresa
+        await page.getByRole('combobox', { name: 'Digite para buscar a conta' }).click();
+        await page.getByRole("heading", { name: process.env.PLAYWRIGHT_GWEB_ACCOUNT }).click();
+        await page.waitForURL(process.env.PLAYWRIGHT_GWEB_URL || "");
+      }else{
+        await page.getByRole('heading', { name: 'Dashboard' }).click();
+      }
       // follows next tests
       await use();
     },

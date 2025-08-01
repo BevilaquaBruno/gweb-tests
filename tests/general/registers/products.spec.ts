@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../helpers/fixtures';
+import { test } from '../../helpers/fixtures';
 import { faker, fakerPT_BR } from '@faker-js/faker';
 
 const cost = faker.number.float({ min: 0, max: 100, fractionDigits: 2 });
@@ -53,8 +53,7 @@ test('should create a price table', async ({ page }) => {
     await page.getByRole('button', { name: 'Calcular valores' }).click();
     await page.getByRole('button', { name: 'continuar' }).click();
     await page.getByRole('button', { name: 'Salvar' }).click();
-    await page.waitForURL('https://app.gdoorweb.com.br/cadastros/produtos/tabelas-de-precos');
-    await expect(page.getByText('Tabela de preços salva com')).toBeVisible();
+    await expect(page.getByText('Tabela de preços salva com sucesso')).toBeVisible();
 })
 
 test('should create a product category', async ({ page }) => {
@@ -65,7 +64,6 @@ test('should create a product category', async ({ page }) => {
     await page.getByRole('textbox', { name: 'Nome' }).click();
     await page.getByRole('textbox', { name: 'Nome' }).fill('Auto ' + faker.commerce.department());
     await page.getByRole('button', { name: 'Salvar' }).click();
-    await page.waitForURL('https://app.gdoorweb.com.br/cadastros/produtos/categorias');
     await expect(page.getByText('Categoria cadastrada com')).toBeVisible();
 })
 

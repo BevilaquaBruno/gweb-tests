@@ -1,8 +1,8 @@
 import { expect, Page } from "@playwright/test";
-import { test } from "../helpers/fixtures";
+import { test } from "../../helpers/fixtures";
 import { faker, fakerPT_BR } from "@faker-js/faker";
-import cnae from "../assets/CNAE.json";
-import serviceGroup from "../assets/services.json";
+import cnae from "../../assets/CNAE.json";
+import serviceGroup from "../../assets/services.json";
 import { randomInt } from "crypto";
 
 test("Should activate the service module", async ({ page }) => {
