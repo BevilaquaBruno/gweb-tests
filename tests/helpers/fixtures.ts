@@ -17,7 +17,6 @@ export const test = base.extend<{ forEachTest: void }>({
         .getByRole("textbox", { name: "Senha" })
         .fill(process.env.PLAYWRIGHT_GWEB_PASSWORD || "");
       await page.getByRole("button", { name: "Entrar" }).click();
-
       if (isMultiAccount) {
         //espera carregar a página de selecionar conta
         await page.getByText('Selecionar conta').click();
@@ -29,7 +28,6 @@ export const test = base.extend<{ forEachTest: void }>({
       }else{
         await page.getByRole('heading', { name: 'Dashboard' }).click();
       }
-
       // follows next tests
       await use();
     },
