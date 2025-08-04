@@ -167,12 +167,27 @@ let main_rural_producer: RuralProducer = {
   obs: "Pessoa Produtor Rural"
 }
 
-test('Register all People', async ({ page }) => {
+test('Person from SC', async ({ page }) => {
   await registerPerson(page, person_from_sc);
+});
+
+test('Person from RS', async ({ page }) => {
   await registerPerson(page, person_from_rs);
+});
+
+test('Company from SC', async ({ page }) => {
   await registerCompany(page, company_from_sc);
+});
+
+test('Company from SP', async ({ page }) => {
   await registerCompany(page, company_from_sp);
+});
+
+test('Rural producer', async ({ page }) => {
   await registerRuralProducer(page, main_rural_producer);
+});
+
+test('Seller', async ({ page }) => {
   await RegisterSeller(page);
 });
 
