@@ -1,4 +1,4 @@
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { test } from '../../helpers/fixtures';
 import 'dotenv/config';
 import { Quotation } from '../../types/movements/quotation.type';
@@ -10,23 +10,26 @@ var quotation_sell_price: Quotation = {
       { description: 'Produto Normal', quantity: 2 },
       { description: 'Produto Preço de Atacado', quantity: 1 },
    ],
-   additional_information: 'Informações adicionais do orçamento com preço de venda',
    payments: [
-      { name: 'Dinheiro, à vista', type: 'Cash' }
+      { name: 'Dinheiro, à vista' }
    ],
+   additional_information: 'Informações adicionais do orçamento com preço de venda',
 };
 
 var quotation_table_price: Quotation = {
-   price_origin: 'Tabela de preço',
+   price_origin: 'Tabela de preços',
    price_table: 'Tabela de preço 1',
-   client: 'Pessoa Física de SC Santa Catarina',
+   client: 'Pessoa Jurídica Empresa de SC Santa Catarina',
    products: [
       { description: 'Produto Normal', quantity: 2 },
       { description: 'Produto Preço de Atacado', quantity: 1 },
    ],
-   additional_information: 'Informações adicionais do orçamento',
+   services: [
+      { description: 'Serviço de desenvolvimento de sistemas' }
+   ],
+   additional_information: 'Informações adicionais do orçamento com tabela de preço',
    payments: [
-      { name: 'À vista no cartão de crédito', type: 'Card'}
+      { name: 'À vista no cartão de crédito' }
    ],
 };
 
@@ -34,22 +37,200 @@ var quotation_wholesale_price: Quotation = {
    price_origin: 'Preço de atacado',
    client: 'Pessoa Física de SC Santa Catarina',
    products: [
-      { description: 'Produto Normal', quantity: 2 },
+      { description: 'Produto Preço de Atacado', quantity: 1, value: '89,99' },
       { description: 'Produto Grade - Marca 1, Tamanho 2', quantity: 3 },
    ],
-   additional_information: 'Informações adicionais do orçamento',
+   additional_information: 'Informações adicionais do orçamento com preço de atacado',
    payments: [
-      { name: 'Dinheiro, à vista', type: 'Cash' },
-      { name: 'À vista no cartão de crédito', type: 'Card' }
+      { name: 'Dinheiro, à vista' }
    ],
 };
 
-var quotation_list = [
-   quotation_sell_price,
-   quotation_table_price,
-   quotation_wholesale_price
-];
+var quotation_with_service: Quotation = {
+   client: 'Pessoa Física de SC Santa Catarina',
+   products: [],
+   services: [
+      { description: 'Serviço de desenvolvimento de sistemas' }
+   ],
+   additional_information: 'Informações adicionais do orçamento com apenas um serviço',
+   payments: [
+      { name: 'Dinheiro, à vista' }
+   ],
+}
 
-test('First Test', async ({ page }) => {
+test('Create quotation with sell price', async ({ page }) => {
+   // Acessa o menu de orçamentos
+   await page.getByRole('button', { name: 'Movimentações' }).click();
+   await page.getByRole('link', { name: 'Orçamentos' }).click();
+   await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
+   await registerQuotation(page, quotation_sell_price);
 });
+
+test('Create quotation with table price', async ({ page }) => {
+   // Acessa o menu de orçamentos
+   await page.getByRole('button', { name: 'Movimentações' }).click();
+   await page.getByRole('link', { name: 'Orçamentos' }).click();
+   await page.getByRole('link').filter({ hasText: /^$/ }).click();
+
+   await registerQuotation(page, quotation_table_price);
+});
+
+test('Create quotation with wholesale price', async ({ page }) => {
+   // Acessa o menu de orçamentos
+   await page.getByRole('button', { name: 'Movimentações' }).click();
+   await page.getByRole('link', { name: 'Orçamentos' }).click();
+   await page.getByRole('link').filter({ hasText: /^$/ }).click();
+
+   await registerQuotation(page, quotation_wholesale_price);
+});
+
+test('Create quotation with service', async ({ page }) => {
+   // Acessa o menu de orçamentos
+   await page.getByRole('button', { name: 'Movimentações' }).click();
+   await page.getByRole('link', { name: 'Orçamentos' }).click();
+   await page.getByRole('link').filter({ hasText: /^$/ }).click();
+
+   await registerQuotation(page, quotation_with_service);
+});
+
+async function registerQuotation(page: Page, quotation: Quotation) {
+   // Altera a origem do preço
+   if (undefined != quotation.price_origin) {
+      await page.getByText('Preço de vendaOrigem do preço').click();
+      await page.getByRole('option', { name: quotation.price_origin }).click();
+   }
+
+   // Altera a tabela de preço
+   if (
+      'Tabela de preços' == quotation.price_origin
+      && undefined != quotation.price_table
+   ) {
+      await page.getByLabel('Selecione a tabela de preços').getByText('Selecione a tabela de preços').click();
+      await page.getByRole('option', { name: quotation.price_table }).click();
+   }
+
+   // Insere o produto
+   await page.getByRole('textbox', { name: 'Cliente' }).click();
+   await page.getByRole('textbox', { name: 'Cliente' }).fill(quotation.client);
+   await page.getByRole('textbox', { name: 'Cliente' }).press('Enter');
+   await page.getByRole('option', { name: quotation.client }).locator('span').first().click();
+
+   // Lançamento dos produtos
+   for (let i = 0; i < quotation.products.length; i++) {
+      const product = quotation.products[i];
+
+      await page.getByRole('heading', { name: 'Novo orçamento' }).click();
+      // Se for o primeiro produto ( i = 0), ele testa abrir o modal de produtos pelo botão
+      if (i == 0) {
+         await page.locator('mat-card').filter({ hasText: 'ItemProdutoCód. barrasOrigem' }).locator('button').first().click();
+         // Se não for o primeiro, ele abre o modal pelo botão INSERT pra testar
+      } else {
+         await page.locator('body').press('Insert');
+      }
+
+      // Pesquisa o item e seleciona
+      await page.getByRole('combobox', { name: 'Produto' }).click();
+      await page.getByRole('combobox', { name: 'Produto' }).fill(product.description);
+      await page.getByText(product.description).click();
+
+      // Clica na quantidade e pesquisa o item
+      await page.getByRole('textbox', { name: 'Quantidade', exact: true }).click();
+      await page.getByRole('textbox', { name: 'Quantidade', exact: true }).press('Delete');
+      // Pega a quantidade lançada, transforma em string e da um split, isso cria uma lista de strings
+      let quantity_list = product.quantity.toString().split('');
+
+      // Para cada item clica no botão do número para lançar o item
+      for (let i2 = 0; i2 < quantity_list.length; i2++) {
+         const number = quantity_list[i2];
+         await page.getByRole('textbox', { name: 'Quantidade', exact: true }).press(number);
+      }
+      await page.getByRole('button', { name: 'Confirmar' }).click();
+   }
+
+   // Lançamento dos serviços
+   if (undefined != quotation.services) {
+      for (let i = 0; i < quotation.services.length; i++) {
+         const service = quotation.services[i];
+         // Se for o primeiro produto ( i = 0), ele testa abrir o modal de serviços pelo botão
+         if (i == 0) {
+            await page.locator('gw-quotation-form-services').getByRole('button').click();
+            // Se não for o primeiro, ele abre o modal pelo botão SHIFT + INSERT pra testar
+         } else {
+            await page.locator('body').press('Shift + Insert');
+         }
+
+         await page.getByRole('combobox', { name: 'Nome do serviço' }).click();
+         await page.getByRole('combobox', { name: 'Nome do serviço' }).fill(service.description);
+         await page.getByRole('option', { name: service.description }).click();
+         await page.getByRole('textbox', { name: 'Quantidade' }).click();
+         await page.getByRole('button', { name: 'Confirmar' }).click();
+      }
+   }
+
+   // Pagamento
+   if (undefined != quotation.payments) {
+      for (let i = 0; i < quotation.payments.length; i++) {
+         const payment = quotation.payments[i];
+         await page.locator('gw-document-payments-form-card').getByRole('button').click();
+         await page.waitForTimeout(1000);
+         await page.getByRole('heading', { name: 'Adicionar pagamento' }).click();
+         await page.getByLabel('Forma de pagamento *').getByText('Forma de pagamento').click();
+         await page.getByRole('option', { name: payment.name }).click();
+         await page.getByRole('button', { name: 'Confirmar' }).click();
+      }
+   }
+
+   // Informação adicional
+   if(undefined != quotation.additional_information){
+      await page.getByRole('textbox', { name: 'Informações adicionais' }).click();
+      await page.getByRole('textbox', { name: 'Informações adicionais' }).fill(quotation.additional_information);
+   }
+
+   // Salva e espera carregar a visualização
+   await page.getByRole('button', { name: 'Salvar' }).click();
+   await page.getByText('Nome' + quotation.client).click();
+
+   // Valida os dados
+   await expect(page.getByText('Nome' + quotation.client)).toBeVisible();
+
+   // A origem do preço
+   if(undefined != quotation.price_origin && 'Preço de venda' != quotation.price_origin){
+      if('Tabela de preço' == quotation.price_origin){
+         await expect(page.getByText('TP-' + quotation.price_table)).toBeVisible();
+      }else if ('Preço de atacado' == quotation.price_origin){
+         await expect(page.getByText('Atacado', { exact: true })).toBeVisible();
+      }
+   }
+
+   // Valida os produtos da lista
+   for (let i = 0; i < quotation.products.length; i++) {
+      const product = quotation.products[i];
+      // Valida o nome do produto
+      await expect(page.getByText(product.description)).toBeVisible();
+      // Valida o valor do produto, se tiver
+      if (undefined != product.value)
+         await expect(page.getByRole('cell', { name: 'R$ ' + product.value }).first()).toBeVisible();
+   }
+
+   // Valida os serviços da lista, se tiver
+   if (undefined != quotation.services) {
+      for (let i = 0; i < quotation.services.length; i++) {
+         const service = quotation.services[i];
+         // Valida o nome 
+         await expect(page.getByText(service.description)).toBeVisible();
+      }
+   }
+
+   // Valida os pagamentos, se tiver
+   if (undefined != quotation.payments) {
+      for (let i = 0; i < quotation.payments.length; i++) {
+         const payment = quotation.payments[i];
+         await expect(page.getByRole('cell', { name: payment.name })).toBeVisible();
+      }
+   }
+
+   // Valida as informações adicionais, se tiver
+   if (undefined != quotation.additional_information)
+      await expect(page.getByText(quotation.additional_information)).toBeVisible();
+}
