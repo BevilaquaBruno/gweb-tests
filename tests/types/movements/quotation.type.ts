@@ -1,4 +1,5 @@
 export type Quotation = {
+   id?: number,
    price_origin?: string,
    price_table?: string,
    client: string,

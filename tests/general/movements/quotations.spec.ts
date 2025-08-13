@@ -65,8 +65,13 @@ test('Create quotation with sell price', async ({ page }) => {
    await page.getByRole('link', { name: 'Orçamentos' }).click();
    await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
-   // Faz todo o registro padrão
    await registerQuotation(page, quotation_sell_price);
+
+   let url = await page.url(); // https://homolog2.gdoorweb.com.br/movimentos/orcamentos/44
+   let id = url.split('/').pop();
+   if (undefined == id) {
+      quotation_sell_price.id = id;
+   }
 });
 
 test('Create quotation with table price', async ({ page }) => {
@@ -76,6 +81,12 @@ test('Create quotation with table price', async ({ page }) => {
    await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
    await registerQuotation(page, quotation_table_price);
+
+   let url = await page.url(); // https://homolog2.gdoorweb.com.br/movimentos/orcamentos/44
+   let id = url.split('/').pop();
+   if (undefined == id) {
+      quotation_table_price.id = id;
+   }
 });
 
 test('Create quotation with wholesale price', async ({ page }) => {
@@ -85,6 +96,12 @@ test('Create quotation with wholesale price', async ({ page }) => {
    await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
    await registerQuotation(page, quotation_wholesale_price);
+
+   let url = await page.url(); // https://homolog2.gdoorweb.com.br/movimentos/orcamentos/44
+   let id = url.split('/').pop();
+   if (undefined == id) {
+      quotation_wholesale_price.id = id;
+   }
 });
 
 test('Create quotation with service', async ({ page }) => {
@@ -94,6 +111,35 @@ test('Create quotation with service', async ({ page }) => {
    await page.getByRole('link').filter({ hasText: /^$/ }).click();
 
    await registerQuotation(page, quotation_with_service);
+
+   let url = await page.url(); // https://homolog2.gdoorweb.com.br/movimentos/orcamentos/44
+   let id = url.split('/').pop();
+   if (undefined == id) {
+      quotation_with_service.id = id;
+   }
+});
+
+test('Edit quotation with sell price', async ({ page }) => {
+
+   let quotation = quotation_sell_price;
+   quotation.client = 'Pessoa Física de SC Santa Catarina';
+   quotation.products.pop();
+
+   await expect(quotation.id).not.toBe(undefined);
+
+   // Acessa o menu de orçamentos
+   await page.getByRole('button', { name: 'Movimentações' }).click();
+   await page.getByRole('link', { name: 'Orçamentos' }).click();
+
+   // Pesquisa pelo id do orçamento
+   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).click();
+   let quotation_id = (undefined == quotation.id) ? '' : quotation.id.toString();
+   await page.getByRole('searchbox', { name: 'Digite para buscar...' }).fill(quotation_id);
+
+   // Clica no nome da pessoa na lista para abrir a visualização e clica no ícone para editar
+   await page.locator('mat-list-item').filter({ hasText: quotation.client }).locator('h2').click();
+   await page.getByRole('button').filter({ hasText: /^$/ }).nth(1).click();
+
 });
 
 async function registerQuotation(page: Page, quotation: Quotation) {
@@ -127,7 +173,7 @@ async function registerQuotation(page: Page, quotation: Quotation) {
       // Se for o primeiro produto (i = 0), ele testa abrir o modal de produtos pelo botão
       if (i == 0) {
          await page.locator('mat-card').filter({ hasText: 'ItemProdutoCód. barrasOrigem' }).locator('button').first().click();
-      // Se não for o primeiro, ele abre o modal pelo botão INSERT pra testar
+         // Se não for o primeiro, ele abre o modal pelo botão INSERT pra testar
       } else {
          await page.locator('body').press('Insert');
       }
@@ -182,7 +228,7 @@ async function registerQuotation(page: Page, quotation: Quotation) {
       // Da um for na lista de pagamentos
       for (let i = 0; i < quotation.payments.length; i++) {
          const payment = quotation.payments[i];
-         
+
          // Clica no botão para adicionar um novo pagamento, espera 1 segundo para carregar
          // as formas de pagamento e clica em Adicionar pagamento para esperar o modal
          await page.locator('gw-document-payments-form-card').getByRole('button').first().click();
@@ -196,7 +242,7 @@ async function registerQuotation(page: Page, quotation: Quotation) {
          // Se tiver valor informado, entra aqui
          if (undefined != payment.value) {
             await page.getByRole('textbox', { name: 'Valor' }).click();
-            
+
             // Separa os dígitos do pagamento em um array de dígitos e clica cada um deles
             let digits_list = payment.value?.split('');
             for (let i2 = 0; i2 < digits_list.length; i2++) {
@@ -212,7 +258,7 @@ async function registerQuotation(page: Page, quotation: Quotation) {
                // Coloca 3 parcelas
                await page.getByRole('textbox', { name: 'Nº de parcelas' }).click();
                await page.getByRole('textbox', { name: 'Nº de parcelas' }).press('3');
-               
+
                // Coloca o intervalo de 1 mês
                await page.getByRole('textbox', { name: 'Intervalo' }).click();
                await page.getByRole('textbox', { name: 'Intervalo' }).press('1');
