@@ -29,7 +29,8 @@ var quotation_table_price: Quotation = {
    ],
    additional_information: 'Informações adicionais do orçamento com tabela de preço',
    payments: [
-      { name: 'À vista no cartão de crédito' }
+      { name: 'À vista no cartão de crédito', value: '100,00' },
+      { name: 'Parcelado no cartão de crédito', type: 'Parcelado', value: '280,00' }
    ],
 };
 
@@ -172,17 +173,38 @@ async function registerQuotation(page: Page, quotation: Quotation) {
    if (undefined != quotation.payments) {
       for (let i = 0; i < quotation.payments.length; i++) {
          const payment = quotation.payments[i];
-         await page.locator('gw-document-payments-form-card').getByRole('button').click();
+         await page.locator('gw-document-payments-form-card').getByRole('button').first().click();
          await page.waitForTimeout(1000);
          await page.getByRole('heading', { name: 'Adicionar pagamento' }).click();
          await page.getByLabel('Forma de pagamento *').getByText('Forma de pagamento').click();
          await page.getByRole('option', { name: payment.name }).click();
+
+         if (undefined != payment.value) {
+            await page.getByRole('textbox', { name: 'Valor' }).click();
+            let digits_list = payment.value?.split('');
+            for (let i2 = 0; i2 < digits_list.length; i2++) {
+               const digit = digits_list[i2];
+               await page.getByRole('textbox', { name: 'Valor' }).press(digit);
+            }
+         }
+
+         if (undefined != payment.type) {
+            // Se o tipo for parcelado, coloca 3 parcelas com intervalo de 1 mês por padrão
+            if ('Parcelado' == payment.type) {
+               await page.getByRole('textbox', { name: 'Nº de parcelas' }).click();
+               await page.getByRole('textbox', { name: 'Nº de parcelas' }).press('3');
+               await page.getByRole('textbox', { name: 'Intervalo' }).click();
+               await page.getByRole('textbox', { name: 'Intervalo' }).press('1');
+               await page.getByLabel('Período').getByText('Período').click();
+               await page.getByRole('option', { name: 'Mês' }).click();
+            }
+         }
          await page.getByRole('button', { name: 'Confirmar' }).click();
       }
    }
 
    // Informação adicional
-   if(undefined != quotation.additional_information){
+   if (undefined != quotation.additional_information) {
       await page.getByRole('textbox', { name: 'Informações adicionais' }).click();
       await page.getByRole('textbox', { name: 'Informações adicionais' }).fill(quotation.additional_information);
    }
@@ -195,10 +217,10 @@ async function registerQuotation(page: Page, quotation: Quotation) {
    await expect(page.getByText('Nome' + quotation.client)).toBeVisible();
 
    // A origem do preço
-   if(undefined != quotation.price_origin && 'Preço de venda' != quotation.price_origin){
-      if('Tabela de preço' == quotation.price_origin){
+   if (undefined != quotation.price_origin && 'Preço de venda' != quotation.price_origin) {
+      if ('Tabela de preço' == quotation.price_origin) {
          await expect(page.getByText('TP-' + quotation.price_table)).toBeVisible();
-      }else if ('Preço de atacado' == quotation.price_origin){
+      } else if ('Preço de atacado' == quotation.price_origin) {
          await expect(page.getByText('Atacado', { exact: true })).toBeVisible();
       }
    }
@@ -227,6 +249,9 @@ async function registerQuotation(page: Page, quotation: Quotation) {
       for (let i = 0; i < quotation.payments.length; i++) {
          const payment = quotation.payments[i];
          await expect(page.getByRole('cell', { name: payment.name })).toBeVisible();
+         if(undefined != payment.value){
+            await expect(page.getByRole('cell', { name: 'R$ '+ payment.value }).first()).toBeVisible();
+         }
       }
    }
 

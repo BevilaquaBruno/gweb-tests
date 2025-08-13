@@ -4,6 +4,6 @@ export type Quotation = {
    client: string,
    products: { description: string, quantity: number, value?: string }[],
    services?: { description: string }[],
-   payments?: { name: string }[]
+   payments?: { name: string, type?: string, value?: string }[]
    additional_information?: string,
 }
